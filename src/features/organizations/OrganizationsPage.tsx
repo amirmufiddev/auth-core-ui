@@ -88,7 +88,7 @@ export function OrganizationsPage({
             <div className="font-semibold text-default-900">
               {row.original.name}
             </div>
-            <div className="font-mono text-xs text-muted-foreground">
+            <div className="font-semiboldums text-xs text-muted-foreground">
               {row.original.slug}
             </div>
           </div>
@@ -258,7 +258,7 @@ export function OrganizationsPage({
                     <SheetTitle>{selectedOrg.name}</SheetTitle>
                     <SheetDescription>
                       Slug:{" "}
-                      <span className="font-mono">{selectedOrg.slug}</span> ·
+                      <span className="font-medium text-foreground">{selectedOrg.slug}</span> ·
                       Plan {selectedOrg.plan}
                     </SheetDescription>
                   </div>

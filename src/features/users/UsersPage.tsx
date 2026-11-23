@@ -290,7 +290,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
             row.original.role.includes("admin") ? "default" : "secondary"
           }
           variant="soft"
-          className="font-mono text-xs"
+          className="font-semiboldums text-xs"
         >
           {row.original.role}
         </Badge>
@@ -626,7 +626,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
                         </Badge>
                       </div>
                       <div className="flex flex-wrap gap-1.5">
-                        <Badge color="default" variant="soft" className="font-mono">
+                        <Badge color="default" variant="soft">
                           {u.role}
                         </Badge>
                         {u.twoFactorEnabled && (
@@ -883,7 +883,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
               </SheetHeader>
               <div className="mt-6 space-y-5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge color="default" variant="soft" className="font-mono">
+                  <Badge color="default" variant="soft">
                     {inspectTarget.role}
                   </Badge>
                   <Badge
@@ -968,11 +968,11 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
                     <div className="rounded-lg border border-border p-3 space-y-2">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">User ID</span>
-                        <span className="font-mono text-xs">{inspectTarget.id}</span>
+                        <span className="tabular-nums text-xs">{inspectTarget.id}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Username</span>
-                        <span className="font-mono text-xs">
+                        <span className="font-semiboldums text-xs">
                           {inspectTarget.username ?? "-"}
                         </span>
                       </div>

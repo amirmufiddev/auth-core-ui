@@ -343,7 +343,7 @@ export function AuthFeaturesPage({
                       {enabled ? "Active" : "Off"}
                     </Badge>
                   </div>
-                  <CardDescription className="font-mono text-[11px]">
+                  <CardDescription className="font-semiboldums text-[11px]">
                     {feature.packageName} · {feature.pluginKey}
                   </CardDescription>
                 </div>
@@ -364,7 +364,7 @@ export function AuthFeaturesPage({
                   {feature.endpoints.slice(0, 2).map((ep) => (
                     <span
                       key={ep}
-                      className="rounded bg-muted px-2 py-0.5 font-mono text-[10px] text-default-700"
+                      className="rounded bg-muted px-2 py-0.5 font-semiboldums text-[10px] text-default-700"
                     >
                       {ep}
                     </span>
@@ -374,7 +374,7 @@ export function AuthFeaturesPage({
                 {feature.dependencies?.length ? (
                   <div className="text-[11px] text-muted-foreground">
                     Memerlukan:{" "}
-                    <span className="font-mono text-default-800">
+                    <span className="font-semiboldums text-default-800">
                       {feature.dependencies.join(", ")}
                     </span>
                   </div>
@@ -540,7 +540,7 @@ export function AuthFeaturesPage({
                   Salin
                 </Button>
               </div>
-              <pre className="max-h-80 overflow-auto rounded-lg border border-border bg-muted p-4 font-mono text-xs text-default-900">
+              <pre className="max-h-80 overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
                 <code>{serverCode}</code>
               </pre>
             </TabsContent>
@@ -560,7 +560,7 @@ export function AuthFeaturesPage({
                   Salin
                 </Button>
               </div>
-              <pre className="max-h-80 overflow-auto rounded-lg border border-border bg-muted p-4 font-mono text-xs text-default-900">
+              <pre className="max-h-80 overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
                 <code>{clientCode}</code>
               </pre>
             </TabsContent>
@@ -580,7 +580,7 @@ export function AuthFeaturesPage({
                   Salin
                 </Button>
               </div>
-              <pre className="max-h-80 overflow-auto rounded-lg border border-border bg-muted p-4 font-mono text-xs text-default-900">
+              <pre className="max-h-80 overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
                 <code>{envCode}</code>
               </pre>
             </TabsContent>

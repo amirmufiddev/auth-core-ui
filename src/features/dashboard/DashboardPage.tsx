@@ -2,18 +2,24 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import {
   Activity,
+  AlertTriangle,
   ArrowUpRight,
+  CheckCircle2,
   KeyRound,
+  ShieldAlert,
   ShieldCheck,
   SlidersHorizontal,
+  TrendingUp,
   Users,
 } from "lucide-react";
 import {
-  Area,
-  AreaChart,
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -38,6 +44,24 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const CHART_TOKEN_VARS = [
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
+  "var(--chart-6)",
+];
+
+const CATEGORY_PILL_STYLES: string[] = [
+  "bg-chart-1/12 text-chart-1 border border-chart-1/20",
+  "bg-chart-2/12 text-chart-2 border border-chart-2/20",
+  "bg-chart-3/12 text-chart-3 border border-chart-3/20",
+  "bg-chart-4/12 text-chart-4 border border-chart-4/20",
+  "bg-chart-5/12 text-chart-5 border border-chart-5/20",
+  "bg-chart-6/12 text-chart-6 border border-chart-6/20",
+];
 
 export function DashboardPage() {
   const features = useAuthConfigStore((s) => s.features);
@@ -79,7 +103,7 @@ export function DashboardPage() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button variant="outline" color="secondary" asChild>
+          <Button variant="soft" color="tertiary" asChild>
             <Link to="/users">
               <Users className="mr-2 h-4 w-4" />
               Kelola Users
@@ -96,93 +120,107 @@ export function DashboardPage() {
 
       {/* KPI Summary Strip */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardContent className="pt-6">
+        <Card className="border-t-2 border-t-primary transition-all hover:shadow-md">
+          <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Total Users Terdaftar
-              </span>
-              <span className="rounded-md bg-primary/12 p-2 text-primary">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-primary-soft-foreground">
                 <Users className="h-4 w-4" />
               </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-success-soft px-2 py-0.5 text-[11px] font-medium text-success">
+                <TrendingUp className="h-3 w-3" />
+                {metrics?.twoFactorAdoption ?? 0}% 2FA
+              </span>
             </div>
-            <div className="mt-3 text-2xl font-bold text-default-900">
+            <div className="mt-3 text-2xl font-bold tracking-tight tabular-nums text-foreground">
               {isLoading ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
                 metrics?.totalUsers ?? 0
               )}
             </div>
-            <p className="mt-1 text-xs text-success">
-              {metrics?.twoFactorAdoption ?? 0}% mengaktifkan 2FA
+            <p className="mt-1 text-xs font-medium text-foreground/85">
+              Total Users Terdaftar
+            </p>
+            <p className="text-[11px] text-muted-foreground">
+              Akun aktif & terverifikasi
             </p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="pt-6">
+        <Card className="border-t-2 border-t-tertiary transition-all hover:shadow-md">
+          <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Sesi Aktif
-              </span>
-              <span className="rounded-md bg-info/12 p-2 text-info">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-tertiary-soft text-tertiary-soft-foreground">
                 <Activity className="h-4 w-4" />
               </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-tertiary-soft px-2 py-0.5 text-[11px] font-medium text-tertiary-soft-foreground">
+                <TrendingUp className="h-3 w-3" />
+                Live
+              </span>
             </div>
-            <div className="mt-3 text-2xl font-bold text-default-900">
+            <div className="mt-3 text-2xl font-bold tracking-tight tabular-nums text-foreground">
               {isLoading ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
                 metrics?.activeSessions ?? 0
               )}
             </div>
-            <p className="mt-1 text-xs text-muted-foreground">
+            <p className="mt-1 text-xs font-medium text-foreground/85">
+              Sesi Aktif
+            </p>
+            <p className="text-[11px] text-muted-foreground">
               Cookie cache & secondary store
             </p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="pt-6">
+        <Card className="border-t-2 border-t-success transition-all hover:shadow-md">
+          <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Better Auth Features Aktif
-              </span>
-              <span className="rounded-md bg-success/12 p-2 text-success">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-success-soft text-success">
                 <ShieldCheck className="h-4 w-4" />
               </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[11px] font-medium text-secondary-foreground">
+                {Math.round((activeFeaturesCount / Math.max(1, totalFeatures)) * 100)}%
+              </span>
             </div>
-            <div className="mt-3 text-2xl font-bold text-default-900">
+            <div className="mt-3 text-2xl font-bold tracking-tight tabular-nums text-foreground">
               {activeFeaturesCount}{" "}
               <span className="text-sm font-normal text-muted-foreground">
                 / {totalFeatures}
               </span>
             </div>
-            <p className="mt-1 text-xs text-success">
+            <p className="mt-1 text-xs font-medium text-foreground/85">
+              Better Auth Features Aktif
+            </p>
+            <p className="text-[11px] text-muted-foreground">
               Configurable runtime & env hybrid
             </p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="pt-6">
+        <Card className="border-t-2 border-t-warning transition-all hover:shadow-md">
+          <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Auth Events (24 Jam)
-              </span>
-              <span className="rounded-md bg-warning/12 p-2 text-warning">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-warning-soft text-warning">
                 <KeyRound className="h-4 w-4" />
               </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-destructive-soft px-2 py-0.5 text-[11px] font-medium text-destructive">
+                {metrics?.bannedUsers ?? 0} dibekukan
+              </span>
             </div>
-            <div className="mt-3 text-2xl font-bold text-default-900">
+            <div className="mt-3 text-2xl font-bold tracking-tight tabular-nums text-foreground">
               {isLoading ? (
                 <Skeleton className="h-8 w-24" />
               ) : (
                 (metrics?.authEvents24h ?? 0).toLocaleString("id-ID")
               )}
             </div>
-            <p className="mt-1 text-xs text-warning">
-              {metrics?.bannedUsers ?? 0} akun sedang dibekukan
+            <p className="mt-1 text-xs font-medium text-foreground/85">
+              Auth Events (24 Jam)
+            </p>
+            <p className="text-[11px] text-muted-foreground">
+              Login, refresh & audit trail
             </p>
           </CardContent>
         </Card>
@@ -191,29 +229,28 @@ export function DashboardPage() {
       {/* Charts */}
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
         <Card className="lg:col-span-7">
-          <CardHeader className="mb-0">
-            <CardTitle className="text-base font-semibold">
-              Tren Autentikasi & Penerbitan Token (14 Hari)
-            </CardTitle>
-            <CardDescription>
-              Perbandingan sesi sign-in dan penerbitan JWT / OAuth access token.
-            </CardDescription>
+          <CardHeader className="mb-0 flex flex-row items-center justify-between pb-2">
+            <div>
+              <CardTitle className="text-base font-semibold">
+                Tren Autentikasi & Penerbitan Token
+              </CardTitle>
+              <CardDescription>
+                Perbandingan sesi sign-in dan penerbitan JWT / OAuth access token (14 hari).
+              </CardDescription>
+            </div>
+            <Badge variant="soft" color="tertiary">
+              14 Hari Terakhir
+            </Badge>
           </CardHeader>
-          <CardContent className="pt-6">
+          <CardContent className="pt-4">
             <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={metrics?.signInTrend ?? []}>
-                  <defs>
-                    <linearGradient id="authCorePrimary" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.35} />
-                      <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
-                    </linearGradient>
-                    <linearGradient id="authCoreInfo" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="var(--info)" stopOpacity={0.3} />
-                      <stop offset="95%" stopColor="var(--info)" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                <LineChart data={metrics?.signInTrend ?? []}>
+                  <CartesianGrid
+                    stroke="var(--border)"
+                    strokeOpacity={0.7}
+                    vertical={false}
+                  />
                   <XAxis
                     dataKey="date"
                     tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
@@ -229,46 +266,64 @@ export function DashboardPage() {
                     contentStyle={{
                       backgroundColor: "var(--popover)",
                       borderColor: "var(--border)",
-                      borderRadius: "8px",
+                      borderRadius: "10px",
                       color: "var(--popover-foreground)",
+                      fontSize: "12px",
                     }}
                   />
-                  <Area
-                    type="monotone"
-                    dataKey="tokensIssued"
-                    name="Token Issued"
-                    stroke="var(--info)"
-                    fill="url(#authCoreInfo)"
-                    strokeWidth={2}
+                  <Legend
+                    verticalAlign="top"
+                    height={32}
+                    iconType="circle"
+                    wrapperStyle={{ fontSize: "12px" }}
                   />
-                  <Area
+                  <Line
                     type="monotone"
                     dataKey="signIns"
                     name="Sign-Ins"
-                    stroke="var(--primary)"
-                    fill="url(#authCorePrimary)"
-                    strokeWidth={2}
+                    stroke="var(--chart-1)"
+                    strokeWidth={2.5}
+                    dot={{ r: 3, fill: "var(--card)", stroke: "var(--chart-1)", strokeWidth: 2 }}
+                    activeDot={{ r: 5 }}
                   />
-                </AreaChart>
+                  <Line
+                    type="monotone"
+                    dataKey="tokensIssued"
+                    name="Token Issued"
+                    stroke="var(--chart-2)"
+                    strokeWidth={2.5}
+                    dot={{ r: 3, fill: "var(--card)", stroke: "var(--chart-2)", strokeWidth: 2 }}
+                    activeDot={{ r: 5 }}
+                  />
+                </LineChart>
               </ResponsiveContainer>
             </div>
           </CardContent>
         </Card>
 
         <Card className="lg:col-span-5">
-          <CardHeader className="mb-0">
-            <CardTitle className="text-base font-semibold">
-              Distribusi Metode Login
-            </CardTitle>
-            <CardDescription>
-              Adopsi Passkey, OAuth, Magic Link, OTP, dan Email/Password.
-            </CardDescription>
+          <CardHeader className="mb-0 flex flex-row items-center justify-between pb-2">
+            <div>
+              <CardTitle className="text-base font-semibold">
+                Distribusi Metode Login
+              </CardTitle>
+              <CardDescription>
+                Adopsi Passkey, OAuth, Magic Link, OTP, dan Email/Password.
+              </CardDescription>
+            </div>
+            <Badge variant="soft" color="secondary">
+              Bulan ini
+            </Badge>
           </CardHeader>
-          <CardContent className="pt-6">
+          <CardContent className="pt-4">
             <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={metrics?.authMethodDistribution ?? []}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                  <CartesianGrid
+                    stroke="var(--border)"
+                    strokeOpacity={0.7}
+                    vertical={false}
+                  />
                   <XAxis
                     dataKey="method"
                     tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
@@ -284,16 +339,23 @@ export function DashboardPage() {
                     contentStyle={{
                       backgroundColor: "var(--popover)",
                       borderColor: "var(--border)",
-                      borderRadius: "8px",
+                      borderRadius: "10px",
                       color: "var(--popover-foreground)",
+                      fontSize: "12px",
                     }}
                   />
                   <Bar
                     dataKey="count"
                     name="Jumlah Login"
-                    fill="var(--primary)"
                     radius={[6, 6, 0, 0]}
-                  />
+                  >
+                    {(metrics?.authMethodDistribution ?? []).map((entry, idx) => (
+                      <Cell
+                        key={entry.method}
+                        fill={CHART_TOKEN_VARS[idx % CHART_TOKEN_VARS.length]}
+                      />
+                    ))}
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -313,25 +375,32 @@ export function DashboardPage() {
                 Proporsi plugin aktif per kategori arsitektur.
               </CardDescription>
             </div>
-            <Button size="sm" color="primary" asChild>
+            <Button size="sm" variant="soft" color="tertiary" asChild>
               <Link to="/auth-features">
                 Kelola
                 <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </Button>
           </CardHeader>
-          <CardContent className="space-y-4 pt-6">
-            {categorySummary.map((item) => (
-              <div key={item.category} className="space-y-1.5">
+          <CardContent className="space-y-3 pt-5">
+            {categorySummary.map((item, idx) => (
+              <div
+                key={item.category}
+                className="space-y-2 rounded-lg border border-border/70 bg-surface-subtle/75 p-3 transition-colors hover:bg-surface-subtle"
+              >
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-medium text-default-800">
+                  <span
+                    className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium ${
+                      CATEGORY_PILL_STYLES[idx % CATEGORY_PILL_STYLES.length]
+                    }`}
+                  >
                     {item.label}
                   </span>
-                  <span className="font-mono text-muted-foreground">
+                  <span className="text-xs font-semibold tabular-nums text-foreground">
                     {item.activeCount}/{item.total} aktif
                   </span>
                 </div>
-                <Progress value={item.percent} className="h-2" />
+                <Progress value={item.percent} className="h-1.5" />
               </div>
             ))}
           </CardContent>
@@ -347,47 +416,76 @@ export function DashboardPage() {
                 Aliran event autentikasi, RBAC, dan administrasi terbaru.
               </CardDescription>
             </div>
-            <Button size="sm" color="secondary" asChild>
+            <Button size="sm" variant="soft" color="secondary" asChild>
               <Link to="/audit-logs">
                 Lihat Semua
                 <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </Button>
           </CardHeader>
-          <CardContent className="divide-y divide-border pt-2">
-            {(metrics?.recentEvents ?? []).map((evt) => (
-              <div
-                key={evt.id}
-                className="flex flex-col justify-between gap-2 py-3 sm:flex-row sm:items-center"
-              >
-                <div className="space-y-0.5">
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-md bg-muted px-2 py-0.5 font-mono text-xs text-default-900">
-                      {evt.event}
-                    </span>
-                    <Badge
-                      color={
-                        evt.severity === "critical"
-                          ? "destructive"
-                          : evt.severity === "warning"
-                            ? "warning"
-                            : "info"
+          <CardContent className="space-y-2.5 pt-5">
+            {(metrics?.recentEvents ?? []).map((evt) => {
+              const isCritical = evt.severity === "critical";
+              const isWarning = evt.severity === "warning";
+              return (
+                <div
+                  key={evt.id}
+                  className={
+                    isCritical
+                      ? "flex flex-col justify-between gap-2 rounded-lg border border-destructive/25 bg-destructive-soft/80 p-3 sm:flex-row sm:items-center"
+                      : isWarning
+                        ? "flex flex-col justify-between gap-2 rounded-lg border border-warning/25 bg-warning-soft/80 p-3 sm:flex-row sm:items-center"
+                        : "flex flex-col justify-between gap-2 rounded-lg border border-border/70 bg-surface-subtle/50 p-3 transition-colors hover:bg-surface-subtle sm:flex-row sm:items-center"
+                  }
+                >
+                  <div className="flex items-start gap-3">
+                    <span
+                      className={
+                        isCritical
+                          ? "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-destructive/15 text-destructive"
+                          : isWarning
+                            ? "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-warning/15 text-warning"
+                            : "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-success-soft text-success"
                       }
-                      variant="soft"
                     >
-                      {evt.severity}
-                    </Badge>
+                      {isCritical ? (
+                        <ShieldAlert className="h-4 w-4" />
+                      ) : isWarning ? (
+                        <AlertTriangle className="h-4 w-4" />
+                      ) : (
+                        <CheckCircle2 className="h-4 w-4" />
+                      )}
+                    </span>
+                    <div className="space-y-0.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-semibold text-foreground">
+                          {evt.event}
+                        </span>
+                        <Badge
+                          color={
+                            isCritical
+                              ? "destructive"
+                              : isWarning
+                                ? "warning"
+                                : "success"
+                          }
+                          variant="soft"
+                        >
+                          {evt.severity}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Oleh <span className="font-medium text-foreground/80">{evt.actorEmail}</span>{" "}
+                        pada <span className="font-medium text-foreground/75">{evt.target}</span>
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    Oleh <span className="font-medium">{evt.actorEmail}</span>{" "}
-                    pada <span className="font-mono">{evt.target}</span>
-                  </p>
+                  <span className="shrink-0 text-[11px] tabular-nums text-muted-foreground">
+                    {formatDate(evt.createdAt, "dd MMM · HH:mm")}
+                  </span>
                 </div>
-                <span className="text-xs text-muted-foreground">
-                  {formatDate(evt.createdAt, "dd MMM · HH:mm")}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </CardContent>
         </Card>
       </div>

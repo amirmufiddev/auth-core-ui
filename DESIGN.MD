@@ -6,13 +6,13 @@ Dokumen ini mendefinisikan standar visual, design token, tipografi, komponen UI,
 
 ## 1. Tech Stack & Single Source of Truth
 
-| Aspek | Konvensi / Sumber |
-| --- | --- |
-| Framework | React `19` + Vite + TypeScript + TanStack Router |
-| Styling | Tailwind CSS v4 (`@tailwindcss/vite`) dengan `@custom-variant dark (&:is(.dark *));` |
-| CSS Variables & Theme | [`src/index.css`](src/index.css) (`:root`, `.dark`, dan `@theme inline`) |
-| Component Registry | [`components.json`](components.json) (`style: "new-york"`, `iconLibrary: "lucide"`, alias `@/components/ui` → `src/components/ui`) |
-| Font | `Inter` (`@fontsource-variable/inter` / Google Fonts di `index.html`) |
+| Aspek                 | Konvensi / Sumber                                                                                                                  |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Framework             | React `19` + Vite + TypeScript + TanStack Router                                                                                   |
+| Styling               | Tailwind CSS v4 (`@tailwindcss/vite`) dengan `@custom-variant dark (&:is(.dark *));`                                               |
+| CSS Variables & Theme | [`src/index.css`](src/index.css) (`:root`, `.dark`, dan `@theme inline`)                                                           |
+| Component Registry    | [`components.json`](components.json) (`style: "new-york"`, `iconLibrary: "lucide"`, alias `@/components/ui` → `src/components/ui`) |
+| Font                  | `Inter` (`@fontsource-variable/inter` / Google Fonts di `index.html`)                                                              |
 
 ---
 
@@ -22,21 +22,21 @@ Semua warna didefinisikan menggunakan CSS variables di `:root` (Light) dan `.dar
 
 ### Core Surfaces & Brand Tokens
 
-| Token | Light Mode | Dark Mode | Penggunaan |
-| --- | --- | --- | --- |
-| `--primary` | `#846CF9` | `#6338F0` | CTA utama, active menu, checkbox checked, ring fokus |
-| `--primary-foreground` | `#F5F5FF` | `#F5F5FF` | Teks/ikon di atas `--primary` |
-| `--background` | `#FFFFFF` | `#0F172A` | Latar panel utama / inner field surface |
-| `--foreground` | `#020817` | `#F8FAFC` | Teks utama kontras tinggi |
-| `--card` | `#FFFFFF` | `#1F2937` | Container kartu & tabel |
-| `--popover` | `#FFFFFF` | `#0F172A` | Dropdown, Select menu, Dialog/Popover surface |
-| `--secondary` | `#E2E8F0` | `#334155` | Tombol sekunder, badge netral |
-| `--muted` | `#F3F4F6` | `#1F2937` | Surface redup, pill kode permission, header subtle |
-| `--muted-foreground` | `#64748B` | `#9CA3AF` | Label sekunder, metadata, deskripsi |
-| `--border` | `#E2E8F0` | `#334155` | Garis batas card, divider tabel, accordion border |
-| `--input` | `#E2E8F0` | `#1E293B` | Border/latar kontrol input |
-| `--ring` | `#7C3AED` | `#6D28D9` | Focus ring |
-| `--page-bg` | `#EEF1F9` | `#0F172A` | Latar kanvas dashboard di balik kartu |
+| Token                  | Light Mode | Dark Mode | Penggunaan                                           |
+| ---------------------- | ---------- | --------- | ---------------------------------------------------- |
+| `--primary`            | `#846CF9`  | `#6338F0` | CTA utama, active menu, checkbox checked, ring fokus |
+| `--primary-foreground` | `#F5F5FF`  | `#F5F5FF` | Teks/ikon di atas `--primary`                        |
+| `--background`         | `#FFFFFF`  | `#0F172A` | Latar panel utama / inner field surface              |
+| `--foreground`         | `#020817`  | `#F8FAFC` | Teks utama kontras tinggi                            |
+| `--card`               | `#FFFFFF`  | `#1F2937` | Container kartu & tabel                              |
+| `--popover`            | `#FFFFFF`  | `#0F172A` | Dropdown, Select menu, Dialog/Popover surface        |
+| `--secondary`          | `#E2E8F0`  | `#334155` | Tombol sekunder, badge netral                        |
+| `--muted`              | `#F3F4F6`  | `#1F2937` | Surface redup, pill kode permission, header subtle   |
+| `--muted-foreground`   | `#64748B`  | `#9CA3AF` | Label sekunder, metadata, deskripsi                  |
+| `--border`             | `#E2E8F0`  | `#334155` | Garis batas card, divider tabel, accordion border    |
+| `--input`              | `#E2E8F0`  | `#1E293B` | Border/latar kontrol input                           |
+| `--ring`               | `#7C3AED`  | `#6D28D9` | Focus ring                                           |
+| `--page-bg`            | `#EEF1F9`  | `#0F172A` | Latar kanvas dashboard di balik kartu                |
 
 ### Primary Scale & Neutral Scale
 
@@ -45,25 +45,27 @@ Semua warna didefinisikan menggunakan CSS variables di `:root` (Light) dan `.dar
 
 ### Semantic Status Tokens
 
-| Status | Hex | Soft Fill (Light / Dark) | Penggunaan |
-| --- | --- | --- | --- |
-| `success` | `#22C55E` | `rgba(34, 197, 94, 0.12)` / `0.16` | Status `Active`, verifikasi 2FA, aksi berhasil |
-| `info` | `#06B6D4` | `rgba(6, 182, 212, 0.12)` / `0.16` | Banner informasi, scope `Read`, plan `Pro` |
-| `warning` | `#F97316` | `rgba(249, 115, 22, 0.12)` / `0.16` | Status `Pending` / `Trial`, scope `Update`, peringatan |
-| `destructive` | `#EF4444` | `rgba(239, 68, 68, 0.12)` / `0.16` | Aksi `Delete`, status `Suspended` / `Disabled`, Danger Zone |
+| Status        | Hex       | Soft Fill (Light / Dark)            | Penggunaan                                                  |
+| ------------- | --------- | ----------------------------------- | ----------------------------------------------------------- |
+| `success`     | `#22C55E` | `rgba(34, 197, 94, 0.12)` / `0.16`  | Status `Active`, verifikasi 2FA, aksi berhasil              |
+| `info`        | `#06B6D4` | `rgba(6, 182, 212, 0.12)` / `0.16`  | Banner informasi, scope `Read`, plan `Pro`                  |
+| `warning`     | `#F97316` | `rgba(249, 115, 22, 0.12)` / `0.16` | Status `Pending` / `Trial`, scope `Update`, peringatan      |
+| `destructive` | `#EF4444` | `rgba(239, 68, 68, 0.12)` / `0.16`  | Aksi `Delete`, status `Suspended` / `Disabled`, Danger Zone |
 
 ---
 
 ## 3. Typography, Spacing, Radius & Elevation
 
 ### Typography (`Inter`)
+
 - Font utama: **`Inter`** (`@fontsource-variable/inter` di `src/main.tsx` atau Google Fonts `<link>` di `index.html`, `--font-sans: "Inter", sans-serif` di `src/index.css`).
 - **Page Title**: `text-2xl font-semibold text-default-900 tracking-tight` (24px SemiBold).
 - **Section / Card Title**: `text-base` atau `text-lg font-semibold text-default-900` (16–18px SemiBold).
 - **Subtitle / Helper**: `text-sm` atau `text-xs text-muted-foreground`.
-- **Identifier / Permission Key**: `font-mono text-xs` di dalam pill `bg-muted px-2.5 py-1 rounded-md`.
+- **Identifier / Permission Key**: `font-semibold text-xs` di dalam pill `bg-muted px-2.5 py-1 rounded-md`.
 
 ### Spacing & Radius Tokens
+
 - **Spacing scale**: `xs = 4px`, `sm = 8px`, `md = 16px`, `lg = 24px`, `xl = 32px`.
 - **Page vertical rhythm**: `space-y-6` (`24px` antar section utama).
 - **Grid gap**: `gap-4` (`16px`) untuk KPI/card grid atau `gap-5` (`20px`) untuk split workspace.
@@ -83,6 +85,7 @@ Seluruh antarmuka dibangun **secara eksklusif** di atas komponen yang tersedia d
 - **Data Display**: `table.tsx`, `avatar.tsx`, `dropdown-menu.tsx`, `timeline.tsx`, `kbd.tsx`, `card-snippet.tsx`, `carousel.tsx`.
 
 ### Konvensi Varian Komponen Utama
+
 - **`Button`**: Mendukung `color` (`default`, `primary`, `secondary`, `destructive`, `success`, `info`, `warning`, `dark`), `variant` (`outline`, `soft`, `ghost`), dan `size` (`default`, `sm`, `md`, `lg`, `xl`, `xs`, `icon`).
 - **`Badge`**: Mendukung `color` (`default`, `secondary`, `destructive`, `success`, `info`, `warning`, `dark`) dan `variant` (`outline`, `soft`).
 - **`CardHeader`**: Secara default memiliki `mb-6 border-b border-border`. Tambahkan `mb-0` bila konten di bawahnya langsung memisahkan jarak atau langsung menempel ke tabel (`CardContent className="p-0"`).
@@ -105,4 +108,4 @@ Seluruh antarmuka dibangun **secara eksklusif** di atas komponen yang tersedia d
 ## 6. Light / Dark Mode & Theme Switching (Vite SPA)
 
 - Gunakan `ThemeProvider` (atau Zustand store `useThemeStore`) untuk toggle kelas `.dark` pada `document.documentElement` dan menyimpannya di `localStorage`.
-- Tambahkan inline script kecil di `index.html` sebelum bundle React dimuat untuk mencegah *flash of unstyled content* (FOUC) saat memuat tema yang tersimpan.
+- Tambahkan inline script kecil di `index.html` sebelum bundle React dimuat untuk mencegah _flash of unstyled content_ (FOUC) saat memuat tema yang tersimpan.

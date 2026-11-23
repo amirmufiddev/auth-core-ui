@@ -9,13 +9,14 @@ const badgeVariants = cva(
     variants: {
       color: {
         default: "border-transparent bg-primary text-primary-foreground ",
+        tertiary: "border-transparent bg-tertiary text-tertiary-foreground ",
         destructive:
           "bg-destructive border-transparent text-destructive-foreground",
         success: "bg-success border-transparent  text-success-foreground ",
         info: "bg-info border-transparent text-info-foreground ",
         warning: "bg-warning  border-transparent text-warning-foreground",
-        secondary: "bg-secondary border-transparent text-foreground ",
-        dark: "bg-accent-foreground border-transparent text-accent ",
+        secondary: "bg-secondary border-transparent text-secondary-foreground ",
+        dark: "bg-foreground border-transparent text-background ",
       },
       variant: {
         outline: "border border-current bg-background",
@@ -81,15 +82,24 @@ const badgeVariants = cva(
         className: "text-success bg-success/12 dark:bg-success/16 hover:text-success",
       },
       {
+        variant: "outline",
+        color: "tertiary",
+        className: "text-tertiary border-tertiary/40",
+      },
+      {
+        variant: "soft",
+        color: "tertiary",
+        className: "text-tertiary-soft-foreground bg-tertiary-soft",
+      },
+      {
         variant: "soft",
         color: "secondary",
-        className:
-          "text-muted-foreground bg-secondary/50 hover:text-muted-foreground",
+        className: "text-secondary-foreground bg-secondary",
       },
       {
         variant: "soft",
         color: "default",
-        className: "text-primary bg-primary/12 dark:bg-primary/16 hover:text-primary",
+        className: "text-primary-soft-foreground bg-primary-soft",
       },
     ],
     defaultVariants: {

@@ -119,7 +119,6 @@ export function OrganizationSettingsCards({
                 <Label htmlFor="ba-org-edit-slug">Slug</Label>
                 <Input
                   id="ba-org-edit-slug"
-                  className="font-mono"
                   {...form.register("slug")}
                 />
               </div>

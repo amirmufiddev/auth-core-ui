@@ -289,7 +289,7 @@ export function TwoFactorCard() {
               {user.backupCodes.map((code) => (
                 <span
                   key={code}
-                  className="rounded bg-card px-2 py-1 text-center font-mono text-xs text-default-900"
+                  className="rounded bg-card px-2 py-1 text-center tabular-nums text-xs text-default-900"
                 >
                   {code}
                 </span>
@@ -354,13 +354,13 @@ export function TwoFactorCard() {
             <div className="space-y-3">
               <div className="rounded-lg border border-border bg-muted p-3">
                 <div className="text-xs text-muted-foreground">Secret Key</div>
-                <div className="mt-1 font-mono text-sm font-semibold text-default-900">
+                <div className="mt-1 tabular-nums text-sm font-semibold text-default-900">
                   {setupInfo.secret}
                 </div>
               </div>
               <div className="rounded-lg border border-border bg-muted p-3">
                 <div className="text-xs text-muted-foreground">TOTP URI</div>
-                <div className="mt-1 break-all font-mono text-[11px] text-default-800">
+                <div className="mt-1 break-all tabular-nums text-[11px] text-default-800">
                   {setupInfo.totpUri}
                 </div>
               </div>
@@ -659,7 +659,7 @@ export function DeleteAccountCard() {
           <AlertDialogHeader>
             <AlertDialogTitle>Konfirmasi Hapus Akun</AlertDialogTitle>
             <AlertDialogDescription>
-              Ketik <span className="font-mono font-semibold">{user.email}</span>{" "}
+              Ketik <span className="tabular-nums font-semibold">{user.email}</span>{" "}
               untuk mengonfirmasi penghapusan akun.
             </AlertDialogDescription>
           </AlertDialogHeader>

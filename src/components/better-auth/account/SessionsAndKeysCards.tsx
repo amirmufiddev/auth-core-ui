@@ -125,7 +125,7 @@ export function SessionsCard() {
                         </Badge>
                       )}
                     </div>
-                    <div className="font-mono text-[11px] text-muted-foreground">
+                    <div className="tabular-nums text-[11px] text-muted-foreground">
                       {ses.ipAddress} · {ses.location} · Exp{" "}
                       {formatDate(ses.expiresAt)}
                     </div>
@@ -274,7 +274,7 @@ export function ApiKeysCard() {
                     <span className="text-sm font-medium text-default-900">
                       {k.name}
                     </span>
-                    <span className="rounded bg-muted px-2 py-0.5 font-mono text-[11px]">
+                    <span className="rounded bg-muted px-2 py-0.5 tabular-nums text-[11px]">
                       {k.keyPreview}
                     </span>
                   </div>
@@ -330,7 +330,6 @@ export function ApiKeysCard() {
                 <Label htmlFor="ba-ak-prefix">Prefix</Label>
                 <Input
                   id="ba-ak-prefix"
-                  className="font-mono"
                   {...form.register("prefix")}
                 />
               </div>
@@ -373,7 +372,7 @@ export function ApiKeysCard() {
                         />
                         <Label
                           htmlFor={`ba-ak-sc-${sc}`}
-                          className="cursor-pointer font-mono text-xs"
+                          className="cursor-pointer tabular-nums text-xs"
                         >
                           {sc}
                         </Label>
@@ -416,7 +415,7 @@ export function ApiKeysCard() {
           </DialogHeader>
           <Alert color="warning" variant="soft">
             <AlertTitle className="text-sm">Secret Key</AlertTitle>
-            <AlertDescription className="mt-1 break-all font-mono text-xs">
+            <AlertDescription className="mt-1 break-all tabular-nums text-xs">
               {plainSecret}
             </AlertDescription>
           </Alert>

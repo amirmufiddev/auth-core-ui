@@ -236,7 +236,7 @@ export function ApiKeysPage({
           <div className="font-semibold text-default-900">
             {row.original.name}
           </div>
-          <div className="font-mono text-xs text-muted-foreground">
+          <div className="tabular-nums text-xs text-muted-foreground">
             {row.original.keyPreview}
           </div>
         </div>
@@ -257,7 +257,7 @@ export function ApiKeysPage({
       cell: ({ row }) => (
         <div className="flex flex-wrap gap-1">
           {row.original.scopes.map((s) => (
-            <Badge key={s} color="secondary" variant="soft" className="font-mono text-[10px]">
+            <Badge key={s} color="secondary" variant="soft" className="tabular-nums text-[10px]">
               {s}
             </Badge>
           ))}
@@ -268,7 +268,7 @@ export function ApiKeysPage({
       accessorKey: "rateLimitMax",
       header: "Rate Limit",
       cell: ({ row }) => (
-        <span className="font-mono text-xs text-muted-foreground">
+        <span className="tabular-nums text-xs text-muted-foreground">
           {row.original.rateLimitMax}/min
         </span>
       ),
@@ -314,7 +314,7 @@ export function ApiKeysPage({
           <div className="font-semibold text-default-900">
             {row.original.name}
           </div>
-          <div className="font-mono text-xs text-muted-foreground">
+          <div className="tabular-nums text-xs text-muted-foreground">
             {row.original.clientId}
           </div>
         </div>
@@ -327,7 +327,7 @@ export function ApiKeysPage({
         <Badge
           color={row.original.type === "mcp-client" ? "info" : "default"}
           variant="soft"
-          className="font-mono text-xs"
+          className="tabular-nums text-xs"
         >
           {row.original.type}
         </Badge>
@@ -337,7 +337,7 @@ export function ApiKeysPage({
       accessorKey: "redirectUris",
       header: "Redirect URIs",
       cell: ({ row }) => (
-        <span className="font-mono text-xs text-muted-foreground">
+        <span className="tabular-nums text-xs text-muted-foreground">
           {row.original.redirectUris[0]}
         </span>
       ),
@@ -528,7 +528,7 @@ export function ApiKeysPage({
                         <CardTitle className="text-base font-semibold">
                           {provider.name}
                         </CardTitle>
-                        <CardDescription className="font-mono text-xs">
+                        <CardDescription className="tabular-nums text-xs">
                           {provider.providerId} · {provider.organizationName}
                         </CardDescription>
                       </div>
@@ -546,7 +546,7 @@ export function ApiKeysPage({
                           Domain Terikat
                         </span>
                         <div className="flex items-center gap-1.5">
-                          <span className="font-mono font-medium">
+                          <span className="tabular-nums font-medium">
                             {provider.domain}
                           </span>
                           <Badge
@@ -580,7 +580,7 @@ export function ApiKeysPage({
                           {provider.scimGroupMappings.map((m) => (
                             <div
                               key={m.idpGroup}
-                              className="flex items-center justify-between font-mono text-[11px]"
+                              className="flex items-center justify-between tabular-nums text-[11px]"
                             >
                               <span>{m.idpGroup}</span>
                               <span className="text-primary">{m.appRole}</span>
@@ -625,7 +625,6 @@ export function ApiKeysPage({
                 <Label htmlFor="key-prefix">Prefix</Label>
                 <Input
                   id="key-prefix"
-                  className="font-mono"
                   {...keyForm.register("prefix")}
                 />
               </div>
@@ -684,7 +683,7 @@ export function ApiKeysPage({
                           />
                           <Label
                             htmlFor={`scope-${scope}`}
-                            className="cursor-pointer font-mono text-xs"
+                            className="cursor-pointer tabular-nums text-xs"
                           >
                             {scope}
                           </Label>
@@ -733,7 +732,7 @@ export function ApiKeysPage({
           </DialogHeader>
           <Alert color="warning">
             <AlertTitle className="text-sm">Secret Sekali Tampil</AlertTitle>
-            <AlertDescription className="mt-1 font-mono text-xs break-all">
+            <AlertDescription className="mt-1 tabular-nums text-xs break-all">
               {revealedSecret}
             </AlertDescription>
           </Alert>
@@ -795,7 +794,6 @@ export function ApiKeysPage({
               <Label htmlFor="oa-redirect">Redirect URI</Label>
               <Input
                 id="oa-redirect"
-                className="font-mono"
                 {...oauthForm.register("redirectUri")}
               />
             </div>
@@ -803,7 +801,6 @@ export function ApiKeysPage({
               <Label htmlFor="oa-scopes">Scopes (pisahkan spasi)</Label>
               <Input
                 id="oa-scopes"
-                className="font-mono"
                 {...oauthForm.register("scopesText")}
               />
             </div>

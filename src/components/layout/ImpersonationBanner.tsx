@@ -27,7 +27,7 @@ export function ImpersonationBanner() {
           Mode Impersonation aktif: Anda sedang melihat aplikasi sebagai{" "}
           <span className="font-semibold text-default-900">{user.email}</span>{" "}
           (diimpersonasi oleh{" "}
-          <span className="font-mono text-xs">{impersonatedBy}</span>).
+          <span className="tabular-nums text-xs">{impersonatedBy}</span>).
         </AlertDescription>
       </div>
       <Button

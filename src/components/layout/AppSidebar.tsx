@@ -57,14 +57,24 @@ function SidebarMenuContent({
         to={item.href}
         onClick={onNavigate}
         className={cn(
-          "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+          "group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
           active
-            ? "bg-primary text-primary-foreground shadow-sm"
-            : "text-default-700 hover:bg-accent hover:text-default-900",
+            ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-xs"
+            : "text-sidebar-foreground/80 hover:bg-sidebar-accent/55 hover:text-sidebar-accent-foreground",
           collapsed && "justify-center px-2"
         )}
       >
-        <Icon className="h-4 w-4 shrink-0" />
+        {active && !collapsed && (
+          <span className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-primary" />
+        )}
+        <Icon
+          className={cn(
+            "h-4 w-4 shrink-0 transition-colors",
+            active
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-primary"
+          )}
+        />
         {!collapsed && (
           <>
             <span className="flex-1 truncate">{item.title}</span>
@@ -79,8 +89,8 @@ function SidebarMenuContent({
               </Badge>
             ) : item.badge ? (
               <Badge
-                color={active ? "secondary" : "default"}
-                variant={active ? undefined : "soft"}
+                color={active ? "tertiary" : "default"}
+                variant="soft"
                 className="px-1.5 py-0 text-[10px]"
               >
                 {item.badge}
@@ -161,7 +171,7 @@ export function AppSidebar() {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border px-4 py-4">
             <SheetTitle className="flex items-center gap-2 text-base">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground">
                 <Shield className="h-4 w-4" />
               </div>
               <span>{siteConfig.name}</span>
@@ -182,18 +192,18 @@ export function AppSidebar() {
     <>
       <aside
         className={cn(
-          "sticky top-0 hidden h-screen shrink-0 border-r border-border bg-card transition-all duration-200 lg:flex lg:flex-col",
+          "sticky top-0 hidden h-screen shrink-0 border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-all duration-200 lg:flex lg:flex-col",
           isCollapsed ? "w-[74px]" : sidebarType === "module" ? "w-72" : "w-64"
         )}
       >
         <div
           className={cn(
-            "flex h-16 shrink-0 items-center border-b border-border px-4",
+            "flex h-16 shrink-0 items-center border-b border-sidebar-border px-4",
             isCollapsed ? "justify-center" : "justify-between"
           )}
         >
           <Link to="/dashboard" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
               <Shield className="h-5 w-5" />
             </div>
             {!isCollapsed && (
@@ -248,7 +258,7 @@ export function AppSidebar() {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border px-4 py-4">
             <SheetTitle className="flex items-center gap-2 text-base">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground">
                 <Shield className="h-4 w-4" />
               </div>
               <span>{siteConfig.name}</span>

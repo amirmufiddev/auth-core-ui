@@ -36,12 +36,6 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { toast } from "sonner";
 
 const COLOR_SCHEME_OPTIONS: Array<{
@@ -213,54 +207,60 @@ export function ThemePreferencesCard() {
         <div className="space-y-3">
           <div>
             <Badge color="default" variant="soft" className="mb-1.5">
-              Theme Accent
+              Color Palette Harmony
             </Badge>
             <p className="text-xs text-muted-foreground">
-              Pilih warna aksen utama yang diterapkan pada tombol, menu aktif,
-              dan focus ring.
+              Pilih kombinasi palet warna menyeluruh (Primary, Tertiary, Accent,
+              Sidebar, Canvas, dan Chart) berbasis token Tailwind.
             </p>
           </div>
-          <TooltipProvider delayDuration={100}>
-            <div className="flex flex-wrap items-center gap-2.5">
-              {COLOR_THEMES.map((palette) => {
-                const isActive = colorTheme === palette.id;
-                const swatchHex =
-                  resolvedTheme === "dark"
-                    ? palette.darkPrimary
-                    : palette.lightPrimary;
-                return (
-                  <Tooltip key={palette.id}>
-                    <TooltipTrigger asChild>
-                      <Button
-                        type="button"
-                        size="icon"
-                        variant="outline"
-                        color="secondary"
-                        onClick={() => setColorTheme(palette.id)}
-                        aria-label={`Pilih tema warna ${palette.label}`}
-                        className={cn(
-                          "h-10 w-10 rounded-full border-2 p-0",
-                          isActive
-                            ? "border-primary bg-transparent"
-                            : "border-border bg-transparent hover:border-default-400"
-                        )}
-                      >
+          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+            {COLOR_THEMES.map((palette) => {
+              const isActive = colorTheme === palette.id;
+              const swatches = palette.swatches[resolvedTheme];
+              return (
+                <Button
+                  key={palette.id}
+                  type="button"
+                  variant="outline"
+                  color={isActive ? "primary" : "secondary"}
+                  onClick={() => setColorTheme(palette.id)}
+                  aria-label={`Pilih tema warna ${palette.label}`}
+                  className={cn(
+                    "h-auto flex-col items-start gap-2.5 p-3 text-left transition-all",
+                    isActive
+                      ? "border-primary bg-primary-soft/70 text-foreground ring-1 ring-primary/30 hover:bg-primary-soft hover:text-foreground"
+                      : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-surface-subtle hover:text-foreground"
+                  )}
+                >
+                  <div className="flex w-full items-center justify-between gap-2">
+                    <div className="flex items-center -space-x-1.5">
+                      {swatches.map((hex, idx) => (
                         <span
-                          className="flex h-7 w-7 items-center justify-center rounded-full"
-                          style={{ backgroundColor: swatchHex }}
-                        >
-                          {isActive && (
-                            <Check className="h-4 w-4 text-white drop-shadow-sm" />
-                          )}
-                        </span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>{palette.label}</TooltipContent>
-                  </Tooltip>
-                );
-              })}
-            </div>
-          </TooltipProvider>
+                          key={`${palette.id}-${idx}`}
+                          className="h-5 w-5 rounded-full border-2 border-card shadow-xs"
+                          style={{ backgroundColor: hex }}
+                        />
+                      ))}
+                    </div>
+                    {isActive && (
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                        <Check className="h-3 w-3" />
+                      </span>
+                    )}
+                  </div>
+                  <div className="leading-tight">
+                    <div className="text-xs font-semibold text-foreground">
+                      {palette.label}
+                    </div>
+                    <div className="mt-0.5 text-[11px] font-normal text-muted-foreground">
+                      {palette.subtitle}
+                    </div>
+                  </div>
+                </Button>
+              );
+            })}
+          </div>
         </div>
 
         <Separator />
@@ -391,7 +391,7 @@ export function ThemePreferencesCard() {
             </Badge>
             <p className="text-xs text-muted-foreground">
               Nilai radius sudut komponen dalam satuan{" "}
-              <span className="font-mono">rem</span>.
+              <span>rem</span>.
             </p>
           </div>
           <div className="grid grid-cols-5 gap-2">
@@ -404,7 +404,7 @@ export function ThemePreferencesCard() {
                   variant={selected ? undefined : "outline"}
                   color={selected ? "primary" : "secondary"}
                   onClick={() => setRadius(value)}
-                  className="font-mono text-xs"
+                  className="tabular-nums text-xs"
                 >
                   {value === 1 ? "1.0" : String(value)}
                 </Button>

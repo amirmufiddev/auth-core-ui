@@ -42,7 +42,7 @@ const CardSnippet = ({
         {children}
         <Collapsible open={show}>
           <CollapsibleContent className="CollapsibleContent">
-            <pre className="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-xs text-default-900">
+            <pre className="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-semibold text-xs text-default-900">
               <code>{code ?? ""}</code>
             </pre>
           </CollapsibleContent>

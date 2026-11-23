@@ -9,16 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       color: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/80",
-        primary: "bg-primary text-primary-foreground hover:bg-primary/80",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
+        primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
+        tertiary:
+          "bg-tertiary text-tertiary-foreground hover:bg-tertiary/90 shadow-xs",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        success: "bg-success text-success-foreground hover:bg-success/80",
-        info: "bg-info text-info-foreground hover:bg-info/80",
-        warning: "bg-warning text-warning-foreground hover:bg-warning/80",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        success: "bg-success text-success-foreground hover:bg-success/90",
+        info: "bg-info text-info-foreground hover:bg-info/90",
+        warning: "bg-warning text-warning-foreground hover:bg-warning/90",
         secondary:
-          "bg-secondary text-muted-foreground dark:text-default-950 hover:bg-secondary/80",
-        dark: "bg-accent-foreground text-accent hover:bg-accent-foreground/80",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        dark: "bg-foreground text-background hover:bg-foreground/90",
       },
       variant: {
         outline:
@@ -70,18 +72,31 @@ const buttonVariants = cva(
         variant: "outline",
         color: "secondary",
         className:
-          "text-muted-foreground dark:bg-transparent hover:bg-default-500  dark:hover:bg-default-500/50 border-default-500",
+          "text-foreground bg-card hover:bg-accent hover:text-accent-foreground border-border",
+      },
+      {
+        variant: "outline",
+        color: "tertiary",
+        className:
+          "text-tertiary border-tertiary/40 hover:bg-tertiary hover:text-tertiary-foreground hover:border-tertiary",
       },
       {
         variant: "outline",
         color: "default",
         className:
-          "text-primary  hover:text-primary-foreground hover:border-primary hover:bg-primary",
+          "text-primary border-primary/40 hover:text-primary-foreground hover:border-primary hover:bg-primary",
       },
       {
         variant: "outline",
         color: "primary",
-        className: "text-primary  hover:text-primary-foreground",
+        className:
+          "text-primary border-primary/40 hover:text-primary-foreground hover:border-primary hover:bg-primary",
+      },
+      {
+        variant: "soft",
+        color: "tertiary",
+        className:
+          "text-tertiary-soft-foreground bg-tertiary-soft hover:bg-tertiary hover:text-tertiary-foreground",
       },
       {
         variant: "soft",
@@ -107,23 +122,29 @@ const buttonVariants = cva(
         variant: "soft",
         color: "secondary",
         className:
-          "text-muted-foreground bg-secondary/50 hover:bg-default-500/50 dark:hover:bg-default-500",
+          "text-secondary-foreground bg-secondary hover:bg-accent hover:text-accent-foreground",
       },
       {
         variant: "soft",
         color: "default",
-        className: "text-primary bg-primary/12 dark:bg-primary/16 hover:bg-primary",
+        className:
+          "text-primary-soft-foreground bg-primary-soft hover:bg-primary hover:text-primary-foreground",
       },
       {
         variant: "ghost",
         color: "default",
-        className: " text-primary  ",
+        className: "text-primary hover:bg-primary-soft hover:text-primary-soft-foreground",
+      },
+      {
+        variant: "ghost",
+        color: "tertiary",
+        className: "text-tertiary hover:bg-tertiary-soft hover:text-tertiary-soft-foreground",
       },
       {
         variant: "ghost",
         color: "secondary",
         className:
-          " text-muted-foreground dark:bg-transparent hover:bg-default-500/50  dark:hover:bg-default-500/50",
+          "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
       },
       {
         variant: "ghost",

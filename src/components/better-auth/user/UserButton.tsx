@@ -100,7 +100,7 @@ export function UserButton({
             <span className="truncate font-semibold text-default-900">
               {user.name}
             </span>
-            <Badge color="default" variant="soft" className="font-mono text-[10px]">
+            <Badge color="default" variant="soft" className="font-semiboldums text-[10px]">
               {user.role}
             </Badge>
           </div>

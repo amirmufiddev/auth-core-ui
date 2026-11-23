@@ -220,7 +220,7 @@ export function RolesPage() {
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Definisikan statement dan matriks izin berbasis Better Auth{" "}
-            <span className="rounded-md bg-muted px-2 py-0.5 font-mono text-xs">
+            <span className="rounded-md bg-muted px-2 py-0.5 font-semiboldums text-xs">
               createAccessControl
             </span>
             .
@@ -305,7 +305,7 @@ export function RolesPage() {
                     )}
                   </div>
                   <div className="mt-3 flex items-center justify-between text-[11px] text-muted-foreground">
-                    <span className="font-mono">{role.slug}</span>
+                    <span className="font-medium">{role.slug}</span>
                     <span>
                       {permCount}/{totalAvailable} izin · {role.userCount} user
                     </span>
@@ -327,13 +327,13 @@ export function RolesPage() {
                     <CardTitle className="text-lg font-semibold">
                       {selectedRole.name}
                     </CardTitle>
-                    <Badge color="default" variant="soft" className="font-mono">
+                    <Badge color="default" variant="soft">
                       {activeCount}/{totalAvailable} permissions
                     </Badge>
                   </div>
                   <CardDescription>
                     Slug:{" "}
-                    <span className="font-mono text-xs">{selectedRole.slug}</span>
+                    <span className="text-xs font-medium">{selectedRole.slug}</span>
                   </CardDescription>
                 </div>
 
@@ -447,7 +447,7 @@ export function RolesPage() {
                                         : "secondary"
                                   }
                                   variant="soft"
-                                  className="ml-2 shrink-0 font-mono text-xs"
+                                  className="ml-2 shrink-0 font-semiboldums text-xs"
                                 >
                                   {checkedCount} / {totalCount}
                                 </Badge>
@@ -482,7 +482,7 @@ export function RolesPage() {
                                       >
                                         <div className="text-xs font-semibold text-default-900">
                                           {perm.label}{" "}
-                                          <span className="ml-1 rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                          <span className="ml-1 rounded bg-muted px-1.5 py-0.5 font-semiboldums text-[10px] text-muted-foreground">
                                             {mod.resource}:{perm.action}
                                           </span>
                                         </div>
@@ -505,7 +505,7 @@ export function RolesPage() {
                     <div className="flex items-center justify-between">
                       <p className="text-xs text-muted-foreground">
                         Generated{" "}
-                        <span className="font-mono">permissions.ts</span> untuk
+                        <span className="font-medium text-foreground">permissions.ts</span> untuk
                         Better Auth Admin & Organization plugin.
                       </p>
                       <Button
@@ -522,7 +522,7 @@ export function RolesPage() {
                         Salin Kode
                       </Button>
                     </div>
-                    <pre className="max-h-[480px] overflow-auto rounded-lg border border-border bg-muted p-4 font-mono text-xs text-default-900">
+                    <pre className="max-h-[480px] overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
                       <code>{generatedCode}</code>
                     </pre>
                   </TabsContent>
@@ -571,7 +571,6 @@ export function RolesPage() {
               <Input
                 id="new-role-slug"
                 placeholder="billing_operator"
-                className="font-mono"
                 {...createForm.register("slug")}
               />
               {createForm.formState.errors.slug && (

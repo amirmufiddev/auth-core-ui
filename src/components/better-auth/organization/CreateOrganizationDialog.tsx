@@ -103,7 +103,6 @@ export function CreateOrganizationDialog({
             <Input
               id="ba-org-slug"
               placeholder="galonin-digital"
-              className="font-mono"
               {...form.register("slug")}
             />
             {form.formState.errors.slug && (

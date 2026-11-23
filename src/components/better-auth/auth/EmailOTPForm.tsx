@@ -77,7 +77,6 @@ export function EmailOTPForm({
         <Label htmlFor="ba-otp-code">Kode OTP</Label>
         <Input
           id="ba-otp-code"
-          className="font-mono"
           {...form.register("otp")}
         />
         {otpSent && (

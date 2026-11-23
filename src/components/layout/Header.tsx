@@ -1,5 +1,6 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, Moon, Radio, Shield, Sun } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { Menu, Moon, Radio, Search, Settings, Shield, Sun } from "lucide-react";
 import { menusConfig } from "@/config/menus";
 import { isExternalBackendConfigured } from "@/api/client";
 import { cn, isLocationMatch } from "@/lib/utils";
@@ -13,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { BreadcrumbItem, Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const ROUTE_TITLES: Record<string, string> = {
   "/dashboard": "Overview",
@@ -27,9 +29,20 @@ const ROUTE_TITLES: Record<string, string> = {
 };
 
 export function Header() {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
+
+  const quickNavItems = menusConfig.mainNav.flatMap((group) =>
+    (group.child ?? []).filter((item) => Boolean(item.href))
+  );
+  const filteredNavItems = searchQuery.trim()
+    ? quickNavItems.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.trim().toLowerCase())
+      )
+    : [];
 
   const resolvedTheme = useThemeStore((s) => s.resolvedTheme);
   const navbarType = useThemeStore((s) => s.navbarType);
@@ -71,7 +84,7 @@ export function Header() {
 
           {navStyle === "horizontal" && (
             <Link to="/dashboard" className="hidden items-center gap-2 lg:flex">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-xs">
                 <Shield className="h-4 w-4" />
               </div>
               <span className="font-bold text-default-900">AuthCore</span>
@@ -82,6 +95,40 @@ export function Header() {
             <BreadcrumbItem href="/dashboard">AuthCore</BreadcrumbItem>
             <BreadcrumbItem isCurrent>{currentLabel}</BreadcrumbItem>
           </Breadcrumbs>
+        </div>
+
+        <div className="relative hidden max-w-sm flex-1 md:block">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Cari menu atau modul..."
+            className="h-9 bg-surface-subtle pl-9 text-xs border-border/70 focus-visible:border-primary/40 focus-visible:bg-card"
+          />
+          {filteredNavItems.length > 0 && (
+            <div className="absolute left-0 right-0 top-11 z-50 rounded-xl border border-border bg-popover p-1.5 shadow-lg">
+              {filteredNavItems.slice(0, 6).map((item) => {
+                const Icon = item.icon;
+                return (
+                  <button
+                    key={item.href}
+                    type="button"
+                    onClick={() => {
+                      if (item.href) {
+                        void navigate({ to: item.href });
+                        setSearchQuery("");
+                      }
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs text-foreground transition-colors hover:bg-muted"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-muted-foreground" />
+                    <span className="font-medium">{item.title}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -114,6 +161,20 @@ export function Header() {
             )}
           </Button>
 
+          <Button
+            type="button"
+            variant="ghost"
+            color="secondary"
+            size="icon"
+            className="h-9 w-9"
+            asChild
+            aria-label="Pengaturan Tema & Akun"
+          >
+            <Link to="/account" search={{ tab: "preferences" }}>
+              <Settings className="h-4 w-4" />
+            </Link>
+          </Button>
+
           <SignedIn>
             <UserButton />
           </SignedIn>
@@ -134,8 +195,8 @@ export function Header() {
                   className={cn(
                     "inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
                     active
-                      ? "bg-primary text-primary-foreground"
-                      : "text-default-700 hover:bg-accent hover:text-default-900"
+                      ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
+                      : "text-sidebar-foreground hover:bg-accent/70 hover:text-accent-foreground"
                   )}
                 >
                   <Icon className="h-3.5 w-3.5" />

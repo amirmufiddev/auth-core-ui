@@ -115,7 +115,7 @@ export function SessionsPage({
               <div className="text-xs font-medium text-default-900">
                 {row.original.userAgent}
               </div>
-              <div className="font-mono text-[11px] text-muted-foreground">
+              <div className="font-semiboldums text-[11px] text-muted-foreground">
                 {row.original.ipAddress} · {row.original.location}
               </div>
             </div>
@@ -127,7 +127,7 @@ export function SessionsPage({
       accessorKey: "tokenPreview",
       header: "Token",
       cell: ({ row }) => (
-        <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-default-800">
+        <span className="rounded bg-muted px-2 py-0.5 font-semiboldums text-xs text-default-800">
           {row.original.tokenPreview}
         </span>
       ),

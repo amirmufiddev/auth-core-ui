@@ -144,7 +144,6 @@ export function UpdateNameCard() {
               <Label htmlFor="ba-profile-username">Username</Label>
               <Input
                 id="ba-profile-username"
-                className="font-mono"
                 {...form.register("username")}
               />
             </div>
@@ -154,7 +153,7 @@ export function UpdateNameCard() {
           <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <UserCheck className="h-3.5 w-3.5 text-primary" />
             Role aktif:{" "}
-            <span className="font-mono font-medium">{user.role}</span>
+            <span className="font-semibold text-foreground">{user.role}</span>
           </span>
           <Button type="submit" size="sm" color="primary">
             Simpan Profil

@@ -111,7 +111,7 @@ export function AuditLogsPage({
           <p className="mt-1 text-sm text-muted-foreground">
             Stream {totalCount.toLocaleString("id-ID")} event autentikasi
             menggunakan{" "}
-            <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
+            <span className="rounded bg-muted px-1.5 py-0.5 font-semiboldums text-xs">
               react-virtuoso + useInfiniteQuery
             </span>
             .
@@ -202,7 +202,7 @@ export function AuditLogsPage({
               Event Stream ({allItems.length} dimuat dari {totalCount})
             </CardTitle>
           </div>
-          <Badge color="info" variant="soft" className="font-mono text-xs">
+          <Badge color="info" variant="soft" className="font-semiboldums text-xs">
             Virtualized
           </Badge>
         </CardHeader>
@@ -241,7 +241,7 @@ export function AuditLogsPage({
                   >
                     <div className="min-w-0 space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs font-medium text-default-900">
+                        <span className="rounded bg-muted px-2 py-0.5 font-semiboldums text-xs font-medium text-default-900">
                           {item.event}
                         </span>
                         <Badge
@@ -271,8 +271,8 @@ export function AuditLogsPage({
                           {item.actorEmail}
                         </span>{" "}
                         · Target:{" "}
-                        <span className="font-mono">{item.target}</span> · IP:{" "}
-                        <span className="font-mono">{item.ipAddress}</span>
+                        <span className="font-medium text-foreground">{item.target}</span> · IP:{" "}
+                        <span className="tabular-nums font-medium text-foreground">{item.ipAddress}</span>
                       </div>
                     </div>
                     <div className="shrink-0 text-right text-xs text-muted-foreground">
@@ -305,7 +305,7 @@ export function AuditLogsPage({
       >
         <DialogContent size="md">
           <DialogHeader>
-            <DialogTitle className="font-mono text-base">
+            <DialogTitle className="font-semiboldums text-base">
               {selectedEvent?.event}
             </DialogTitle>
             <DialogDescription>
@@ -313,7 +313,7 @@ export function AuditLogsPage({
               {selectedEvent ? formatDate(selectedEvent.createdAt, "PPpp") : ""}
             </DialogDescription>
           </DialogHeader>
-          <pre className="max-h-96 overflow-auto rounded-lg border border-border bg-muted p-4 font-mono text-xs text-default-900">
+          <pre className="max-h-96 overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
             <code>{JSON.stringify(selectedEvent, null, 2)}</code>
           </pre>
         </DialogContent>

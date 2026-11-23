@@ -63,7 +63,7 @@ export function TwoFactorForm({
         <Input
           id="ba-totp-code"
           placeholder={useBackupCode ? "XXXX-XXXX" : "123456"}
-          className="text-center font-mono text-lg tracking-widest"
+          className="text-center font-semiboldums text-lg tracking-widest"
           {...form.register("code")}
         />
         {form.formState.errors.code && (
