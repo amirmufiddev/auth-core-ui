@@ -1,4 +1,5 @@
-import { Github, Globe, Sparkles, UserCheck, Wallet } from "lucide-react";
+import { Icon } from "@iconify/react";
+import { Sparkles, UserCheck, Wallet } from "lucide-react";
 import { type BetterAuthFeatureId } from "@/config/better-auth.config";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useAuthUI } from "@/components/better-auth/auth-ui-provider";
@@ -9,20 +10,21 @@ export const SOCIAL_PROVIDER_CATALOG: Array<{
   id: BetterAuthFeatureId;
   provider: string;
   label: string;
+  icon: string;
 }> = [
-  { id: "socialGoogle", provider: "google", label: "Google" },
-  { id: "socialGithub", provider: "github", label: "GitHub" },
-  { id: "socialMicrosoft", provider: "microsoft", label: "Microsoft" },
-  { id: "socialApple", provider: "apple", label: "Apple" },
-  { id: "socialDiscord", provider: "discord", label: "Discord" },
-  { id: "socialGitlab", provider: "gitlab", label: "GitLab" },
-  { id: "socialSlack", provider: "slack", label: "Slack" },
-  { id: "socialLinkedin", provider: "linkedin", label: "LinkedIn" },
-  { id: "socialTwitter", provider: "twitter", label: "X / Twitter" },
-  { id: "socialFigma", provider: "figma", label: "Figma" },
-  { id: "socialNotion", provider: "notion", label: "Notion" },
-  { id: "socialLinear", provider: "linear", label: "Linear" },
-  { id: "socialVercel", provider: "vercel", label: "Vercel" },
+  { id: "socialGoogle", provider: "google", label: "Google", icon: "flat-color-icons:google" },
+  { id: "socialGithub", provider: "github", label: "GitHub", icon: "mdi:github" },
+  { id: "socialMicrosoft", provider: "microsoft", label: "Microsoft", icon: "logos:microsoft-icon" },
+  { id: "socialApple", provider: "apple", label: "Apple", icon: "ic:baseline-apple" },
+  { id: "socialDiscord", provider: "discord", label: "Discord", icon: "logos:discord-icon" },
+  { id: "socialGitlab", provider: "gitlab", label: "GitLab", icon: "logos:gitlab-icon" },
+  { id: "socialSlack", provider: "slack", label: "Slack", icon: "logos:slack-icon" },
+  { id: "socialLinkedin", provider: "linkedin", label: "LinkedIn", icon: "logos:linkedin-icon" },
+  { id: "socialTwitter", provider: "twitter", label: "X / Twitter", icon: "ri:twitter-x-fill" },
+  { id: "socialFigma", provider: "figma", label: "Figma", icon: "logos:figma" },
+  { id: "socialNotion", provider: "notion", label: "Notion", icon: "simple-icons:notion" },
+  { id: "socialLinear", provider: "linear", label: "Linear", icon: "simple-icons:linear" },
+  { id: "socialVercel", provider: "vercel", label: "Vercel", icon: "simple-icons:vercel" },
 ];
 
 export function ProviderButtons({
@@ -63,21 +65,18 @@ export function ProviderButtons({
   return (
     <div className="grid grid-cols-1 gap-2">
       {activeSocials.length > 0 && (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2">
           {activeSocials.map((social) => (
             <Button
               key={social.id}
               type="button"
-              variant="outline"
+              className="h-11 w-full rounded-lg border-border bg-card text-default-700 hover:bg-default-200 hover:text-default-700"
               color="secondary"
+              variant="outline"
               onClick={() => void handleSocial(social.provider, social.id)}
             >
-              {social.provider === "github" ? (
-                <Github className="mr-2 h-4 w-4" />
-              ) : (
-                <Globe className="mr-2 h-4 w-4" />
-              )}
-              {social.label}
+              <Icon icon={social.icon} className="mr-2 h-6 w-6 shrink-0" />
+              Sign in with {social.label}
             </Button>
           ))}
         </div>

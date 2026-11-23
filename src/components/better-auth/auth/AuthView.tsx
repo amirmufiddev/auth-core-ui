@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { AnimatePresence, motion } from "framer-motion";
+import { Shield } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useAuthUI } from "@/components/better-auth/auth-ui-provider";
 import { EmailOTPForm } from "@/components/better-auth/auth/EmailOTPForm";
@@ -13,14 +16,6 @@ import { SignInForm } from "@/components/better-auth/auth/SignInForm";
 import { SignUpForm } from "@/components/better-auth/auth/SignUpForm";
 import { TwoFactorForm } from "@/components/better-auth/auth/TwoFactorForm";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -46,14 +41,16 @@ export function AuthView({
   const { features, basePaths, localization } = useAuthUI();
   const lastLoginMethod = useAuthStore((s) => s.lastLoginMethod);
   const pending2FA = useAuthStore((s) => s.pending2FA);
+  const [otpFocusedMode, setOtpFocusedMode] = useState(false);
 
   const emailEnabled = Boolean(features.emailAndPassword?.enabled);
-  const usernameEnabled = Boolean(features.username?.enabled);
   const magicLinkEnabled = Boolean(features.magicLink?.enabled);
   const emailOtpEnabled = Boolean(features.emailOTP?.enabled);
   const phoneOtpEnabled = Boolean(features.phoneNumber?.enabled);
   const passkeyEnabled = Boolean(features.passkey?.enabled);
   const lastLoginEnabled = Boolean(features.lastLoginMethod?.enabled);
+  const hasOtp = emailOtpEnabled || phoneOtpEnabled;
+  const hasAnyTab = emailEnabled || hasOtp || magicLinkEnabled;
 
   const hasAlternativeProviders =
     passkeyEnabled ||
@@ -64,157 +61,239 @@ export function AuthView({
 
   if (view === "SIGN_UP") {
     return (
-      <Card className={`w-full max-w-md border border-border ${className ?? ""}`}>
-        <CardHeader className="mb-0">
-          <CardTitle className="text-xl font-semibold">
-            {localization.signUpTitle}
-          </CardTitle>
-          <CardDescription>{localization.signUpDescription}</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-5">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className={`w-full max-w-sm space-y-6 ${className ?? ""}`}
+      >
+        <div className="flex flex-col items-center gap-3 text-center">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
+            <Shield className="h-5 w-5" />
+          </div>
+          <div className="space-y-1">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
+              {localization.signUpTitle}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {localization.signUpDescription}
+            </p>
+          </div>
+        </div>
+
+        {emailEnabled ? (
           <SignUpForm redirectTo={redirectTo} />
-        </CardContent>
-        <CardFooter className="justify-center border-t border-border pt-4 text-xs text-muted-foreground">
-          Sudah memiliki akun?
+        ) : (
+          <div className="rounded-xl border border-warning/30 bg-warning-soft/70 p-4 text-center text-xs text-foreground">
+            Fitur <span className="font-semibold">Email &amp; Password</span>{" "}
+            sedang dinonaktifkan di AuthCore. Silakan masuk menggunakan metode
+            autentikasi lain yang aktif (OTP, Magic Link, Passkey, atau Social
+            OAuth).
+          </div>
+        )}
+
+        <p className="text-center text-xs text-muted-foreground">
+          Sudah memiliki akun?{" "}
           <Link
             to={basePaths.signIn}
-            className="ml-1 font-semibold text-primary hover:underline"
+            className="font-semibold text-primary hover:underline"
           >
             Masuk
           </Link>
-        </CardFooter>
-      </Card>
+        </p>
+      </motion.div>
     );
   }
 
   if (view === "FORGOT_PASSWORD") {
     return (
-      <Card className={`w-full max-w-md border border-border ${className ?? ""}`}>
-        <CardHeader className="mb-0">
-          <CardTitle className="text-xl font-semibold">
-            {localization.forgotPasswordTitle}
-          </CardTitle>
-          <CardDescription>
-            {localization.forgotPasswordDescription}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-5">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className={`w-full max-w-sm space-y-6 ${className ?? ""}`}
+      >
+        <div className="flex flex-col items-center gap-3 text-center">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
+            <Shield className="h-5 w-5" />
+          </div>
+          <div className="space-y-1">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
+              {localization.forgotPasswordTitle}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {localization.forgotPasswordDescription}
+            </p>
+          </div>
+        </div>
+
+        {emailEnabled ? (
           <ForgotPasswordForm />
-        </CardContent>
-        <CardFooter className="justify-center border-t border-border pt-4 text-xs">
+        ) : (
+          <div className="rounded-xl border border-warning/30 bg-warning-soft/70 p-4 text-center text-xs text-foreground">
+            Fitur <span className="font-semibold">Email &amp; Password</span>{" "}
+            sedang dinonaktifkan, sehingga reset kata sandi tidak tersedia.
+          </div>
+        )}
+
+        <p className="text-center text-xs text-muted-foreground">
           <Link
             to={basePaths.signIn}
             className="font-semibold text-primary hover:underline"
           >
             Kembali ke halaman Login
           </Link>
-        </CardFooter>
-      </Card>
+        </p>
+      </motion.div>
     );
   }
 
   if (view === "TWO_FACTOR") {
     return (
-      <Card className={`w-full max-w-md border border-border ${className ?? ""}`}>
-        <CardHeader className="mb-0">
-          <CardTitle className="text-xl font-semibold">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className={`w-full max-w-sm space-y-6 ${className ?? ""}`}
+      >
+        <div className="space-y-1 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
             {localization.twoFactorTitle}
-          </CardTitle>
-          <CardDescription>
+          </h1>
+          <p className="text-sm text-muted-foreground">
             {pending2FA
               ? `Masukkan kode TOTP 6 digit untuk ${pending2FA.email}`
               : localization.twoFactorDescription}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-5">
-          <TwoFactorForm redirectTo={redirectTo} />
-        </CardContent>
-        <CardFooter className="justify-center border-t border-border pt-4 text-xs">
+          </p>
+        </div>
+
+        <TwoFactorForm redirectTo={redirectTo} />
+
+        <p className="text-center text-xs text-muted-foreground">
           <Link
             to={basePaths.signIn}
             className="font-semibold text-primary hover:underline"
           >
             Gunakan akun lain
           </Link>
-        </CardFooter>
-      </Card>
+        </p>
+      </motion.div>
     );
   }
 
   const defaultTab =
     view === "MAGIC_LINK" && magicLinkEnabled
       ? "magic-link"
-      : view === "EMAIL_OTP" && (emailOtpEnabled || phoneOtpEnabled)
+      : view === "EMAIL_OTP" && hasOtp
         ? "otp"
-        : emailEnabled || usernameEnabled
+        : emailEnabled
           ? "password"
-          : magicLinkEnabled
-            ? "magic-link"
-            : "otp";
+          : hasOtp
+            ? "otp"
+            : "magic-link";
 
   return (
-    <Card className={`w-full max-w-md border border-border ${className ?? ""}`}>
-      <CardHeader className="mb-0 space-y-1">
-        <div className="flex items-center justify-between gap-2">
-          <CardTitle className="text-xl font-semibold">
-            {localization.signInTitle}
-          </CardTitle>
-          {lastLoginEnabled && lastLoginMethod && (
-            <Badge color="info" variant="soft" className="text-[11px]">
-              Terakhir: {lastLoginMethod}
-            </Badge>
-          )}
-        </div>
-        <CardDescription>{localization.signInDescription}</CardDescription>
-      </CardHeader>
-
-      <CardContent className="space-y-5 pt-5">
-        <Tabs defaultValue={defaultTab}>
-          <TabsList className="w-full">
-            {(emailEnabled || usernameEnabled) && (
-              <TabsTrigger value="password" className="flex-1">
-                Password
-              </TabsTrigger>
-            )}
-            {magicLinkEnabled && (
-              <TabsTrigger value="magic-link" className="flex-1">
-                Magic Link
-              </TabsTrigger>
-            )}
-            {(emailOtpEnabled || phoneOtpEnabled) && (
-              <TabsTrigger value="otp" className="flex-1">
-                OTP
-              </TabsTrigger>
-            )}
-          </TabsList>
-
-          {(emailEnabled || usernameEnabled) && (
-            <TabsContent value="password" className="pt-4">
-              <SignInForm redirectTo={redirectTo} />
-            </TabsContent>
-          )}
-
-          {magicLinkEnabled && (
-            <TabsContent value="magic-link" className="pt-4">
-              <MagicLinkForm redirectTo={redirectTo} />
-            </TabsContent>
-          )}
-
-          {(emailOtpEnabled || phoneOtpEnabled) && (
-            <TabsContent value="otp" className="pt-4">
-              <EmailOTPForm redirectTo={redirectTo} />
-            </TabsContent>
-          )}
-        </Tabs>
-
-        {hasAlternativeProviders && (
-          <>
-            <div className="relative flex items-center justify-center">
-              <Separator />
-              <span className="absolute bg-card px-2 text-[11px] text-muted-foreground">
-                Atau lanjutkan dengan
-              </span>
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.28 }}
+      className={`w-full max-w-sm space-y-6 ${className ?? ""}`}
+    >
+      {/* Hide standard header when OTP Verification or Verified stage takes over the center */}
+      <AnimatePresence initial={false}>
+        {!otpFocusedMode && (
+          <motion.div
+            key="signin-header"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="flex flex-col items-center gap-3 text-center"
+          >
+            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
+              <Shield className="h-5 w-5" />
             </div>
+            <div className="space-y-1">
+              <div className="flex items-center justify-center gap-2">
+                <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
+                  {localization.signInTitle}
+                </h1>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {localization.signInDescription}
+              </p>
+              {lastLoginEnabled && lastLoginMethod && (
+                <div className="pt-1">
+                  <Badge color="tertiary" variant="soft" className="text-[11px]">
+                    Terakhir masuk: {lastLoginMethod}
+                  </Badge>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="space-y-5">
+        {hasAnyTab && (
+          <Tabs
+            key={defaultTab}
+            defaultValue={defaultTab}
+            onValueChange={() => setOtpFocusedMode(false)}
+          >
+            {!otpFocusedMode && (
+              <TabsList className="w-full rounded-xl bg-surface-subtle p-1">
+                {emailEnabled && (
+                  <TabsTrigger value="password" className="flex-1 rounded-lg text-xs">
+                    Password
+                  </TabsTrigger>
+                )}
+                {hasOtp && (
+                  <TabsTrigger value="otp" className="flex-1 rounded-lg text-xs">
+                    OTP
+                  </TabsTrigger>
+                )}
+                {magicLinkEnabled && (
+                  <TabsTrigger value="magic-link" className="flex-1 rounded-lg text-xs">
+                    Magic Link
+                  </TabsTrigger>
+                )}
+              </TabsList>
+            )}
+
+            {emailEnabled && (
+              <TabsContent value="password" className="pt-4">
+                <SignInForm redirectTo={redirectTo} />
+              </TabsContent>
+            )}
+
+            {hasOtp && (
+              <TabsContent value="otp" className={otpFocusedMode ? "pt-0" : "pt-4"}>
+                <EmailOTPForm
+                  redirectTo={redirectTo}
+                  onStepChange={(step) => setOtpFocusedMode(step !== "request")}
+                />
+              </TabsContent>
+            )}
+
+            {magicLinkEnabled && (
+              <TabsContent value="magic-link" className="pt-4">
+                <MagicLinkForm redirectTo={redirectTo} />
+              </TabsContent>
+            )}
+          </Tabs>
+        )}
+
+        {hasAlternativeProviders && !otpFocusedMode && (
+          <>
+            {hasAnyTab && (
+              <div className="relative flex items-center justify-center">
+                <Separator />
+                <span className="absolute bg-card px-2.5 text-[11px] text-muted-foreground">
+                  Atau lanjutkan dengan
+                </span>
+              </div>
+            )}
 
             <div className="space-y-2">
               <PasskeyButton redirectTo={redirectTo} />
@@ -222,17 +301,26 @@ export function AuthView({
             </div>
           </>
         )}
-      </CardContent>
 
-      <CardFooter className="justify-center border-t border-border pt-4 text-xs text-muted-foreground">
-        Belum punya akun?
-        <Link
-          to={basePaths.signUp}
-          className="ml-1 font-semibold text-primary hover:underline"
-        >
-          Daftar sekarang
-        </Link>
-      </CardFooter>
-    </Card>
+        {!hasAnyTab && !hasAlternativeProviders && (
+          <div className="rounded-xl border border-warning/30 bg-warning-soft/70 p-4 text-center text-xs text-foreground">
+            Tidak ada metode autentikasi yang aktif di AuthCore. Aktifkan
+            minimal satu metode login melalui konfigurasi fitur.
+          </div>
+        )}
+      </div>
+
+      {!otpFocusedMode && emailEnabled && (
+        <p className="text-center text-xs text-muted-foreground">
+          Belum punya akun?{" "}
+          <Link
+            to={basePaths.signUp}
+            className="font-semibold text-primary hover:underline"
+          >
+            Daftar sekarang
+          </Link>
+        </p>
+      )}
+    </motion.div>
   );
 }

@@ -1,15 +1,24 @@
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { CheckCircle2, Moon, Shield, Sun } from "lucide-react";
 import { BETTER_AUTH_FEATURES } from "@/config/better-auth.config";
+import { cn } from "@/lib/utils";
 import { useAuthConfigStore } from "@/stores/useAuthConfigStore";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { useThemeStore } from "@/stores/useThemeStore";
-import { Badge } from "@/components/ui/badge";
+import { COLOR_THEMES, useThemeStore } from "@/stores/useThemeStore";
+import { AnimatedAuthBackground } from "@/components/auth/AnimatedAuthBackground";
+import { AuthMascot } from "@/components/auth/AuthMascot";
+import {
+  AuthStageProvider,
+  useAuthStage,
+} from "@/components/auth/AuthStageContext";
 import { Button } from "@/components/ui/button";
 
-function AuthLayoutComponent() {
+function AuthSplitShell() {
+  const { stage } = useAuthStage();
   const features = useAuthConfigStore((s) => s.features);
   const resolvedTheme = useThemeStore((s) => s.resolvedTheme);
+  const colorTheme = useThemeStore((s) => s.colorTheme);
+  const setColorTheme = useThemeStore((s) => s.setColorTheme);
   const toggleTheme = useThemeStore((s) => s.toggleTheme);
 
   const activeFeatures = BETTER_AUTH_FEATURES.filter(
@@ -17,118 +26,129 @@ function AuthLayoutComponent() {
   );
 
   return (
-    <div className="grid min-h-screen grid-cols-1 bg-background lg:grid-cols-12">
-      {/* Left Showcase Panel (Dark Minimalist with Soft Wave) */}
-      <div className="relative hidden flex-col justify-between overflow-hidden bg-[#09090B] p-10 text-white lg:col-span-5 lg:flex">
-        {/* Soft Abstract Gradient Glow & Wave */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 600 800"
-          className="pointer-events-none absolute inset-0 h-full w-full opacity-55"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="authWaveA" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.45" />
-              <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#F472B6" stopOpacity="0.4" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M-40,760 C160,560 220,380 420,260 C540,185 580,80 620,-20"
-            fill="none"
-            stroke="url(#authWaveA)"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M-20,800 C180,590 250,410 440,290 C560,210 595,110 635,10"
-            fill="none"
-            stroke="url(#authWaveA)"
-            strokeWidth="1.2"
-          />
-          <path
-            d="M10,830 C205,620 280,440 465,320 C580,240 610,145 645,45"
-            fill="none"
-            stroke="url(#authWaveA)"
-            strokeWidth="1"
-          />
-          <path
-            d="M45,860 C235,650 310,475 495,355 C600,275 625,180 660,80"
-            fill="none"
-            stroke="url(#authWaveA)"
-            strokeWidth="0.9"
-          />
-        </svg>
+    <section className="relative flex min-h-screen w-full overflow-hidden p-3 sm:p-6 lg:p-8">
+      {/* Live theme-synced animated silk-ribbon canvas behind entire viewport */}
+      <AnimatedAuthBackground />
 
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15 backdrop-blur">
-            <Shield className="h-4 w-4 text-white" />
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-semibold tracking-[0.18em] text-zinc-300 uppercase">
-              AuthCore Identity
-            </span>
-            <span className="h-px w-10 bg-white/25" />
-          </div>
-        </div>
-
-        <div className="relative z-10 space-y-6">
-          <div className="space-y-3">
-            <Badge
-              color="secondary"
-              variant="soft"
-              className="border border-white/15 bg-white/10 text-zinc-100"
-            >
-              {activeFeatures.length} / {BETTER_AUTH_FEATURES.length} Modul Aktif
-            </Badge>
-            <h2 className="text-4xl font-semibold leading-[1.15] tracking-tight text-white">
-              Identity Infrastructure, Made Effortless.
-            </h2>
-            <p className="max-w-md text-sm leading-relaxed text-zinc-400">
-              Kelola autentikasi, RBAC, 2FA, Passkey, dan multi-tenant secara
-              terpusat dan configurable berbasis Better Auth.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2">
-            {activeFeatures.slice(0, 6).map((f) => (
-              <div
-                key={f.id}
-                className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/4 px-3 py-2 text-xs text-zinc-300"
-              >
-                <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
-                <span className="truncate">{f.name}</span>
+      {/* Framed 50/50 Split Container */}
+      <div className="relative z-10 grid w-full grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-0">
+        {/* Left Transparent Window Panel (Framed with border-card) */}
+        <div className="relative flex min-h-[280px] flex-col justify-between gap-6 rounded-3xl border-[6px] border-card bg-transparent p-6 text-white sm:p-8 lg:min-h-[600px] lg:rounded-l-3xl lg:rounded-r-none lg:border-[8px] lg:p-10">
+          {/* Top Eyebrow Row */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-md">
+                <Shield className="h-4 w-4" />
               </div>
-            ))}
+              <span className="text-xs font-semibold tracking-[0.14em] text-white/95 uppercase">
+                AuthCore Identity
+              </span>
+              <span className="hidden h-px w-20 bg-white/45 sm:inline-block" />
+            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-success" />
+              {activeFeatures.length}/{BETTER_AUTH_FEATURES.length} Modul Aktif
+            </span>
+          </div>
+
+          {/* Mascot Anchor (flies smoothly to Right Panel during OTP / 2FA / Verified) */}
+          <div className="flex flex-1 items-end justify-start pt-4 pl-2">
+            {stage === "default" && <AuthMascot size="lg" />}
+          </div>
+
+          {/* Bottom Quote & Active Feature Highlights */}
+          <div className="space-y-4">
+            <div className="space-y-2.5">
+              <h2 className="max-w-lg text-3xl font-semibold leading-[1.18] tracking-tight text-white sm:text-4xl xl:text-[44px]">
+                Identity Infrastructure, Made Effortless.
+              </h2>
+              <p className="max-w-md text-sm leading-relaxed text-white/80">
+                Kelola autentikasi, RBAC, OTP, 2FA, Passkey, dan multi-tenant
+                secara terpusat berbasis Better Auth.
+              </p>
+            </div>
+
+            <div className="hidden flex-wrap gap-2 pt-1 sm:flex">
+              {activeFeatures.slice(0, 4).map((f) => (
+                <span
+                  key={f.id}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm"
+                >
+                  <CheckCircle2 className="h-3 w-3 text-tertiary" />
+                  {f.name}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="relative z-10 text-xs text-zinc-500">
-          AuthCore Service Console · Better Auth Framework
+        {/* Right Solid Card Panel (100% synced to active Tailwind color theme) */}
+        <div className="relative flex flex-col items-center justify-between gap-6 rounded-3xl bg-card p-6 text-card-foreground sm:p-10 lg:rounded-l-none lg:rounded-r-3xl lg:px-14 lg:py-8">
+          {/* Top-right Theme Palette & Dark/Light Switcher */}
+          <div className="flex w-full items-center justify-end gap-2">
+            <div
+              className="flex items-center gap-1 rounded-full border border-border bg-surface-subtle px-2 py-1"
+              aria-label="Pilih palet tema"
+            >
+              {COLOR_THEMES.slice(0, 6).map((palette) => {
+                const active = colorTheme === palette.id;
+                const dotColor = palette.swatches[resolvedTheme][0];
+                return (
+                  <button
+                    key={palette.id}
+                    type="button"
+                    title={palette.label}
+                    aria-label={`Tema ${palette.label}`}
+                    onClick={() => setColorTheme(palette.id)}
+                    className={cn(
+                      "h-4 w-4 cursor-pointer rounded-full transition-transform hover:scale-110",
+                      active
+                        ? "scale-110 ring-2 ring-foreground ring-offset-1 ring-offset-card"
+                        : "opacity-75 hover:opacity-100"
+                    )}
+                    style={{ backgroundColor: dotColor }}
+                  />
+                );
+              })}
+            </div>
+
+            <Button
+              type="button"
+              variant="outline"
+              color="secondary"
+              size="icon"
+              className="h-8 w-8 rounded-full"
+              onClick={toggleTheme}
+              aria-label="Toggle Light/Dark Mode"
+            >
+              {resolvedTheme === "dark" ? (
+                <Sun className="h-3.5 w-3.5 text-warning" />
+              ) : (
+                <Moon className="h-3.5 w-3.5" />
+              )}
+            </Button>
+          </div>
+
+          {/* Main Centered Auth Stage */}
+          <div className="relative flex w-full flex-1 flex-col items-center justify-center py-2">
+            <Outlet />
+          </div>
+
+          {/* Subtle Brand Footer */}
+          <p className="text-center text-[11px] text-muted-foreground">
+            AuthCore Service Console · Better Auth Enterprise UI
+          </p>
         </div>
       </div>
+    </section>
+  );
+}
 
-      {/* Right Clean Form Area */}
-      <div className="relative flex flex-col items-center justify-center bg-background p-6 sm:p-10 lg:col-span-7">
-        <div className="absolute right-6 top-6">
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label="Toggle Light/Dark Mode"
-          >
-            {resolvedTheme === "dark" ? (
-              <Sun className="h-4 w-4 text-warning" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            )}
-          </Button>
-        </div>
-
-        <Outlet />
-      </div>
-    </div>
+function AuthLayoutComponent() {
+  return (
+    <AuthStageProvider>
+      <AuthSplitShell />
+    </AuthStageProvider>
   );
 }
 
