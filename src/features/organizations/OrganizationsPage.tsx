@@ -62,7 +62,7 @@ export function OrganizationsPage({
             Organizations & Multi-Tenancy
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Manajemen tenant, anggota, sub-tim, dan undangan Better Auth.
+            Manajemen tenant, anggota, sub-tim, dan undangan tenant.
           </p>
         </div>
         <FeatureDisabledCard featureId="organization" />

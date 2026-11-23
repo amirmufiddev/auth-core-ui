@@ -227,7 +227,7 @@ export function ApiKeysCard() {
           <div>
             <CardTitle className="text-base font-semibold">API Keys</CardTitle>
             <CardDescription>
-              Plugin API Key sedang dinonaktifkan di konfigurasi AuthCore.
+              Plugin API Key sedang dinonaktifkan di konfigurasi Auth Core.
             </CardDescription>
           </div>
           <Badge color="warning" variant="soft">

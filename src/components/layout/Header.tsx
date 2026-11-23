@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Menu, Moon, Radio, Search, Settings, Shield, Sun } from "lucide-react";
+import { Menu, Moon, Radio, Search, Settings, Sun } from "lucide-react";
 import { menusConfig } from "@/config/menus";
 import { isExternalBackendConfigured } from "@/api/client";
 import { cn, isLocationMatch } from "@/lib/utils";
@@ -11,6 +11,7 @@ import {
   SignedIn,
   UserButton,
 } from "@/components/better-auth";
+import { AppLogo } from "@/components/layout/AppLogo";
 import { Badge } from "@/components/ui/badge";
 import { BreadcrumbItem, Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -84,15 +85,12 @@ export function Header() {
 
           {navStyle === "horizontal" && (
             <Link to="/dashboard" className="hidden items-center gap-2 lg:flex">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-xs">
-                <Shield className="h-4 w-4" />
-              </div>
-              <span className="font-bold text-default-900">AuthCore</span>
+              <AppLogo showText size="sm" />
             </Link>
           )}
 
           <Breadcrumbs size="sm">
-            <BreadcrumbItem href="/dashboard">AuthCore</BreadcrumbItem>
+            <BreadcrumbItem href="/dashboard">Auth Core</BreadcrumbItem>
             <BreadcrumbItem isCurrent>{currentLabel}</BreadcrumbItem>
           </Breadcrumbs>
         </div>
@@ -138,7 +136,7 @@ export function Header() {
             className="hidden items-center gap-1.5 xl:inline-flex"
           >
             <Radio className="h-3 w-3" />
-            {isExternalApi ? "Live Better Auth API" : "Local Hybrid Mode"}
+            {isExternalApi ? "Live Auth Core API" : "Local Hybrid Mode"}
           </Badge>
 
           <SignedIn>

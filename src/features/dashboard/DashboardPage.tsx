@@ -95,10 +95,10 @@ export function DashboardPage() {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-default-900">
-            AuthCore Service Overview
+            Auth Core Service Overview
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Ringkasan identitas, sesi aktif, dan status modul Better Auth yang
+            Ringkasan identitas, sesi aktif, dan status modul layanan yang
             sedang berjalan.
           </p>
         </div>
@@ -191,7 +191,7 @@ export function DashboardPage() {
               </span>
             </div>
             <p className="mt-1 text-xs font-medium text-foreground/85">
-              Better Auth Features Aktif
+              Fitur Layanan Aktif
             </p>
             <p className="text-[11px] text-muted-foreground">
               Configurable runtime & env hybrid
@@ -369,7 +369,7 @@ export function DashboardPage() {
           <CardHeader className="mb-0 flex flex-row items-center justify-between">
             <div>
               <CardTitle className="text-base font-semibold">
-                Status Modul Better Auth
+                Status Modul Layanan
               </CardTitle>
               <CardDescription>
                 Proporsi plugin aktif per kategori arsitektur.

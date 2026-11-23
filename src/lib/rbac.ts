@@ -101,10 +101,10 @@ export const RBAC_RESOURCE_MODULES: RbacResourceModule[] = [
   },
   {
     resource: "authConfig",
-    title: "AuthCore Feature Flags",
-    description: "Aktivasi/non-aktivasi plugin dan parameter runtime Better Auth.",
+    title: "Auth Core Feature Flags",
+    description: "Aktivasi/non-aktivasi plugin dan parameter runtime Auth Core.",
     permissions: [
-      { action: "read", label: "Read Config", description: "Melihat status plugin Better Auth" },
+      { action: "read", label: "Read Config", description: "Melihat status plugin Auth Core" },
       { action: "configure", label: "Toggle & Tune", description: "Mengaktifkan/mematikan plugin & parameter" },
     ],
   },

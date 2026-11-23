@@ -160,7 +160,7 @@ export function ApiKeysPage({
       name: "",
       protocol: "saml2",
       domain: "",
-      organizationName: "AuthCore HQ",
+      organizationName: "Auth Core HQ",
       scimEnabled: false,
     },
   });
@@ -462,7 +462,7 @@ export function ApiKeysPage({
                   </CardTitle>
                   <CardDescription>
                     Aplikasi pihak ketiga dan AI agent client yang terhubung ke
-                    AuthCore.
+                    Auth Core.
                   </CardDescription>
                 </div>
                 <Button
@@ -727,7 +727,7 @@ export function ApiKeysPage({
               Simpan API Key Anda Sekarang
             </DialogTitle>
             <DialogDescription>
-              Demi keamanan, AuthCore hanya menyimpan hash dari key ini.
+              Demi keamanan, Auth Core hanya menyimpan hash dari key ini.
             </DialogDescription>
           </DialogHeader>
           <Alert color="warning">

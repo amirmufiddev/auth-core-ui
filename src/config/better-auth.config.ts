@@ -110,7 +110,7 @@ export const FEATURE_CATEGORY_META: Record<
   },
   social: {
     label: "Social OAuth",
-    description: "Provider OAuth sosial bawaan Better Auth.",
+    description: "Provider OAuth sosial bawaan Auth Core.",
   },
   authorization: {
     label: "RBAC & Tenant",
@@ -261,7 +261,7 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
       { key: "backupCodeAmount", label: "Backup Code Amount", type: "number" },
     ],
     defaultSettings: {
-      issuer: "AuthCore",
+      issuer: "Auth Core",
       totpDigits: "6",
       backupCodeAmount: 10,
     },
@@ -283,7 +283,7 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     ],
     defaultSettings: {
       rpID: "localhost",
-      rpName: "AuthCore Identity",
+      rpName: "Auth Core Identity",
       authenticatorAttachment: "any",
     },
   },
@@ -715,7 +715,7 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "@better-auth/oauth-provider",
     pluginKey: "oauthProvider",
     clientPluginKey: "oauthProviderClient",
-    description: "Jadikan AuthCore sebagai OAuth 2.1 / OpenID Connect IdP bagi aplikasi klien eksternal.",
+    description: "Jadikan Auth Core sebagai OAuth 2.1 / OpenID Connect IdP bagi aplikasi klien eksternal.",
     defaultEnabled: readEnvBool("VITE_FEATURE_OAUTH_PROVIDER", true),
     endpoints: ["/api/auth/oauth2/authorize", "/api/auth/oauth2/token", "/.well-known/openid-configuration"],
     settingsSchema: [
@@ -970,7 +970,7 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "@better-auth/i18n",
     pluginKey: "i18n",
-    description: "Terjemahan otomatis pesan error Better Auth berdasarkan header/locale.",
+    description: "Terjemahan otomatis pesan error autentikasi berdasarkan header/locale.",
     defaultEnabled: false,
     endpoints: ["Response Error Translator"],
     settingsSchema: [
@@ -1197,7 +1197,7 @@ export function generateBetterAuthServerSnippet(config: FeatureConfigMap): strin
     ),
     "",
     `export const auth = betterAuth({`,
-    `  appName: "AuthCore",`,
+    `  appName: "Auth Core",`,
     `  emailAndPassword: { enabled: ${Boolean(config.emailAndPassword?.enabled)} },`,
   ];
 

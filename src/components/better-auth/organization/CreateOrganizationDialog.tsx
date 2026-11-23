@@ -76,7 +76,7 @@ export function CreateOrganizationDialog({
         <DialogHeader>
           <DialogTitle>Buat Organisasi Baru</DialogTitle>
           <DialogDescription>
-            Mendaftarkan tenant multi-organisasi pada Better Auth.
+            Mendaftarkan tenant multi-organisasi pada Auth Core.
           </DialogDescription>
         </DialogHeader>
 

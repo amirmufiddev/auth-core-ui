@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { Shield } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useAuthUI } from "@/components/better-auth/auth-ui-provider";
+import { AppLogo } from "@/components/layout/AppLogo";
 import { EmailOTPForm } from "@/components/better-auth/auth/EmailOTPForm";
 import { ForgotPasswordForm } from "@/components/better-auth/auth/ForgotPasswordForm";
 import { MagicLinkForm } from "@/components/better-auth/auth/MagicLinkForm";
@@ -68,9 +68,7 @@ export function AuthView({
         className={`w-full max-w-sm space-y-6 ${className ?? ""}`}
       >
         <div className="flex flex-col items-center gap-3 text-center">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
-            <Shield className="h-5 w-5" />
-          </div>
+          <AppLogo size="lg" />
           <div className="space-y-1">
             <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
               {localization.signUpTitle}
@@ -86,7 +84,7 @@ export function AuthView({
         ) : (
           <div className="rounded-xl border border-warning/30 bg-warning-soft/70 p-4 text-center text-xs text-foreground">
             Fitur <span className="font-semibold">Email &amp; Password</span>{" "}
-            sedang dinonaktifkan di AuthCore. Silakan masuk menggunakan metode
+            sedang dinonaktifkan di Auth Core. Silakan masuk menggunakan metode
             autentikasi lain yang aktif (OTP, Magic Link, Passkey, atau Social
             OAuth).
           </div>
@@ -114,9 +112,7 @@ export function AuthView({
         className={`w-full max-w-sm space-y-6 ${className ?? ""}`}
       >
         <div className="flex flex-col items-center gap-3 text-center">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
-            <Shield className="h-5 w-5" />
-          </div>
+          <AppLogo size="lg" />
           <div className="space-y-1">
             <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
               {localization.forgotPasswordTitle}
@@ -210,9 +206,7 @@ export function AuthView({
             transition={{ duration: 0.2 }}
             className="flex flex-col items-center gap-3 text-center"
           >
-            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
-              <Shield className="h-5 w-5" />
-            </div>
+            <AppLogo size="lg" />
             <div className="space-y-1">
               <div className="flex items-center justify-center gap-2">
                 <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
@@ -304,7 +298,7 @@ export function AuthView({
 
         {!hasAnyTab && !hasAlternativeProviders && (
           <div className="rounded-xl border border-warning/30 bg-warning-soft/70 p-4 text-center text-xs text-foreground">
-            Tidak ada metode autentikasi yang aktif di AuthCore. Aktifkan
+            Tidak ada metode autentikasi yang aktif di Auth Core. Aktifkan
             minimal satu metode login melalui konfigurasi fitur.
           </div>
         )}

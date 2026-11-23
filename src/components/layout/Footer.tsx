@@ -22,7 +22,7 @@ export function Footer() {
           rights reserved.
         </span>
         <span>
-          Better Auth Service Console · v{siteConfig.version}
+          Auth Core Service Console · v{siteConfig.version}
         </span>
       </div>
     </footer>

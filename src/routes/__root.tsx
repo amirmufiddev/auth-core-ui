@@ -50,7 +50,7 @@ function NotFoundComponent() {
         </CardHeader>
         <CardContent className="space-y-4 pt-4">
           <p className="text-sm text-muted-foreground">
-            Route yang Anda akses tidak tersedia di AuthCore Console.
+            Route yang Anda akses tidak tersedia di Auth Core Console.
           </p>
           <Button color="primary" asChild>
             <Link to="/dashboard">Kembali ke Dashboard</Link>

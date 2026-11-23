@@ -46,7 +46,7 @@ export function SignInForm({
   }
 
   const handleSuccess = async () => {
-    toast.success("Berhasil masuk ke AuthCore.");
+    toast.success("Berhasil masuk ke Auth Core.");
     navigate(redirectTo || "/dashboard");
   };
 

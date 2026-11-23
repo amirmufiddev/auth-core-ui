@@ -137,7 +137,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       email: "",
       username: "",
       role: "user",
-      organizationName: "AuthCore HQ",
+      organizationName: "Auth Core HQ",
       emailVerified: true,
       twoFactorEnabled: false,
     },
@@ -208,7 +208,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       email: "",
       username: "",
       role: "user",
-      organizationName: "AuthCore HQ",
+      organizationName: "Auth Core HQ",
       emailVerified: true,
       twoFactorEnabled: false,
     });
@@ -222,7 +222,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       email: user.email,
       username: user.username ?? "",
       role: user.role,
-      organizationName: user.organizationName ?? "AuthCore HQ",
+      organizationName: user.organizationName ?? "Auth Core HQ",
       emailVerified: user.emailVerified,
       twoFactorEnabled: user.twoFactorEnabled,
     });
@@ -237,7 +237,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
             Users Management
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Modul administrasi akun pengguna berbasis plugin Better Auth Admin.
+            Modul administrasi akun pengguna berbasis modul Admin Auth Core.
           </p>
         </div>
         <FeatureDisabledCard featureId="admin" />
@@ -500,7 +500,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       <Card>
         <CardHeader className="mb-0 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle className="text-base font-semibold">
-            Direktori Pengguna AuthCore
+            Direktori Pengguna Auth Core
           </CardTitle>
           <div className="flex flex-wrap items-center gap-2">
             <Select
@@ -805,7 +805,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
           <DialogHeader>
             <DialogTitle>Bekukan Akun ({banTarget?.email})</DialogTitle>
             <DialogDescription>
-              User yang dibekukan akan otomatis ditolak oleh Better Auth Admin
+              User yang dibekukan akan otomatis ditolak oleh sistem Auth Core
               plugin hingga masa berlaku berakhir.
             </DialogDescription>
           </DialogHeader>
@@ -941,7 +941,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
                           Email Verified
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          Status verifikasi email Better Auth
+                          Status verifikasi email akun
                         </div>
                       </div>
                       <Switch

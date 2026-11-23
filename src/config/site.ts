@@ -1,7 +1,7 @@
 export const siteConfig = {
-  name: "AuthCore",
+  name: "Auth Core",
   description:
-    "Identity & Access Management Service Console berbasis Better Auth yang configurable secara runtime.",
+    "Identity & Access Management Service Console yang configurable secara runtime.",
   version: "1.7.0",
   docsUrl: "https://better-auth.com/docs",
 };

@@ -1,5 +1,5 @@
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
-import { CheckCircle2, Moon, Shield, Sun } from "lucide-react";
+import { CheckCircle2, Moon, Sun } from "lucide-react";
 import { BETTER_AUTH_FEATURES } from "@/config/better-auth.config";
 import { cn } from "@/lib/utils";
 import { useAuthConfigStore } from "@/stores/useAuthConfigStore";
@@ -11,6 +11,7 @@ import {
   AuthStageProvider,
   useAuthStage,
 } from "@/components/auth/AuthStageContext";
+import { AppLogo } from "@/components/layout/AppLogo";
 import { Button } from "@/components/ui/button";
 
 function AuthSplitShell() {
@@ -33,22 +34,12 @@ function AuthSplitShell() {
       {/* Framed 50/50 Split Container */}
       <div className="relative z-10 grid w-full grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-0">
         {/* Left Transparent Window Panel (Framed with border-card) */}
-        <div className="relative flex min-h-[280px] flex-col justify-between gap-6 rounded-3xl border-[6px] border-card bg-transparent p-6 text-white sm:p-8 lg:min-h-[600px] lg:rounded-l-3xl lg:rounded-r-none lg:border-[8px] lg:p-10">
+        <div className="relative flex min-h-70 flex-col justify-between gap-6 rounded-3xl border-[6px] border-card bg-transparent p-6 text-white sm:p-8 lg:min-h-150 lg:rounded-l-3xl lg:rounded-r-none lg:border-8 lg:p-10">
           {/* Top Eyebrow Row */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-md">
-                <Shield className="h-4 w-4" />
-              </div>
-              <span className="text-xs font-semibold tracking-[0.14em] text-white/95 uppercase">
-                AuthCore Identity
-              </span>
-              <span className="hidden h-px w-20 bg-white/45 sm:inline-block" />
+              <AppLogo forceDark showText subtitle="Centralized Identity & Access Management" size="md" />
             </div>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-success" />
-              {activeFeatures.length}/{BETTER_AUTH_FEATURES.length} Modul Aktif
-            </span>
           </div>
 
           {/* Mascot Anchor (flies smoothly to Right Panel during OTP / 2FA / Verified) */}
@@ -64,7 +55,7 @@ function AuthSplitShell() {
               </h2>
               <p className="max-w-md text-sm leading-relaxed text-white/80">
                 Kelola autentikasi, RBAC, OTP, 2FA, Passkey, dan multi-tenant
-                secara terpusat berbasis Better Auth.
+                secara terpusat dan terintegrasi.
               </p>
             </div>
 
@@ -72,7 +63,7 @@ function AuthSplitShell() {
               {activeFeatures.slice(0, 4).map((f) => (
                 <span
                   key={f.id}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm"
                 >
                   <CheckCircle2 className="h-3 w-3 text-tertiary" />
                   {f.name}
@@ -136,7 +127,7 @@ function AuthSplitShell() {
 
           {/* Subtle Brand Footer */}
           <p className="text-center text-[11px] text-muted-foreground">
-            AuthCore Service Console · Better Auth Enterprise UI
+            Auth Core Service Console · Enterprise Identity UI
           </p>
         </div>
       </div>

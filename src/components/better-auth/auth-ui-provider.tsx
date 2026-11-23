@@ -38,15 +38,15 @@ const DEFAULT_BASE_PATHS: AuthUIBasePaths = {
 };
 
 const DEFAULT_LOCALIZATION: AuthUILocalization = {
-  signInTitle: "Masuk ke AuthCore",
+  signInTitle: "Masuk ke Auth Core",
   signInDescription:
-    "UI autentikasi otomatis menyesuaikan plugin Better Auth yang aktif.",
-  signUpTitle: "Buat Akun AuthCore",
+    "UI autentikasi otomatis menyesuaikan modul keamanan yang aktif.",
+  signUpTitle: "Buat Akun Auth Core",
   signUpDescription:
-    "Registrasi akun baru terhubung dengan kebijakan keamanan Better Auth.",
+    "Registrasi akun baru terhubung dengan kebijakan keamanan Auth Core.",
   forgotPasswordTitle: "Reset Kata Sandi",
   forgotPasswordDescription:
-    "Masukkan email terdaftar untuk menerima tautan pemulihan Better Auth.",
+    "Masukkan email terdaftar untuk menerima tautan pemulihan akun.",
   twoFactorTitle: "Verifikasi Two-Factor (2FA)",
   twoFactorDescription:
     "Masukkan kode TOTP 6 digit atau backup recovery code Anda.",

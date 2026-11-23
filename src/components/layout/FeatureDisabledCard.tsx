@@ -54,11 +54,11 @@ export function FeatureDisabledCard({
           <AlertTriangle className="h-5 w-5 shrink-0" />
           <div>
             <AlertTitle className="text-base">
-              Modul Better Auth Dinonaktifkan
+              Modul Layanan Dinonaktifkan
             </AlertTitle>
             <AlertDescription>
               {description ??
-                `Plugin "${def?.name ?? featureId}" saat ini dimatikan pada konfigurasi AuthCore. Endpoint terkait (${def?.endpoints.join(", ")}) diblokir oleh guard service.`}
+                `Plugin "${def?.name ?? featureId}" saat ini dimatikan pada konfigurasi Auth Core. Endpoint terkait (${def?.endpoints.join(", ")}) diblokir oleh guard service.`}
             </AlertDescription>
           </div>
         </Alert>

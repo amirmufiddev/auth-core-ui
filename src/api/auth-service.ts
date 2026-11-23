@@ -164,7 +164,7 @@ export async function createUser(input: {
     twoFactorEnabled: input.twoFactorEnabled,
     passkeyCount: 0,
     banned: false,
-    organizationName: input.organizationName || "AuthCore HQ",
+    organizationName: input.organizationName || "Auth Core HQ",
     lastLoginMethod: "email",
     lastActiveAt: new Date().toISOString(),
     createdAt: new Date().toISOString(),

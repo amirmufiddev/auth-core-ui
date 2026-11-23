@@ -188,7 +188,7 @@ export function RolesPage() {
             Roles & RBAC Permissions
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Editor access control Better Auth Admin & Organization.
+            Editor access control Admin & Organization.
           </p>
         </div>
         <FeatureDisabledCard featureId="admin" />
@@ -219,7 +219,7 @@ export function RolesPage() {
             Roles & RBAC Permissions
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Definisikan statement dan matriks izin berbasis Better Auth{" "}
+            Definisikan statement dan matriks izin berbasis Auth Core{" "}
             <span className="rounded-md bg-muted px-2 py-0.5 font-semiboldums text-xs">
               createAccessControl
             </span>
@@ -389,7 +389,7 @@ export function RolesPage() {
 
                     <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border bg-muted/40 px-3 py-2">
                       <span className="text-xs text-muted-foreground">
-                        Aksi cepat seluruh resource Better Auth
+                        Aksi cepat seluruh resource Auth Core
                       </span>
                       <div className="flex items-center gap-2">
                         <Button
@@ -506,7 +506,7 @@ export function RolesPage() {
                       <p className="text-xs text-muted-foreground">
                         Generated{" "}
                         <span className="font-medium text-foreground">permissions.ts</span> untuk
-                        Better Auth Admin & Organization plugin.
+                        Admin & Organization plugin.
                       </p>
                       <Button
                         type="button"
@@ -622,7 +622,7 @@ export function RolesPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>Hapus Role "{deleteTarget?.name}"?</AlertDialogTitle>
             <AlertDialogDescription>
-              Role kustom ini akan dihapus dari daftar role AuthCore.
+              Role kustom ini akan dihapus dari daftar role Auth Core.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

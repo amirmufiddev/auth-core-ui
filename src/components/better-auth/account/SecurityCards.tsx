@@ -190,7 +190,7 @@ export function TwoFactorCard() {
               Two-Factor Authentication (2FA)
             </CardTitle>
             <CardDescription>
-              Plugin 2FA sedang dinonaktifkan di konfigurasi AuthCore.
+              Plugin 2FA sedang dinonaktifkan di konfigurasi Auth Core.
             </CardDescription>
           </div>
           <Badge color="warning" variant="soft">
@@ -396,7 +396,7 @@ export function PasskeysCard() {
               Passkeys (WebAuthn)
             </CardTitle>
             <CardDescription>
-              Plugin Passkey sedang dinonaktifkan di konfigurasi AuthCore.
+              Plugin Passkey sedang dinonaktifkan di konfigurasi Auth Core.
             </CardDescription>
           </div>
           <Badge color="warning" variant="soft">
@@ -535,13 +535,13 @@ export function ProvidersCard() {
           Connected Social Providers
         </CardTitle>
         <CardDescription>
-          Hubungkan atau putuskan akun OAuth sosial ke identitas AuthCore Anda.
+          Hubungkan atau putuskan akun OAuth sosial ke identitas Auth Core Anda.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2.5 pt-4">
         {activeProviders.length === 0 ? (
           <p className="text-xs text-muted-foreground">
-            Tidak ada Social OAuth provider yang aktif di konfigurasi AuthCore.
+            Tidak ada Social OAuth provider yang aktif di konfigurasi Auth Core.
           </p>
         ) : (
           activeProviders.map((prov) => {

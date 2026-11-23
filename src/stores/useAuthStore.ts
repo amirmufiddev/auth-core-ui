@@ -501,7 +501,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
         role: "user",
         emailVerified: false,
         twoFactorEnabled: false,
-        organizationName: "AuthCore HQ",
+        organizationName: "Auth Core HQ",
         linkedProviders: ["email"],
         passkeys: [],
         backupCodes: [],
@@ -668,7 +668,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
         throw new Error("Masukkan kata sandi Anda untuk mengaktifkan 2FA.");
       }
       const secret = "JBSWY3DPEHPK3PXP";
-      const totpUri = `otpauth://totp/AuthCore:${encodeURIComponent(current.email)}?secret=${secret}&issuer=AuthCore`;
+      const totpUri = `otpauth://totp/Auth Core:${encodeURIComponent(current.email)}?secret=${secret}&issuer=Auth Core`;
       const backupCodes = generateBackupCodesList();
       const nextUser: AuthSessionUser = {
         ...current,
@@ -684,7 +684,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
         target: `user/${current.id}`,
         ipAddress: "127.0.0.1",
         userAgent: navigator.userAgent,
-        metadata: { issuer: "AuthCore" },
+        metadata: { issuer: "Auth Core" },
       });
       commitUser(nextUser);
       return { totpUri, secret, backupCodes };

@@ -16,7 +16,7 @@ export class FeatureDisabledError extends Error {
 
   constructor(featureId: BetterAuthFeatureId) {
     const def = BETTER_AUTH_FEATURE_MAP[featureId];
-    super(`Fitur "${def?.name ?? featureId}" sedang dinonaktifkan di AuthCore.`);
+    super(`Fitur "${def?.name ?? featureId}" sedang dinonaktifkan di Auth Core.`);
     this.name = "FeatureDisabledError";
     this.featureId = featureId;
   }

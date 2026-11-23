@@ -264,7 +264,7 @@ export function EmailOTPForm({
             <p className="max-w-xs text-sm text-muted-foreground">
               Identitas{" "}
               <span className="font-semibold text-foreground">{target}</span>{" "}
-              telah dikonfirmasi. Mengarahkan ke AuthCore Console...
+              telah dikonfirmasi. Mengarahkan ke Auth Core Console...
             </p>
           </div>
 

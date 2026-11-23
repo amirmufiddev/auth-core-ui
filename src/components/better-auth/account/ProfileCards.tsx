@@ -111,7 +111,7 @@ export function UpdateNameCard() {
           Identitas Profil
         </CardTitle>
         <CardDescription>
-          Perbarui nama tampilan dan username unik akun Better Auth Anda.
+          Perbarui nama tampilan dan username unik akun Auth Core Anda.
         </CardDescription>
       </CardHeader>
       <form

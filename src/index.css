@@ -3,7 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ==========================================================================
-   AuthCore Multi-Tone Enterprise Design System (Tailwind v4 Semantic Tokens)
+   Auth Core Multi-Tone Enterprise Design System (Tailwind v4 Semantic Tokens)
    Default Theme: Indigo & Sky (Enterprise SaaS)
    ========================================================================== */
 
@@ -592,7 +592,8 @@
 }
 
 @theme inline {
-  --font-sans: "Plus Jakarta Sans", "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-background: var(--background);

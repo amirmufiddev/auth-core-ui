@@ -154,10 +154,10 @@ export function AuthFeaturesPage({
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-default-900">
-            Better Auth Feature & Plugin Manager
+            Auth Core Feature & Plugin Manager
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Aktifkan, nonaktifkan, dan atur parameter setiap fitur Better Auth
+            Aktifkan, nonaktifkan, dan atur parameter setiap fitur Auth Core
             untuk Auth Service Anda secara real-time.
           </p>
         </div>
@@ -208,7 +208,7 @@ export function AuthFeaturesPage({
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>Total Katalog Better Auth</span>
+              <span>Total Katalog Fitur</span>
               <SlidersHorizontal className="h-4 w-4 text-primary" />
             </div>
             <div className="mt-2 text-2xl font-bold text-default-900">
@@ -511,10 +511,10 @@ export function AuthFeaturesPage({
       <Dialog open={exportOpen} onOpenChange={setExportOpen}>
         <DialogContent size="lg">
           <DialogHeader>
-            <DialogTitle>Export Konfigurasi Better Auth</DialogTitle>
+            <DialogTitle>Export Konfigurasi Auth Core</DialogTitle>
             <DialogDescription>
               Kode berikut digenerate otomatis hanya untuk {activeCount} fitur
-              yang sedang aktif di AuthCore.
+              yang sedang aktif di Auth Core.
             </DialogDescription>
           </DialogHeader>
 

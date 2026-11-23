@@ -3,13 +3,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Lock,
-  Shield,
 } from "lucide-react";
 import { menusConfig, type MenuItemProps } from "@/config/menus";
-import { siteConfig } from "@/config/site";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { useAuthConfigStore } from "@/stores/useAuthConfigStore";
 import { useLayoutStore } from "@/stores/useLayoutStore";
+import { AppLogo } from "@/components/layout/AppLogo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -171,10 +170,7 @@ export function AppSidebar() {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border px-4 py-4">
             <SheetTitle className="flex items-center gap-2 text-base">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-tertiary text-primary-foreground">
-                <Shield className="h-4 w-4" />
-              </div>
-              <span>{siteConfig.name}</span>
+              <AppLogo showText subtitle="Centralized IAM" size="sm" />
             </SheetTitle>
           </SheetHeader>
           <ScrollArea className="h-[calc(100vh-4.5rem)]">
@@ -203,19 +199,11 @@ export function AppSidebar() {
           )}
         >
           <Link to="/dashboard" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
-              <Shield className="h-5 w-5" />
-            </div>
-            {!isCollapsed && (
-              <div className="leading-tight">
-                <div className="text-base font-bold tracking-tight text-default-900">
-                  {siteConfig.name}
-                </div>
-                <div className="text-[11px] text-muted-foreground">
-                  Better Auth Service
-                </div>
-              </div>
-            )}
+            <AppLogo
+              showText={!isCollapsed}
+              subtitle="Centralized IAM System"
+              size="md"
+            />
           </Link>
 
           {!isCollapsed && (
@@ -258,10 +246,7 @@ export function AppSidebar() {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border px-4 py-4">
             <SheetTitle className="flex items-center gap-2 text-base">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-tertiary text-primary-foreground">
-                <Shield className="h-4 w-4" />
-              </div>
-              <span>{siteConfig.name}</span>
+              <AppLogo showText subtitle="Centralized IAM" size="sm" />
             </SheetTitle>
           </SheetHeader>
           <ScrollArea className="h-[calc(100vh-4.5rem)]">
