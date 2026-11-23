@@ -628,7 +628,7 @@ export function DeleteAccountCard() {
           </CardDescription>
         </CardHeader>
         <CardContent className="pt-4">
-          <Alert color="destructive">
+          <Alert color="destructive" variant="soft">
             <AlertTriangle className="h-4 w-4 shrink-0" />
             <div>
               <AlertTitle className="text-sm">Tindakan Permanen</AlertTitle>
