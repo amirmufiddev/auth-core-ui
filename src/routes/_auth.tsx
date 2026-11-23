@@ -94,7 +94,7 @@ function AuthLayoutComponent() {
             {activeFeatures.slice(0, 6).map((f) => (
               <div
                 key={f.id}
-                className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-zinc-300"
+                className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/4 px-3 py-2 text-xs text-zinc-300"
               >
                 <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
                 <span className="truncate">{f.name}</span>

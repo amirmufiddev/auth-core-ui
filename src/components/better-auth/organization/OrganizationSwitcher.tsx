@@ -72,7 +72,7 @@ export function OrganizationSwitcher({
             type="button"
             color="secondary"
             size="sm"
-            className="hidden bg-card h-9 max-w-[200px] justify-between gap-2 sm:inline-flex hover"
+            className="hidden bg-card h-9 max-w-50 justify-between gap-2 sm:inline-flex hover"
           >
             <span className="flex min-w-0 items-center gap-2">
               {activeOrg ? (

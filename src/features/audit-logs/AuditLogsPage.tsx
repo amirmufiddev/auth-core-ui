@@ -219,7 +219,7 @@ export function AuditLogsPage({
               Tidak ada event audit yang sesuai filter.
             </div>
           ) : (
-            <div className="h-[560px] w-full">
+            <div className="h-140 w-full">
               <Virtuoso
                 data={allItems}
                 endReached={() => {

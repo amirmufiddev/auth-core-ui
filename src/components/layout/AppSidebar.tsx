@@ -171,7 +171,7 @@ export function AppSidebar() {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border px-4 py-4">
             <SheetTitle className="flex items-center gap-2 text-base">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-tertiary text-primary-foreground">
                 <Shield className="h-4 w-4" />
               </div>
               <span>{siteConfig.name}</span>
@@ -193,7 +193,7 @@ export function AppSidebar() {
       <aside
         className={cn(
           "sticky top-0 hidden h-screen shrink-0 border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-all duration-200 lg:flex lg:flex-col",
-          isCollapsed ? "w-[74px]" : sidebarType === "module" ? "w-72" : "w-64"
+          isCollapsed ? "w-18.5" : sidebarType === "module" ? "w-72" : "w-64"
         )}
       >
         <div
@@ -203,7 +203,7 @@ export function AppSidebar() {
           )}
         >
           <Link to="/dashboard" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary to-tertiary text-primary-foreground shadow-sm">
               <Shield className="h-5 w-5" />
             </div>
             {!isCollapsed && (
@@ -258,7 +258,7 @@ export function AppSidebar() {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border px-4 py-4">
             <SheetTitle className="flex items-center gap-2 text-base">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-tertiary text-primary-foreground">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-tertiary text-primary-foreground">
                 <Shield className="h-4 w-4" />
               </div>
               <span>{siteConfig.name}</span>

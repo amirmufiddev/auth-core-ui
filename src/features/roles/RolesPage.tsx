@@ -522,7 +522,7 @@ export function RolesPage() {
                         Salin Kode
                       </Button>
                     </div>
-                    <pre className="max-h-[480px] overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
+                    <pre className="max-h-120 overflow-auto rounded-lg border border-border bg-muted p-4 font-semibold text-xs text-default-900">
                       <code>{generatedCode}</code>
                     </pre>
                   </TabsContent>
