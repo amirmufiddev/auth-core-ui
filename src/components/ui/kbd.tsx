@@ -20,26 +20,16 @@ const kbdVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 export interface KbdProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof kbdVariants> {
+  extends React.HTMLAttributes<HTMLElement>, VariantProps<typeof kbdVariants> {
   keys: string[];
 }
 
 const Kbd = React.forwardRef<HTMLElement, KbdProps>(
-  (
-    {
-      className,
-      keys,
-      children,
-      variant,
-      size,
-    },
-    ref
-  ) => {
+  ({ className, keys, children, variant, size }, ref) => {
     const kbdKeysMap = {
       command: "⌘",
       shift: "⇧",
@@ -76,7 +66,7 @@ const Kbd = React.forwardRef<HTMLElement, KbdProps>(
         <span className=" leading-none">{children}</span>
       </kbd>
     );
-  }
+  },
 );
 Kbd.displayName = "Kbd";
 export { Kbd };

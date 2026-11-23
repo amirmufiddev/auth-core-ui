@@ -12,19 +12,79 @@ export const SOCIAL_PROVIDER_CATALOG: Array<{
   label: string;
   icon: string;
 }> = [
-  { id: "socialGoogle", provider: "google", label: "Google", icon: "flat-color-icons:google" },
-  { id: "socialGithub", provider: "github", label: "GitHub", icon: "mdi:github" },
-  { id: "socialMicrosoft", provider: "microsoft", label: "Microsoft", icon: "logos:microsoft-icon" },
-  { id: "socialApple", provider: "apple", label: "Apple", icon: "ic:baseline-apple" },
-  { id: "socialDiscord", provider: "discord", label: "Discord", icon: "logos:discord-icon" },
-  { id: "socialGitlab", provider: "gitlab", label: "GitLab", icon: "logos:gitlab-icon" },
-  { id: "socialSlack", provider: "slack", label: "Slack", icon: "logos:slack-icon" },
-  { id: "socialLinkedin", provider: "linkedin", label: "LinkedIn", icon: "logos:linkedin-icon" },
-  { id: "socialTwitter", provider: "twitter", label: "X / Twitter", icon: "ri:twitter-x-fill" },
+  {
+    id: "socialGoogle",
+    provider: "google",
+    label: "Google",
+    icon: "flat-color-icons:google",
+  },
+  {
+    id: "socialGithub",
+    provider: "github",
+    label: "GitHub",
+    icon: "mdi:github",
+  },
+  {
+    id: "socialMicrosoft",
+    provider: "microsoft",
+    label: "Microsoft",
+    icon: "logos:microsoft-icon",
+  },
+  {
+    id: "socialApple",
+    provider: "apple",
+    label: "Apple",
+    icon: "ic:baseline-apple",
+  },
+  {
+    id: "socialDiscord",
+    provider: "discord",
+    label: "Discord",
+    icon: "logos:discord-icon",
+  },
+  {
+    id: "socialGitlab",
+    provider: "gitlab",
+    label: "GitLab",
+    icon: "logos:gitlab-icon",
+  },
+  {
+    id: "socialSlack",
+    provider: "slack",
+    label: "Slack",
+    icon: "logos:slack-icon",
+  },
+  {
+    id: "socialLinkedin",
+    provider: "linkedin",
+    label: "LinkedIn",
+    icon: "logos:linkedin-icon",
+  },
+  {
+    id: "socialTwitter",
+    provider: "twitter",
+    label: "X / Twitter",
+    icon: "ri:twitter-x-fill",
+  },
   { id: "socialFigma", provider: "figma", label: "Figma", icon: "logos:figma" },
-  { id: "socialNotion", provider: "notion", label: "Notion", icon: "simple-icons:notion" },
-  { id: "socialLinear", provider: "linear", label: "Linear", icon: "simple-icons:linear" },
-  { id: "socialVercel", provider: "vercel", label: "Vercel", icon: "simple-icons:vercel" },
+  {
+    id: "socialNotion",
+    provider: "notion",
+    label: "Notion",
+    icon: "simple-icons:notion",
+  },
+  {
+    id: "socialLinear",
+    provider: "linear",
+    label: "Linear",
+    icon: "simple-icons:linear",
+  },
+  {
+    id: "socialVercel",
+    provider: "vercel",
+    label: "Vercel",
+    icon: "simple-icons:vercel",
+  },
 ];
 
 export function ProviderButtons({
@@ -37,7 +97,7 @@ export function ProviderButtons({
   const signInAnonymous = useAuthStore((s) => s.signInAnonymous);
 
   const activeSocials = SOCIAL_PROVIDER_CATALOG.filter(
-    (s) => features[s.id]?.enabled
+    (s) => features[s.id]?.enabled,
   );
   const oneTapEnabled = Boolean(features.oneTap?.enabled);
   const siweEnabled = Boolean(features.siwe?.enabled);

@@ -20,7 +20,7 @@ const FormField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
-  props: ControllerProps<TFieldValues, TName>
+  props: ControllerProps<TFieldValues, TName>,
 ) => {
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
@@ -129,28 +129,30 @@ const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & { tooltip?: boolean }
 >(({ className, children, tooltip = false, ...props }, ref) => {
-    const { error, formMessageId } = useFormField();
-    const body = error ? String(error?.message) : children;
+  const { error, formMessageId } = useFormField();
+  const body = error ? String(error?.message) : children;
 
-    if (!body) {
-      return null;
-    }
-
-    return (
-      <p
-        ref={ref}
-        id={formMessageId}
-        className={cn("text-xs text-destructive leading-none px-1.5 py-2  rounded-[2px]", className, {
-          " bg-destructive text-destructive-foreground  inline-block":
-            tooltip,
-        })}
-        {...props}
-      >
-        {body}
-      </p>
-    );
+  if (!body) {
+    return null;
   }
-);
+
+  return (
+    <p
+      ref={ref}
+      id={formMessageId}
+      className={cn(
+        "text-xs text-destructive leading-none px-1.5 py-2  rounded-[2px]",
+        className,
+        {
+          " bg-destructive text-destructive-foreground  inline-block": tooltip,
+        },
+      )}
+      {...props}
+    >
+      {body}
+    </p>
+  );
+});
 FormMessage.displayName = "FormMessage";
 
 export {

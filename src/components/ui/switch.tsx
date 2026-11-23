@@ -28,14 +28,12 @@ const switchVariants = cva(
       color: "primary",
       size: "md",
     },
-  }
+  },
 );
 
 export interface SwitchProps
-  extends Omit<
-      React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>,
-      "color"
-    >,
+  extends
+    Omit<React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>, "color">,
     VariantProps<typeof switchVariants> {
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
@@ -60,7 +58,7 @@ const Switch = React.forwardRef<
       thumbSize,
       ...props
     },
-    ref
+    ref,
   ) => (
     <SwitchPrimitives.Root
       className={cn(switchVariants({ size, color }), className)}
@@ -80,7 +78,7 @@ const Switch = React.forwardRef<
             "h-3 w-3 data-[state=checked]:ml-4 ": size === "sm",
             "h-4 w-4 ": size === "md",
             "h-5 w-5 ": size === "lg",
-          }
+          },
         )}
       >
         {thumbIcon ? thumbIcon : null}
@@ -91,7 +89,7 @@ const Switch = React.forwardRef<
         </span>
       )}
     </SwitchPrimitives.Root>
-  )
+  ),
 );
 Switch.displayName = SwitchPrimitives.Root.displayName;
 

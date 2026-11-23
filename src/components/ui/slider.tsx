@@ -45,12 +45,14 @@ const sliderVariants = cva(
       size: "lg",
       radius: "md",
     },
-  }
+  },
 );
 
 type SliderMark = { value: number; label?: React.ReactNode };
 
-type SliderProps = React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
+type SliderProps = React.ComponentPropsWithoutRef<
+  typeof SliderPrimitive.Root
+> & {
   color?: VariantProps<typeof sliderVariants>["color"];
   size?: VariantProps<typeof sliderVariants>["size"];
   radius?: VariantProps<typeof sliderVariants>["radius"];
@@ -75,7 +77,7 @@ const Slider = React.forwardRef<
       marks = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     const min = props.min ?? 0;
     const max = props.max ?? 100;
@@ -87,7 +89,7 @@ const Slider = React.forwardRef<
     const [mappedValues, setMappedValues] = React.useState(() =>
       props.defaultValue !== undefined
         ? [Math.round(props.defaultValue[0] ?? 0)]
-        : [0]
+        : [0],
     );
 
     const getStepProps = (index: number) => {
@@ -103,7 +105,7 @@ const Slider = React.forwardRef<
           "h-1.5 w-1.5 absolute rounded-full  bg-default-300/50  data-[in-range=true]:bg-background/70 top-1/2 -translate-x-1/2 -translate-y-1/2",
           {
             "h-1 w-1": size === "sm",
-          }
+          },
         ),
         "data-in-range": isInRange ? "true" : "false",
 
@@ -148,7 +150,7 @@ const Slider = React.forwardRef<
         >
           <SliderPrimitive.Track
             className={cn(
-              "relative w-full grow overflow-hidden rounded-full bg-secondary h-full"
+              "relative w-full grow overflow-hidden rounded-full bg-secondary h-full",
             )}
           >
             <SliderPrimitive.Range
@@ -170,9 +172,7 @@ const Slider = React.forwardRef<
                   <TooltipProvider disableHoverableContent>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <SliderPrimitive.Thumb
-                          className="block h-5 w-5  cursor-pointer rounded-full border-2 range-thumb ring-offset-background transition-colors focus-visible:outline-none   disabled:pointer-events-none disabled:opacity-50 "
-                        />
+                        <SliderPrimitive.Thumb className="block h-5 w-5  cursor-pointer rounded-full border-2 range-thumb ring-offset-background transition-colors focus-visible:outline-none   disabled:pointer-events-none disabled:opacity-50 " />
                       </TooltipTrigger>
                       <TooltipContent color={color}>
                         {mappedValues[index]}
@@ -180,9 +180,7 @@ const Slider = React.forwardRef<
                     </Tooltip>
                   </TooltipProvider>
                 ) : (
-                  <SliderPrimitive.Thumb
-                    className="block h-5 w-5 cursor-pointer rounded-full ring-2 ring-background range-thumb  focus-visible:ring-4 ring-offset-background transition-colors focus-visible:outline-none   disabled:pointer-events-none disabled:opacity-50 "
-                  />
+                  <SliderPrimitive.Thumb className="block h-5 w-5 cursor-pointer rounded-full ring-2 ring-background range-thumb  focus-visible:ring-4 ring-offset-background transition-colors focus-visible:outline-none   disabled:pointer-events-none disabled:opacity-50 " />
                 )}
               </React.Fragment>
             );
@@ -196,7 +194,7 @@ const Slider = React.forwardRef<
         </SliderPrimitive.Root>
       </>
     );
-  }
+  },
 );
 Slider.displayName = SliderPrimitive.Root.displayName;
 

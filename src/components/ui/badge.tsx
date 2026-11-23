@@ -69,17 +69,20 @@ const badgeVariants = cva(
       {
         variant: "soft",
         color: "warning",
-        className: "text-warning bg-warning/12 dark:bg-warning/16 hover:text-warning",
+        className:
+          "text-warning bg-warning/12 dark:bg-warning/16 hover:text-warning",
       },
       {
         variant: "soft",
         color: "destructive",
-        className: "text-destructive bg-destructive/12 dark:bg-destructive/16 hover:text-destructive",
+        className:
+          "text-destructive bg-destructive/12 dark:bg-destructive/16 hover:text-destructive",
       },
       {
         variant: "soft",
         color: "success",
-        className: "text-success bg-success/12 dark:bg-success/16 hover:text-success",
+        className:
+          "text-success bg-success/12 dark:bg-success/16 hover:text-success",
       },
       {
         variant: "outline",
@@ -105,11 +108,12 @@ const badgeVariants = cva(
     defaultVariants: {
       color: "default",
     },
-  }
+  },
 );
 
 export interface BadgeProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
     Omit<VariantProps<typeof badgeVariants>, "color" | "variant"> {
   color?: VariantProps<typeof badgeVariants>["color"] | (string & {});
   variant?: VariantProps<typeof badgeVariants>["variant"] | (string & {});
@@ -123,7 +127,7 @@ function Badge({ className, color, variant, ...props }: BadgeProps) {
           color: color as VariantProps<typeof badgeVariants>["color"],
           variant: variant as VariantProps<typeof badgeVariants>["variant"],
         }),
-        className
+        className,
       )}
       {...props}
     />

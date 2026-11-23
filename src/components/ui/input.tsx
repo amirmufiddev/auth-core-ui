@@ -110,11 +110,12 @@ export const inputVariants = cva(
       variant: "bordered",
       radius: "md",
     },
-  }
+  },
 );
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "color">,
+  extends
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "color">,
     VariantProps<typeof inputVariants> {
   removeWrapper?: boolean;
 }
@@ -132,14 +133,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       removeWrapper = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     return removeWrapper ? (
       <input
         type={type}
         className={cn(
           inputVariants({ color, size, radius, variant, shadow }),
-          className
+          className,
         )}
         ref={ref}
         {...props}
@@ -150,14 +151,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             inputVariants({ color, size, radius, variant, shadow }),
-            className
+            className,
           )}
           ref={ref}
           {...props}
         />
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

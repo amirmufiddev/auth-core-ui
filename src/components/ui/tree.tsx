@@ -97,7 +97,7 @@ const TreeNode = ({
                   "border-primary bg-primary": isChecked || isIndeterminate,
                   "border-default-200 bg-background":
                     !isChecked && !isIndeterminate,
-                }
+                },
               )}
             >
               {isChecked && (
@@ -113,7 +113,7 @@ const TreeNode = ({
           data-open={hasChildren && expandedKeys.includes(id) ? "true" : null}
           className={cn(
             "inline-flex py-3 px-3 gap-3  transition-all duration-200 items-center [&_.menu-arrow>svg]:h-4 [&_.menu-arrow>svg]:w-4 cursor-pointer text-base text font-medium data-[open=true]:bg-default-200/80 rounded",
-            className
+            className,
           )}
           onClick={handleExpand}
         >
@@ -126,7 +126,7 @@ const TreeNode = ({
                 "transform transition-all duration-200 flex-none leading-none menu-arrow",
                 {
                   " rotate-90": expandedKeys.includes(id),
-                }
+                },
               )}
             >
               {endContent}
@@ -198,7 +198,8 @@ const Tree = ({
   showLine?: boolean;
 }) => {
   const [treeData, setTreeData] = useState<TreeNodeData[]>(data);
-  const [expandedKeys, setExpandedKeys] = useState<Array<string | number>>(defaultExpandedKeys);
+  const [expandedKeys, setExpandedKeys] =
+    useState<Array<string | number>>(defaultExpandedKeys);
 
   useEffect(() => {
     setTreeData(data);
@@ -212,14 +213,17 @@ const Tree = ({
     }
   };
 
-  const toggleNodeChecked = (nodes: TreeNodeData[], nodeId: string | number): TreeNodeData[] => {
+  const toggleNodeChecked = (
+    nodes: TreeNodeData[],
+    nodeId: string | number,
+  ): TreeNodeData[] => {
     return nodes.map((node) => {
       if (node.id === nodeId) {
         const updatedNode = { ...node, checked: !node.checked };
         if (updatedNode.children) {
           updatedNode.children = toggleAllChildren(
             updatedNode.children,
-            updatedNode.checked
+            updatedNode.checked,
           );
         }
         return updatedNode;
@@ -240,7 +244,7 @@ const Tree = ({
 
   const toggleAllChildren = (
     children: TreeNodeData[],
-    checked: boolean | null
+    checked: boolean | null,
   ): TreeNodeData[] => {
     return children.map((child) => ({
       ...child,
@@ -255,7 +259,7 @@ const Tree = ({
     setExpandedKeys((prevExpandedKeys) =>
       prevExpandedKeys.includes(nodeId)
         ? prevExpandedKeys.filter((key) => key !== nodeId)
-        : [...prevExpandedKeys, nodeId]
+        : [...prevExpandedKeys, nodeId],
     );
   };
 

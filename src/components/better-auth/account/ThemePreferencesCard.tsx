@@ -179,14 +179,14 @@ export function ThemePreferencesCard() {
                     "relative h-auto flex-col items-start gap-1.5 p-3.5 text-left",
                     selected
                       ? "border-primary bg-primary/8 text-default-900 hover:bg-primary/12 hover:text-default-900"
-                      : "border-border text-default-700 hover:bg-accent hover:text-default-900"
+                      : "border-border text-default-700 hover:bg-accent hover:text-default-900",
                   )}
                 >
                   <div className="flex w-full items-center justify-between">
                     <Icon
                       className={cn(
                         "h-4 w-4",
-                        selected ? "text-primary" : "text-muted-foreground"
+                        selected ? "text-primary" : "text-muted-foreground",
                       )}
                     />
                     {selected && <Check className="h-4 w-4 text-primary" />}
@@ -230,7 +230,7 @@ export function ThemePreferencesCard() {
                     "h-auto flex-col items-start gap-2.5 p-3 text-left transition-all",
                     isActive
                       ? "border-primary bg-primary-soft/70 text-foreground ring-1 ring-primary/30 hover:bg-primary-soft hover:text-foreground"
-                      : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-surface-subtle hover:text-foreground"
+                      : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-surface-subtle hover:text-foreground",
                   )}
                 >
                   <div className="flex w-full items-center justify-between gap-2">
@@ -289,14 +289,14 @@ export function ThemePreferencesCard() {
                     "h-auto flex-col items-start gap-1.5 p-3.5 text-left",
                     selected
                       ? "border-primary bg-primary/8 text-default-900 hover:bg-primary/12 hover:text-default-900"
-                      : "border-border text-default-700 hover:bg-accent hover:text-default-900"
+                      : "border-border text-default-700 hover:bg-accent hover:text-default-900",
                   )}
                 >
                   <div className="flex w-full items-center justify-between">
                     <LayoutGrid
                       className={cn(
                         "h-4 w-4",
-                        selected ? "text-primary" : "text-muted-foreground"
+                        selected ? "text-primary" : "text-muted-foreground",
                       )}
                     />
                     {selected && <Check className="h-4 w-4 text-primary" />}
@@ -337,14 +337,14 @@ export function ThemePreferencesCard() {
                       "h-auto flex-col items-start gap-1.5 p-3.5 text-left",
                       selected
                         ? "border-primary bg-primary/8 text-default-900 hover:bg-primary/12 hover:text-default-900"
-                        : "border-border text-default-700 hover:bg-accent hover:text-default-900"
+                        : "border-border text-default-700 hover:bg-accent hover:text-default-900",
                     )}
                   >
                     <div className="flex w-full items-center justify-between">
                       <PanelLeft
                         className={cn(
                           "h-4 w-4",
-                          selected ? "text-primary" : "text-muted-foreground"
+                          selected ? "text-primary" : "text-muted-foreground",
                         )}
                       />
                       {selected && <Check className="h-4 w-4 text-primary" />}
@@ -363,7 +363,10 @@ export function ThemePreferencesCard() {
             <div className="flex items-center gap-3">
               <PanelLeft className="h-4 w-4 text-muted-foreground" />
               <div>
-                <Label htmlFor="pref-sidebar-collapsed" className="cursor-pointer">
+                <Label
+                  htmlFor="pref-sidebar-collapsed"
+                  className="cursor-pointer"
+                >
                   Perkecil Sidebar (Mini Mode)
                 </Label>
                 <p className="text-xs text-muted-foreground">
@@ -390,8 +393,7 @@ export function ThemePreferencesCard() {
               Rounded (Border Radius)
             </Badge>
             <p className="text-xs text-muted-foreground">
-              Nilai radius sudut komponen dalam satuan{" "}
-              <span>rem</span>.
+              Nilai radius sudut komponen dalam satuan <span>rem</span>.
             </p>
           </div>
           <div className="grid grid-cols-5 gap-2">

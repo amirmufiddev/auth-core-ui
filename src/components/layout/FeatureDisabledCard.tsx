@@ -45,7 +45,11 @@ export function FeatureDisabledCard({
             Plugin Non-Aktif
           </Badge>
         </div>
-        <Badge color="secondary" variant="outline" className="font-semiboldums text-xs">
+        <Badge
+          color="secondary"
+          variant="outline"
+          className="font-semiboldums text-xs"
+        >
           {def?.packageName}
         </Badge>
       </CardHeader>

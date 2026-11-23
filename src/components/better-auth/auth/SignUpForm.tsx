@@ -1,9 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  type RegisterValues,
-  registerSchema,
-} from "@/features/auth/schema";
+import { type RegisterValues, registerSchema } from "@/features/auth/schema";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useAuthUI } from "@/components/better-auth/auth-ui-provider";
 import { Button } from "@/components/ui/button";
@@ -11,7 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
-export function SignUpForm({ redirectTo = "/dashboard" }: { redirectTo?: string }) {
+export function SignUpForm({
+  redirectTo = "/dashboard",
+}: {
+  redirectTo?: string;
+}) {
   const { features, navigate } = useAuthUI();
   const signUp = useAuthStore((s) => s.signUp);
 

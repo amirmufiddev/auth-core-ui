@@ -27,7 +27,7 @@ const progressVariants = cva(
       color: "primary",
       size: "md",
     },
-  }
+  },
 );
 
 const circleVariants = cva("[&_[path-color]]:text-default-200 ", {
@@ -55,7 +55,8 @@ const circleVariants = cva("[&_[path-color]]:text-default-200 ", {
   },
 });
 export interface ProgressProps
-  extends Omit<
+  extends
+    Omit<
       React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
       "color" | "value"
     >,
@@ -72,8 +73,18 @@ const Progress = React.forwardRef<
   ProgressProps
 >(
   (
-    { className, value, color, size, showValue, isStripe, isAnimate, variant, ...props },
-    ref
+    {
+      className,
+      value,
+      color,
+      size,
+      showValue,
+      isStripe,
+      isAnimate,
+      variant,
+      ...props
+    },
+    ref,
   ) => {
     const numericValue = Number(value) || 0;
     const stripeStyles = isStripe
@@ -97,7 +108,7 @@ const Progress = React.forwardRef<
         className={cn(
           progressVariants({ color, size }),
 
-          className
+          className,
         )}
         {...props}
       >
@@ -107,7 +118,7 @@ const Progress = React.forwardRef<
             className,
             {
               "animate-stripes": isAnimate,
-            }
+            },
           )}
           // style={{
           //   width: `${value}% !important`,
@@ -126,12 +137,13 @@ const Progress = React.forwardRef<
         </ProgressPrimitive.Indicator>
       </ProgressPrimitive.Root>
     );
-  }
+  },
 );
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
 export interface CircularProgressProps
-  extends Omit<React.SVGAttributes<SVGSVGElement>, "color">,
+  extends
+    Omit<React.SVGAttributes<SVGSVGElement>, "color">,
     VariantProps<typeof circleVariants> {
   value?: number | string;
   showValue?: boolean;
@@ -153,7 +165,7 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
       isStripe,
       ...props
     },
-    ref
+    ref,
   ) => {
     const radius = 40;
     const circumference = 2 * Math.PI * radius;
@@ -170,7 +182,7 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
             className,
             {
               "animate-spin": loading,
-            }
+            },
           )}
           {...props}
           viewBox="0 0 100 100"
@@ -217,7 +229,7 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
         </svg>
       </div>
     );
-  }
+  },
 );
 CircularProgress.displayName = ProgressPrimitive.Root.displayName;
 export { Progress, CircularProgress };

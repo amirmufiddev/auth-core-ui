@@ -144,7 +144,7 @@ interface AuthStoreState {
   signInWithPasskey: () => Promise<void>;
   signInWithSocial: (
     provider: string,
-    featureId: BetterAuthFeatureId
+    featureId: BetterAuthFeatureId,
   ) => Promise<void>;
   signInAnonymous: () => Promise<void>;
   signUp: (input: {
@@ -170,7 +170,7 @@ interface AuthStoreState {
     newPassword: string;
   }) => Promise<void>;
   enableTwoFactor: (
-    password: string
+    password: string,
   ) => Promise<{ totpUri: string; secret: string; backupCodes: string[] }>;
   disableTwoFactor: (password: string) => Promise<void>;
   regenerateBackupCodes: () => Promise<string[]>;
@@ -178,7 +178,7 @@ interface AuthStoreState {
   removePasskey: (passkeyId: string) => Promise<void>;
   linkProvider: (
     provider: string,
-    featureId: BetterAuthFeatureId
+    featureId: BetterAuthFeatureId,
   ) => Promise<void>;
   unlinkProvider: (provider: string) => Promise<void>;
   deleteOwnAccount: (confirmEmail: string) => Promise<void>;
@@ -193,7 +193,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
       impersonatedBy?: string | null;
       lastLoginMethod?: string | null;
       pending2FA?: Pending2FAState | null;
-    }
+    },
   ) => {
     const currentAccounts = get().deviceAccounts;
     let nextAccounts = currentAccounts;
@@ -258,7 +258,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
                 emailVerified: res.data.user.emailVerified,
                 twoFactorEnabled: Boolean(
                   (res.data.user as { twoFactorEnabled?: boolean })
-                    .twoFactorEnabled
+                    .twoFactorEnabled,
                 ),
                 linkedProviders: ["email"],
                 passkeys: [],
@@ -282,7 +282,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
       const found = db.users.find(
         (u) =>
           u.email.toLowerCase() === normalized ||
-          (u.username ?? "").toLowerCase() === normalized
+          (u.username ?? "").toLowerCase() === normalized,
       );
 
       if (!found) {
@@ -290,7 +290,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
       }
       if (found.banned) {
         throw new Error(
-          `Akun dibekukan: ${found.banReason ?? "Hubungi administrator."}`
+          `Akun dibekukan: ${found.banReason ?? "Hubungi administrator."}`,
         );
       }
       if (password.length < 4) {
@@ -389,7 +389,11 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
           ...toSessionUser(found),
           email,
         },
-        { impersonatedBy: null, lastLoginMethod: "magic-link", pending2FA: null }
+        {
+          impersonatedBy: null,
+          lastLoginMethod: "magic-link",
+          pending2FA: null,
+        },
       );
     },
 
@@ -403,7 +407,7 @@ export const useAuthStore = create<AuthStoreState>((set, get) => {
         db.users.find(
           (u) =>
             u.email.toLowerCase() === target.toLowerCase() ||
-            u.phoneNumber === target
+            u.phoneNumber === target,
         ) ?? db.users[0];
 
       appendAuditLog({

@@ -11,7 +11,7 @@ const Avatar = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
-      className
+      className,
     )}
     {...props}
   />
@@ -35,20 +35,20 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         ref={ref}
         className={cn(
           " relative w-max-content flex -space-x-3 avatarGroup items-center",
-          className
+          className,
         )}
         {...props}
       >
         {avatars.slice(0, visibleCount).map((avatar, index) =>
-          React.isValidElement(avatar)
-            ? React.cloneElement(avatar, {
-                key: avatar.key ?? `avatar-group-${index}`,
-              })
-            : (
-                <span key={`avatar-group-${index}`} className="contents">
-                  {avatar}
-                </span>
-              )
+          React.isValidElement(avatar) ? (
+            React.cloneElement(avatar, {
+              key: avatar.key ?? `avatar-group-${index}`,
+            })
+          ) : (
+            <span key={`avatar-group-${index}`} className="contents">
+              {avatar}
+            </span>
+          ),
         )}
         {avatars.length > visibleCount && (
           <>
@@ -60,7 +60,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               <Avatar
                 className={cn(
                   "ring-1 ring-background ring-offset-[2px]  ring-offset-background",
-                  countClass
+                  countClass,
                 )}
               >
                 <AvatarFallback className="font-normal">
@@ -72,7 +72,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
       </div>
     );
-  }
+  },
 );
 AvatarGroup.displayName = "AvatarGroup";
 
@@ -96,7 +96,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full bg-muted font-semibold text-sm",
-      className
+      className,
     )}
     {...props}
   />

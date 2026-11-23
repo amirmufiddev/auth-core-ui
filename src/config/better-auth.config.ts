@@ -102,7 +102,8 @@ export const FEATURE_CATEGORY_META: Record<
 > = {
   core: {
     label: "Core & Session",
-    description: "Autentikasi dasar, sesi, verifikasi email, dan rate limiting.",
+    description:
+      "Autentikasi dasar, sesi, verifikasi email, dan rate limiting.",
   },
   authentication: {
     label: "Auth Methods",
@@ -118,11 +119,13 @@ export const FEATURE_CATEGORY_META: Record<
   },
   enterprise: {
     label: "OIDC & Enterprise",
-    description: "OAuth 2.1 Provider, MCP, SAML/OIDC SSO, dan SCIM provisioning.",
+    description:
+      "OAuth 2.1 Provider, MCP, SAML/OIDC SSO, dan SCIM provisioning.",
   },
   utility: {
     label: "Security & Utility",
-    description: "JWT, Bearer token, Captcha, HIBP, Multi-session, dan Audit Logs.",
+    description:
+      "JWT, Bearer token, Captcha, HIBP, Multi-session, dan Audit Logs.",
   },
   payments: {
     label: "Payments",
@@ -145,14 +148,31 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "core",
     packageName: "better-auth",
     pluginKey: "emailAndPassword",
-    description: "Autentikasi standar menggunakan email dan kata sandi ter-hash scrypt.",
+    description:
+      "Autentikasi standar menggunakan email dan kata sandi ter-hash scrypt.",
     defaultEnabled: readEnvBool("VITE_FEATURE_EMAIL_PASSWORD", true),
     endpoints: ["/api/auth/sign-in/email", "/api/auth/sign-up/email"],
     settingsSchema: [
-      { key: "minPasswordLength", label: "Min Password Length", type: "number" },
-      { key: "maxPasswordLength", label: "Max Password Length", type: "number" },
-      { key: "autoSignIn", label: "Auto Sign-In After Sign-Up", type: "boolean" },
-      { key: "requireEmailVerification", label: "Require Email Verification", type: "boolean" },
+      {
+        key: "minPasswordLength",
+        label: "Min Password Length",
+        type: "number",
+      },
+      {
+        key: "maxPasswordLength",
+        label: "Max Password Length",
+        type: "number",
+      },
+      {
+        key: "autoSignIn",
+        label: "Auto Sign-In After Sign-Up",
+        type: "boolean",
+      },
+      {
+        key: "requireEmailVerification",
+        label: "Require Email Verification",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       minPasswordLength: 8,
@@ -167,12 +187,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "core",
     packageName: "better-auth",
     pluginKey: "emailVerification",
-    description: "Verifikasi kepemilikan email dengan token bertanda tangan & callback URL.",
+    description:
+      "Verifikasi kepemilikan email dengan token bertanda tangan & callback URL.",
     defaultEnabled: readEnvBool("VITE_FEATURE_EMAIL_VERIFICATION", true),
     endpoints: ["/api/auth/send-verification-email", "/api/auth/verify-email"],
     settingsSchema: [
       { key: "sendOnSignUp", label: "Send On Sign-Up", type: "boolean" },
-      { key: "autoSignInAfterVerification", label: "Auto Sign-In After Verification", type: "boolean" },
+      {
+        key: "autoSignInAfterVerification",
+        label: "Auto Sign-In After Verification",
+        type: "boolean",
+      },
       { key: "expiresIn", label: "Token TTL (detik)", type: "number" },
     ],
     defaultSettings: {
@@ -187,13 +212,22 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "core",
     packageName: "better-auth",
     pluginKey: "account.accountLinking",
-    description: "Menghubungkan beberapa provider OAuth atau kredensial ke satu akun user.",
+    description:
+      "Menghubungkan beberapa provider OAuth atau kredensial ke satu akun user.",
     defaultEnabled: true,
     endpoints: ["/api/auth/link-social", "/api/auth/unlink-account"],
     settingsSchema: [
       { key: "enabled", label: "Allow Account Linking", type: "boolean" },
-      { key: "allowDifferentEmails", label: "Allow Different Emails", type: "boolean" },
-      { key: "trustedProviders", label: "Trusted Providers (comma)", type: "text" },
+      {
+        key: "allowDifferentEmails",
+        label: "Allow Different Emails",
+        type: "boolean",
+      },
+      {
+        key: "trustedProviders",
+        label: "Trusted Providers (comma)",
+        type: "text",
+      },
     ],
     defaultSettings: {
       enabled: true,
@@ -207,14 +241,27 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "core",
     packageName: "better-auth",
     pluginKey: "session",
-    description: "Konfigurasi masa berlaku sesi, updateAge, dan cookie cache stateless.",
+    description:
+      "Konfigurasi masa berlaku sesi, updateAge, dan cookie cache stateless.",
     defaultEnabled: true,
-    endpoints: ["/api/auth/get-session", "/api/auth/list-sessions", "/api/auth/revoke-session"],
+    endpoints: [
+      "/api/auth/get-session",
+      "/api/auth/list-sessions",
+      "/api/auth/revoke-session",
+    ],
     settingsSchema: [
       { key: "expiresIn", label: "Session Expires In (detik)", type: "number" },
       { key: "updateAge", label: "Refresh Window (detik)", type: "number" },
-      { key: "cookieCacheEnabled", label: "Enable Cookie Cache", type: "boolean" },
-      { key: "cookieCacheMaxAge", label: "Cookie Cache Max Age (detik)", type: "number" },
+      {
+        key: "cookieCacheEnabled",
+        label: "Enable Cookie Cache",
+        type: "boolean",
+      },
+      {
+        key: "cookieCacheMaxAge",
+        label: "Cookie Cache Max Age (detik)",
+        type: "number",
+      },
     ],
     defaultSettings: {
       expiresIn: 604800,
@@ -235,7 +282,12 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     settingsSchema: [
       { key: "window", label: "Window (detik)", type: "number" },
       { key: "max", label: "Max Requests / Window", type: "number" },
-      { key: "storage", label: "Storage Backend", type: "select", options: ["memory", "database", "secondary-storage"] },
+      {
+        key: "storage",
+        label: "Storage Backend",
+        type: "select",
+        options: ["memory", "database", "secondary-storage"],
+      },
     ],
     defaultSettings: {
       window: 60,
@@ -252,12 +304,22 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "twoFactor",
     clientPluginKey: "twoFactorClient",
-    description: "Autentikasi 2 langkah dengan TOTP Authenticator, OTP email/SMS, dan backup codes.",
+    description:
+      "Autentikasi 2 langkah dengan TOTP Authenticator, OTP email/SMS, dan backup codes.",
     defaultEnabled: readEnvBool("VITE_FEATURE_TWO_FACTOR", true),
-    endpoints: ["/api/auth/two-factor/enable", "/api/auth/two-factor/verify-totp", "/api/auth/two-factor/verify-backup-code"],
+    endpoints: [
+      "/api/auth/two-factor/enable",
+      "/api/auth/two-factor/verify-totp",
+      "/api/auth/two-factor/verify-backup-code",
+    ],
     settingsSchema: [
       { key: "issuer", label: "TOTP Issuer Name", type: "text" },
-      { key: "totpDigits", label: "TOTP Digits", type: "select", options: ["6", "8"] },
+      {
+        key: "totpDigits",
+        label: "TOTP Digits",
+        type: "select",
+        options: ["6", "8"],
+      },
       { key: "backupCodeAmount", label: "Backup Code Amount", type: "number" },
     ],
     defaultSettings: {
@@ -273,13 +335,22 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "@better-auth/passkey",
     pluginKey: "passkey",
     clientPluginKey: "passkeyClient",
-    description: "Login biometrik & hardware key passwordless berbasis FIDO2/WebAuthn.",
+    description:
+      "Login biometrik & hardware key passwordless berbasis FIDO2/WebAuthn.",
     defaultEnabled: readEnvBool("VITE_FEATURE_PASSKEY", true),
-    endpoints: ["/api/auth/passkey/generate-register-options", "/api/auth/passkey/verify-authentication"],
+    endpoints: [
+      "/api/auth/passkey/generate-register-options",
+      "/api/auth/passkey/verify-authentication",
+    ],
     settingsSchema: [
       { key: "rpID", label: "Relying Party ID", type: "text" },
       { key: "rpName", label: "Relying Party Name", type: "text" },
-      { key: "authenticatorAttachment", label: "Attachment", type: "select", options: ["platform", "cross-platform", "any"] },
+      {
+        key: "authenticatorAttachment",
+        label: "Attachment",
+        type: "select",
+        options: ["platform", "cross-platform", "any"],
+      },
     ],
     defaultSettings: {
       rpID: "localhost",
@@ -294,7 +365,8 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "magicLink",
     clientPluginKey: "magicLinkClient",
-    description: "Login satu klik lewat tautan sekali pakai yang dikirim ke email.",
+    description:
+      "Login satu klik lewat tautan sekali pakai yang dikirim ke email.",
     defaultEnabled: readEnvBool("VITE_FEATURE_MAGIC_LINK", true),
     endpoints: ["/api/auth/sign-in/magic-link", "/api/auth/magic-link/verify"],
     settingsSchema: [
@@ -313,9 +385,13 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "emailOTP",
     clientPluginKey: "emailOTPClient",
-    description: "Kode OTP 6 digit lewat email untuk login, verifikasi, dan reset password.",
+    description:
+      "Kode OTP 6 digit lewat email untuk login, verifikasi, dan reset password.",
     defaultEnabled: readEnvBool("VITE_FEATURE_EMAIL_OTP", true),
-    endpoints: ["/api/auth/email-otp/send-verification-otp", "/api/auth/sign-in/email-otp"],
+    endpoints: [
+      "/api/auth/email-otp/send-verification-otp",
+      "/api/auth/sign-in/email-otp",
+    ],
     settingsSchema: [
       { key: "otpLength", label: "OTP Length", type: "number" },
       { key: "expiresIn", label: "Expires In (detik)", type: "number" },
@@ -336,10 +412,21 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     clientPluginKey: "usernameClient",
     description: "Dukungan sign-in dan registrasi menggunakan username unik.",
     defaultEnabled: readEnvBool("VITE_FEATURE_USERNAME", true),
-    endpoints: ["/api/auth/sign-in/username", "/api/auth/is-username-available"],
+    endpoints: [
+      "/api/auth/sign-in/username",
+      "/api/auth/is-username-available",
+    ],
     settingsSchema: [
-      { key: "minUsernameLength", label: "Min Username Length", type: "number" },
-      { key: "maxUsernameLength", label: "Max Username Length", type: "number" },
+      {
+        key: "minUsernameLength",
+        label: "Min Username Length",
+        type: "number",
+      },
+      {
+        key: "maxUsernameLength",
+        label: "Max Username Length",
+        type: "number",
+      },
     ],
     defaultSettings: {
       minUsernameLength: 3,
@@ -353,13 +440,21 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "phoneNumber",
     clientPluginKey: "phoneNumberClient",
-    description: "Login dan verifikasi akun menggunakan nomor telepon + SMS OTP.",
+    description:
+      "Login dan verifikasi akun menggunakan nomor telepon + SMS OTP.",
     defaultEnabled: readEnvBool("VITE_FEATURE_PHONE_NUMBER", false),
-    endpoints: ["/api/auth/phone-number/send-otp", "/api/auth/sign-in/phone-number"],
+    endpoints: [
+      "/api/auth/phone-number/send-otp",
+      "/api/auth/sign-in/phone-number",
+    ],
     settingsSchema: [
       { key: "otpLength", label: "OTP Length", type: "number" },
       { key: "expiresIn", label: "Expires In (detik)", type: "number" },
-      { key: "requireVerification", label: "Require Verification", type: "boolean" },
+      {
+        key: "requireVerification",
+        label: "Require Verification",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       otpLength: 6,
@@ -374,12 +469,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "anonymous",
     clientPluginKey: "anonymousClient",
-    description: "Membuat sesi tamu sementara yang dapat di-upgrade menjadi akun permanen.",
+    description:
+      "Membuat sesi tamu sementara yang dapat di-upgrade menjadi akun permanen.",
     defaultEnabled: readEnvBool("VITE_FEATURE_ANONYMOUS", false),
     endpoints: ["/api/auth/sign-in/anonymous"],
     settingsSchema: [
       { key: "emailDomainName", label: "Synthetic Email Domain", type: "text" },
-      { key: "disableDeleteAnonymousUser", label: "Keep Guest Record On Link", type: "boolean" },
+      {
+        key: "disableDeleteAnonymousUser",
+        label: "Keep Guest Record On Link",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       emailDomainName: "guest.authcore.local",
@@ -413,12 +513,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "siwe",
     clientPluginKey: "siweClient",
-    description: "Autentikasi wallet Web3 berbasis EIP-4361 SIWE nonce & signature.",
+    description:
+      "Autentikasi wallet Web3 berbasis EIP-4361 SIWE nonce & signature.",
     defaultEnabled: false,
     endpoints: ["/api/auth/siwe/nonce", "/api/auth/siwe/verify"],
     settingsSchema: [
       { key: "domain", label: "SIWE Domain", type: "text" },
-      { key: "anonymous", label: "Allow Wallet Without Email", type: "boolean" },
+      {
+        key: "anonymous",
+        label: "Allow Wallet Without Email",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       domain: "authcore.local",
@@ -432,9 +537,13 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "genericOAuth",
     clientPluginKey: "genericOAuthClient",
-    description: "Konektor OAuth 2.0 / OIDC kustom (Keycloak, Authentik, Okta, Ory, dll.).",
+    description:
+      "Konektor OAuth 2.0 / OIDC kustom (Keycloak, Authentik, Okta, Ory, dll.).",
     defaultEnabled: false,
-    endpoints: ["/api/auth/sign-in/oauth2", "/api/auth/oauth2/callback/:providerId"],
+    endpoints: [
+      "/api/auth/sign-in/oauth2",
+      "/api/auth/oauth2/callback/:providerId",
+    ],
     settingsSchema: [
       { key: "providerId", label: "Provider ID", type: "text" },
       { key: "discoveryUrl", label: "OIDC Discovery URL", type: "text" },
@@ -459,7 +568,12 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     endpoints: ["/api/auth/sign-in/social", "/api/auth/callback/google"],
     settingsSchema: [
       { key: "clientId", label: "Client ID", type: "text" },
-      { key: "prompt", label: "Consent Prompt", type: "select", options: ["select_account", "consent", "none"] },
+      {
+        key: "prompt",
+        label: "Consent Prompt",
+        type: "select",
+        options: ["select_account", "consent", "none"],
+      },
     ],
     defaultSettings: {
       clientId: "google-oauth-client-id",
@@ -490,7 +604,8 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "social",
     packageName: "better-auth",
     pluginKey: "socialProviders.microsoft",
-    description: "Sign-in dengan akun Microsoft Personal atau Azure AD / Entra ID.",
+    description:
+      "Sign-in dengan akun Microsoft Personal atau Azure AD / Entra ID.",
     defaultEnabled: false,
     endpoints: ["/api/auth/callback/microsoft"],
     settingsSchema: [
@@ -532,7 +647,9 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     description: "Sign-in menggunakan GitLab SaaS atau Self-Managed.",
     defaultEnabled: false,
     endpoints: ["/api/auth/callback/gitlab"],
-    settingsSchema: [{ key: "clientId", label: "Application ID", type: "text" }],
+    settingsSchema: [
+      { key: "clientId", label: "Application ID", type: "text" },
+    ],
     defaultSettings: { clientId: "" },
   },
   {
@@ -592,7 +709,9 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     description: "Sign-in dengan akun Notion workspace.",
     defaultEnabled: false,
     endpoints: ["/api/auth/callback/notion"],
-    settingsSchema: [{ key: "clientId", label: "OAuth Client ID", type: "text" }],
+    settingsSchema: [
+      { key: "clientId", label: "OAuth Client ID", type: "text" },
+    ],
     defaultSettings: { clientId: "" },
   },
   {
@@ -628,13 +747,23 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "admin",
     clientPluginKey: "adminClient",
-    description: "Manajemen user, role, custom access control, ban/unban, dan impersonation.",
+    description:
+      "Manajemen user, role, custom access control, ban/unban, dan impersonation.",
     defaultEnabled: readEnvBool("VITE_FEATURE_ADMIN", true),
-    endpoints: ["/api/auth/admin/list-users", "/api/auth/admin/set-role", "/api/auth/admin/ban-user", "/api/auth/admin/impersonate-user"],
+    endpoints: [
+      "/api/auth/admin/list-users",
+      "/api/auth/admin/set-role",
+      "/api/auth/admin/ban-user",
+      "/api/auth/admin/impersonate-user",
+    ],
     settingsSchema: [
       { key: "defaultRole", label: "Default User Role", type: "text" },
       { key: "adminRoles", label: "Admin Roles (comma)", type: "text" },
-      { key: "impersonationSessionDuration", label: "Impersonation TTL (detik)", type: "number" },
+      {
+        key: "impersonationSessionDuration",
+        label: "Impersonation TTL (detik)",
+        type: "number",
+      },
     ],
     defaultSettings: {
       defaultRole: "user",
@@ -649,14 +778,27 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "organization",
     clientPluginKey: "organizationClient",
-    description: "Multi-tenant organisasi, role per org, teams, dan undangan member.",
+    description:
+      "Multi-tenant organisasi, role per org, teams, dan undangan member.",
     defaultEnabled: readEnvBool("VITE_FEATURE_ORGANIZATION", true),
-    endpoints: ["/api/auth/organization/create", "/api/auth/organization/invite-member", "/api/auth/organization/set-active"],
+    endpoints: [
+      "/api/auth/organization/create",
+      "/api/auth/organization/invite-member",
+      "/api/auth/organization/set-active",
+    ],
     settingsSchema: [
-      { key: "allowUserToCreateOrganization", label: "Allow Users Create Org", type: "boolean" },
+      {
+        key: "allowUserToCreateOrganization",
+        label: "Allow Users Create Org",
+        type: "boolean",
+      },
       { key: "organizationLimit", label: "Max Org / User", type: "number" },
       { key: "teamsEnabled", label: "Enable Sub-Teams", type: "boolean" },
-      { key: "invitationExpiresIn", label: "Invitation TTL (detik)", type: "number" },
+      {
+        key: "invitationExpiresIn",
+        label: "Invitation TTL (detik)",
+        type: "number",
+      },
     ],
     defaultSettings: {
       allowUserToCreateOrganization: true,
@@ -672,14 +814,27 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "@better-auth/api-key",
     pluginKey: "apiKey",
     clientPluginKey: "apiKeyClient",
-    description: "Penerbitan API key ter-hash dengan prefix, scoped permissions, & rate limit.",
+    description:
+      "Penerbitan API key ter-hash dengan prefix, scoped permissions, & rate limit.",
     defaultEnabled: readEnvBool("VITE_FEATURE_API_KEY", true),
-    endpoints: ["/api/auth/api-key/create", "/api/auth/api-key/verify", "/api/auth/api-key/list"],
+    endpoints: [
+      "/api/auth/api-key/create",
+      "/api/auth/api-key/verify",
+      "/api/auth/api-key/list",
+    ],
     settingsSchema: [
       { key: "defaultPrefix", label: "Key Prefix", type: "text" },
       { key: "defaultKeyLength", label: "Random Key Length", type: "number" },
-      { key: "enableMetadata", label: "Enable Custom Metadata", type: "boolean" },
-      { key: "rateLimitEnabled", label: "Enable Per-Key Rate Limit", type: "boolean" },
+      {
+        key: "enableMetadata",
+        label: "Enable Custom Metadata",
+        type: "boolean",
+      },
+      {
+        key: "rateLimitEnabled",
+        label: "Enable Per-Key Rate Limit",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       defaultPrefix: "ak_live_",
@@ -694,11 +849,16 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "authorization",
     packageName: "better-auth/plugins",
     pluginKey: "agentAuth",
-    description: "Identitas, discovery, dan otorisasi berbasis kapabilitas untuk AI agents.",
+    description:
+      "Identitas, discovery, dan otorisasi berbasis kapabilitas untuk AI agents.",
     defaultEnabled: false,
     endpoints: ["/api/auth/agent/register", "/api/auth/agent/authorize"],
     settingsSchema: [
-      { key: "requireApproval", label: "Require Human Approval", type: "boolean" },
+      {
+        key: "requireApproval",
+        label: "Require Human Approval",
+        type: "boolean",
+      },
       { key: "tokenTTL", label: "Agent Token TTL (detik)", type: "number" },
     ],
     defaultSettings: {
@@ -715,13 +875,30 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "@better-auth/oauth-provider",
     pluginKey: "oauthProvider",
     clientPluginKey: "oauthProviderClient",
-    description: "Jadikan Auth Core sebagai OAuth 2.1 / OpenID Connect IdP bagi aplikasi klien eksternal.",
+    description:
+      "Jadikan Auth Core sebagai OAuth 2.1 / OpenID Connect IdP bagi aplikasi klien eksternal.",
     defaultEnabled: readEnvBool("VITE_FEATURE_OAUTH_PROVIDER", true),
-    endpoints: ["/api/auth/oauth2/authorize", "/api/auth/oauth2/token", "/.well-known/openid-configuration"],
+    endpoints: [
+      "/api/auth/oauth2/authorize",
+      "/api/auth/oauth2/token",
+      "/.well-known/openid-configuration",
+    ],
     settingsSchema: [
-      { key: "accessTokenExpiresIn", label: "Access Token TTL (detik)", type: "number" },
-      { key: "refreshTokenExpiresIn", label: "Refresh Token TTL (detik)", type: "number" },
-      { key: "allowDynamicClientRegistration", label: "Allow Dynamic Registration", type: "boolean" },
+      {
+        key: "accessTokenExpiresIn",
+        label: "Access Token TTL (detik)",
+        type: "number",
+      },
+      {
+        key: "refreshTokenExpiresIn",
+        label: "Refresh Token TTL (detik)",
+        type: "number",
+      },
+      {
+        key: "allowDynamicClientRegistration",
+        label: "Allow Dynamic Registration",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       accessTokenExpiresIn: 3600,
@@ -735,10 +912,14 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "enterprise",
     packageName: "better-auth/plugins",
     pluginKey: "mcp",
-    description: "OAuth authorization server standar untuk Model Context Protocol (MCP) clients.",
+    description:
+      "OAuth authorization server standar untuk Model Context Protocol (MCP) clients.",
     defaultEnabled: readEnvBool("VITE_FEATURE_MCP", true),
     dependencies: ["oauthProvider"],
-    endpoints: ["/api/auth/mcp/authorize", "/.well-known/oauth-authorization-server"],
+    endpoints: [
+      "/api/auth/mcp/authorize",
+      "/.well-known/oauth-authorization-server",
+    ],
     settingsSchema: [
       { key: "loginPage", label: "Login Redirect Path", type: "text" },
       { key: "resource", label: "MCP Resource URI", type: "text" },
@@ -755,7 +936,8 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "deviceAuthorization",
     clientPluginKey: "deviceAuthorizationClient",
-    description: "Alur RFC 8628 untuk CLI, Smart TV, dan perangkat tanpa browser penuh.",
+    description:
+      "Alur RFC 8628 untuk CLI, Smart TV, dan perangkat tanpa browser penuh.",
     defaultEnabled: false,
     endpoints: ["/api/auth/device/code", "/api/auth/device/token"],
     settingsSchema: [
@@ -774,12 +956,20 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "@better-auth/sso",
     pluginKey: "sso",
     clientPluginKey: "ssoClient",
-    description: "Konektor SAML 2.0 & OIDC per organisasi beserta verifikasi domain DNS TXT.",
+    description:
+      "Konektor SAML 2.0 & OIDC per organisasi beserta verifikasi domain DNS TXT.",
     defaultEnabled: readEnvBool("VITE_FEATURE_SSO", true),
     dependencies: ["organization"],
-    endpoints: ["/api/auth/sso/register", "/api/auth/sso/saml2/callback/:providerId"],
+    endpoints: [
+      "/api/auth/sso/register",
+      "/api/auth/sso/saml2/callback/:providerId",
+    ],
     settingsSchema: [
-      { key: "domainVerification", label: "Enforce DNS TXT Verification", type: "boolean" },
+      {
+        key: "domainVerification",
+        label: "Enforce DNS TXT Verification",
+        type: "boolean",
+      },
       { key: "provisionUser", label: "JIT User Provisioning", type: "boolean" },
     ],
     defaultSettings: {
@@ -793,12 +983,18 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "enterprise",
     packageName: "@better-auth/scim",
     pluginKey: "scim",
-    description: "Sinkronisasi otomatis user & grup dari Okta, Entra ID, dan Google Workspace.",
+    description:
+      "Sinkronisasi otomatis user & grup dari Okta, Entra ID, dan Google Workspace.",
     defaultEnabled: readEnvBool("VITE_FEATURE_SCIM", false),
     dependencies: ["organization", "sso"],
     endpoints: ["/api/auth/scim/v2/Users", "/api/auth/scim/v2/Groups"],
     settingsSchema: [
-      { key: "storeSCIMToken", label: "Token Hash Mode", type: "select", options: ["hashed", "encrypted"] },
+      {
+        key: "storeSCIMToken",
+        label: "Token Hash Mode",
+        type: "select",
+        options: ["hashed", "encrypted"],
+      },
     ],
     defaultSettings: {
       storeSCIMToken: "hashed",
@@ -812,11 +1008,16 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "better-auth/plugins",
     pluginKey: "bearer",
-    description: "Mengizinkan autentikasi API menggunakan Authorization: Bearer <token>.",
+    description:
+      "Mengizinkan autentikasi API menggunakan Authorization: Bearer <token>.",
     defaultEnabled: readEnvBool("VITE_FEATURE_BEARER", true),
     endpoints: ["Header Authorization: Bearer"],
     settingsSchema: [
-      { key: "requireSignature", label: "Require Signed Token", type: "boolean" },
+      {
+        key: "requireSignature",
+        label: "Require Signed Token",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       requireSignature: true,
@@ -829,12 +1030,18 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "jwt",
     clientPluginKey: "jwtClient",
-    description: "Menerbitkan JWT bertanda tangan & endpoint publik JWKS untuk verifikasi stateless.",
+    description:
+      "Menerbitkan JWT bertanda tangan & endpoint publik JWKS untuk verifikasi stateless.",
     defaultEnabled: readEnvBool("VITE_FEATURE_JWT", true),
     endpoints: ["/api/auth/token", "/api/auth/jwks"],
     settingsSchema: [
       { key: "expirationTime", label: "JWT Expiration", type: "text" },
-      { key: "algorithm", label: "Signing Algorithm", type: "select", options: ["EdDSA", "RS256", "ES256"] },
+      {
+        key: "algorithm",
+        label: "Signing Algorithm",
+        type: "select",
+        options: ["EdDSA", "RS256", "ES256"],
+      },
     ],
     defaultSettings: {
       expirationTime: "15m",
@@ -848,11 +1055,19 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "multiSession",
     clientPluginKey: "multiSessionClient",
-    description: "Berpindah antar beberapa akun aktif sekaligus dalam satu browser.",
+    description:
+      "Berpindah antar beberapa akun aktif sekaligus dalam satu browser.",
     defaultEnabled: readEnvBool("VITE_FEATURE_MULTI_SESSION", true),
-    endpoints: ["/api/auth/multi-session/list-device-sessions", "/api/auth/multi-session/set-active"],
+    endpoints: [
+      "/api/auth/multi-session/list-device-sessions",
+      "/api/auth/multi-session/set-active",
+    ],
     settingsSchema: [
-      { key: "maximumSessions", label: "Max Sessions / Browser", type: "number" },
+      {
+        key: "maximumSessions",
+        label: "Max Sessions / Browser",
+        type: "number",
+      },
     ],
     defaultSettings: {
       maximumSessions: 5,
@@ -864,11 +1079,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "better-auth/plugins",
     pluginKey: "captcha",
-    description: "Proteksi Turnstile, reCAPTCHA, atau hCaptcha pada endpoint sign-in & sign-up.",
+    description:
+      "Proteksi Turnstile, reCAPTCHA, atau hCaptcha pada endpoint sign-in & sign-up.",
     defaultEnabled: false,
     endpoints: ["/api/auth/sign-in/*", "/api/auth/sign-up/*"],
     settingsSchema: [
-      { key: "provider", label: "Captcha Provider", type: "select", options: ["cloudflare-turnstile", "google-recaptcha", "hcaptcha"] },
+      {
+        key: "provider",
+        label: "Captcha Provider",
+        type: "select",
+        options: ["cloudflare-turnstile", "google-recaptcha", "hcaptcha"],
+      },
       { key: "siteKey", label: "Site Key", type: "text" },
     ],
     defaultSettings: {
@@ -882,14 +1103,20 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "better-auth/plugins",
     pluginKey: "haveIBeenPwned",
-    description: "Memeriksa apakah kata sandi baru pernah bocor menggunakan k-Anonymity API.",
+    description:
+      "Memeriksa apakah kata sandi baru pernah bocor menggunakan k-Anonymity API.",
     defaultEnabled: true,
     endpoints: ["/api/auth/sign-up/email", "/api/auth/change-password"],
     settingsSchema: [
-      { key: "customPasswordCompromisedMessage", label: "Custom Error Message", type: "text" },
+      {
+        key: "customPasswordCompromisedMessage",
+        label: "Custom Error Message",
+        type: "text",
+      },
     ],
     defaultSettings: {
-      customPasswordCompromisedMessage: "Kata sandi terdeteksi dalam kebocoran data publik.",
+      customPasswordCompromisedMessage:
+        "Kata sandi terdeteksi dalam kebocoran data publik.",
     },
   },
   {
@@ -918,9 +1145,13 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     packageName: "better-auth/plugins",
     pluginKey: "oneTimeToken",
     clientPluginKey: "oneTimeTokenClient",
-    description: "Generate dan verifikasi token sekali pakai untuk transfer sesi lintas domain.",
+    description:
+      "Generate dan verifikasi token sekali pakai untuk transfer sesi lintas domain.",
     defaultEnabled: false,
-    endpoints: ["/api/auth/one-time-token/generate", "/api/auth/one-time-token/verify"],
+    endpoints: [
+      "/api/auth/one-time-token/generate",
+      "/api/auth/one-time-token/verify",
+    ],
     settingsSchema: [
       { key: "expiresIn", label: "Expires In (menit)", type: "number" },
     ],
@@ -934,7 +1165,8 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "better-auth/plugins",
     pluginKey: "oauthProxy",
-    description: "Proxy callback OAuth untuk preview deployment atau domain dinamis.",
+    description:
+      "Proxy callback OAuth untuk preview deployment atau domain dinamis.",
     defaultEnabled: false,
     endpoints: ["/api/auth/oauth-proxy-callback"],
     settingsSchema: [
@@ -952,12 +1184,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "better-auth/plugins",
     pluginKey: "openAPI",
-    description: "Menghasilkan skema OpenAPI & dokumentasi Scalar interaktif di /api/auth/reference.",
+    description:
+      "Menghasilkan skema OpenAPI & dokumentasi Scalar interaktif di /api/auth/reference.",
     defaultEnabled: true,
     endpoints: ["/api/auth/reference", "/api/auth/open-api/generate-schema"],
     settingsSchema: [
       { key: "path", label: "Docs Endpoint Path", type: "text" },
-      { key: "disableDefaultReference", label: "Disable Scalar UI", type: "boolean" },
+      {
+        key: "disableDefaultReference",
+        label: "Disable Scalar UI",
+        type: "boolean",
+      },
     ],
     defaultSettings: {
       path: "/reference",
@@ -970,11 +1207,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "@better-auth/i18n",
     pluginKey: "i18n",
-    description: "Terjemahan otomatis pesan error autentikasi berdasarkan header/locale.",
+    description:
+      "Terjemahan otomatis pesan error autentikasi berdasarkan header/locale.",
     defaultEnabled: false,
     endpoints: ["Response Error Translator"],
     settingsSchema: [
-      { key: "defaultLocale", label: "Default Locale", type: "select", options: ["id", "en"] },
+      {
+        key: "defaultLocale",
+        label: "Default Locale",
+        type: "select",
+        options: ["id", "en"],
+      },
     ],
     defaultSettings: {
       defaultLocale: "id",
@@ -986,7 +1229,8 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "utility",
     packageName: "@better-auth/infra",
     pluginKey: "auditLogs",
-    description: "Perekaman seluruh event keamanan, login, perubahan RBAC, dan admin action.",
+    description:
+      "Perekaman seluruh event keamanan, login, perubahan RBAC, dan admin action.",
     defaultEnabled: readEnvBool("VITE_FEATURE_AUDIT_LOGS", true),
     endpoints: ["/api/auth/audit-logs"],
     settingsSchema: [
@@ -1006,10 +1250,17 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "payments",
     packageName: "@better-auth/stripe",
     pluginKey: "stripe",
-    description: "Sinkronisasi customer, checkout, dan webhook subscription Stripe.",
+    description:
+      "Sinkronisasi customer, checkout, dan webhook subscription Stripe.",
     defaultEnabled: false,
     endpoints: ["/api/auth/stripe/webhook", "/api/auth/subscription/list"],
-    settingsSchema: [{ key: "createCustomerOnSignUp", label: "Create Customer On Sign-Up", type: "boolean" }],
+    settingsSchema: [
+      {
+        key: "createCustomerOnSignUp",
+        label: "Create Customer On Sign-Up",
+        type: "boolean",
+      },
+    ],
     defaultSettings: { createCustomerOnSignUp: true },
   },
   {
@@ -1018,10 +1269,18 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "payments",
     packageName: "@polar-sh/better-auth",
     pluginKey: "polar",
-    description: "Checkout, portal pelanggan, dan benefit usage-based dengan Polar.",
+    description:
+      "Checkout, portal pelanggan, dan benefit usage-based dengan Polar.",
     defaultEnabled: false,
     endpoints: ["/api/auth/polar/webhooks"],
-    settingsSchema: [{ key: "environment", label: "Environment", type: "select", options: ["sandbox", "production"] }],
+    settingsSchema: [
+      {
+        key: "environment",
+        label: "Environment",
+        type: "select",
+        options: ["sandbox", "production"],
+      },
+    ],
     defaultSettings: { environment: "sandbox" },
   },
   {
@@ -1042,10 +1301,18 @@ export const BETTER_AUTH_FEATURES: BetterAuthFeatureDefinition[] = [
     category: "payments",
     packageName: "@dodopayments/better-auth",
     pluginKey: "dodopayments",
-    description: "Merchant of record global & manajemen langganan Dodo Payments.",
+    description:
+      "Merchant of record global & manajemen langganan Dodo Payments.",
     defaultEnabled: false,
     endpoints: ["/api/auth/dodopayments/webhook"],
-    settingsSchema: [{ key: "environment", label: "Environment", type: "select", options: ["test_mode", "live_mode"] }],
+    settingsSchema: [
+      {
+        key: "environment",
+        label: "Environment",
+        type: "select",
+        options: ["test_mode", "live_mode"],
+      },
+    ],
     defaultSettings: { environment: "test_mode" },
   },
   {
@@ -1078,7 +1345,7 @@ export const BETTER_AUTH_FEATURE_MAP: Record<
   BetterAuthFeatureId,
   BetterAuthFeatureDefinition
 > = Object.fromEntries(
-  BETTER_AUTH_FEATURES.map((item) => [item.id, item])
+  BETTER_AUTH_FEATURES.map((item) => [item.id, item]),
 ) as Record<BetterAuthFeatureId, BetterAuthFeatureDefinition>;
 
 export interface FeatureRuntimeConfig {
@@ -1086,7 +1353,10 @@ export interface FeatureRuntimeConfig {
   settings: Record<string, string | number | boolean>;
 }
 
-export type FeatureConfigMap = Record<BetterAuthFeatureId, FeatureRuntimeConfig>;
+export type FeatureConfigMap = Record<
+  BetterAuthFeatureId,
+  FeatureRuntimeConfig
+>;
 
 export function buildDefaultFeatureConfigMap(): FeatureConfigMap {
   const map = {} as FeatureConfigMap;
@@ -1162,7 +1432,7 @@ const PRESET_ENABLED_FEATURES: Record<ConfigPresetId, BetterAuthFeatureId[]> = {
 
 export function buildPresetFeatureConfigMap(
   preset: ConfigPresetId,
-  current?: FeatureConfigMap
+  current?: FeatureConfigMap,
 ): FeatureConfigMap {
   const base = current ?? buildDefaultFeatureConfigMap();
   const enabledSet = new Set(PRESET_ENABLED_FEATURES[preset]);
@@ -1176,14 +1446,17 @@ export function buildPresetFeatureConfigMap(
   return next;
 }
 
-export function generateBetterAuthServerSnippet(config: FeatureConfigMap): string {
+export function generateBetterAuthServerSnippet(
+  config: FeatureConfigMap,
+): string {
   const active = BETTER_AUTH_FEATURES.filter((f) => config[f.id]?.enabled);
   const corePlugins = active
     .filter((f) => f.packageName === "better-auth/plugins")
     .map((f) => f.pluginKey);
   const externalPackages = active.filter(
     (f) =>
-      f.packageName !== "better-auth" && f.packageName !== "better-auth/plugins"
+      f.packageName !== "better-auth" &&
+      f.packageName !== "better-auth/plugins",
   );
   const social = active.filter((f) => f.category === "social");
 
@@ -1193,7 +1466,7 @@ export function generateBetterAuthServerSnippet(config: FeatureConfigMap): strin
       ? [`import { ${corePlugins.join(", ")} } from "better-auth/plugins";`]
       : []),
     ...externalPackages.map(
-      (f) => `import { ${f.pluginKey} } from "${f.packageName}";`
+      (f) => `import { ${f.pluginKey} } from "${f.packageName}";`,
     ),
     "",
     `export const auth = betterAuth({`,
@@ -1207,7 +1480,7 @@ export function generateBetterAuthServerSnippet(config: FeatureConfigMap): strin
       const key = provider.pluginKey.replace("socialProviders.", "");
       const upper = key.toUpperCase();
       lines.push(
-        `    ${key}: { clientId: process.env.${upper}_CLIENT_ID!, clientSecret: process.env.${upper}_CLIENT_SECRET! },`
+        `    ${key}: { clientId: process.env.${upper}_CLIENT_ID!, clientSecret: process.env.${upper}_CLIENT_SECRET! },`,
       );
     }
     lines.push(`  },`);
@@ -1228,9 +1501,11 @@ export function generateBetterAuthServerSnippet(config: FeatureConfigMap): strin
   return lines.join("\n");
 }
 
-export function generateBetterAuthClientSnippet(config: FeatureConfigMap): string {
+export function generateBetterAuthClientSnippet(
+  config: FeatureConfigMap,
+): string {
   const activeClients = BETTER_AUTH_FEATURES.filter(
-    (f) => config[f.id]?.enabled && f.clientPluginKey
+    (f) => config[f.id]?.enabled && f.clientPluginKey,
   );
   const coreClients = activeClients
     .filter((f) => f.packageName === "better-auth/plugins")

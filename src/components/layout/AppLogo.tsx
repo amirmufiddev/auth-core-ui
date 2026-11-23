@@ -39,17 +39,16 @@ export function AppLogo({
           <div
             className={cn(
               "font-display font-semibold tracking-tight text-xl",
-              forceDark ? "text-white" : "text-foreground"
+              forceDark ? "text-white" : "text-foreground",
             )}
           >
-            <span>Auth</span>{" "}
-            <span className="text-sky-500">Core</span>
+            <span>Auth</span> <span className="text-sky-500">Core</span>
           </div>
           {subtitle && (
             <div
               className={cn(
                 "text-[11px]",
-                forceDark ? "text-white/70" : "text-muted-foreground"
+                forceDark ? "text-white/70" : "text-muted-foreground",
               )}
             >
               {subtitle}

@@ -71,7 +71,7 @@ export function AuthFeaturesPage({
   const syncStatus = useAuthConfigStore((s) => s.syncStatus);
   const toggleFeature = useAuthConfigStore((s) => s.toggleFeature);
   const updateFeatureSettings = useAuthConfigStore(
-    (s) => s.updateFeatureSettings
+    (s) => s.updateFeatureSettings,
   );
   const applyPreset = useAuthConfigStore((s) => s.applyPreset);
   const resetDefaults = useAuthConfigStore((s) => s.resetDefaults);
@@ -85,7 +85,7 @@ export function AuthFeaturesPage({
 
   const totalCount = BETTER_AUTH_FEATURES.length;
   const activeCount = BETTER_AUTH_FEATURES.filter(
-    (f) => features[f.id]?.enabled
+    (f) => features[f.id]?.enabled,
   ).length;
   const disabledCount = totalCount - activeCount;
 
@@ -112,7 +112,7 @@ export function AuthFeaturesPage({
 
   const handleToggle = (
     feature: BetterAuthFeatureDefinition,
-    checked: boolean
+    checked: boolean,
   ) => {
     const result = toggleFeature(feature.id, checked);
     if (!result.ok) {
@@ -121,11 +121,11 @@ export function AuthFeaturesPage({
     }
     if (result.autoEnabled?.length) {
       toast.success(
-        `${feature.name} aktif (+ dependensi: ${result.autoEnabled.join(", ")})`
+        `${feature.name} aktif (+ dependensi: ${result.autoEnabled.join(", ")})`,
       );
     } else {
       toast.success(
-        `${feature.name} ${checked ? "diaktifkan" : "dinonaktifkan"}.`
+        `${feature.name} ${checked ? "diaktifkan" : "dinonaktifkan"}.`,
       );
     }
   };
@@ -264,9 +264,7 @@ export function AuthFeaturesPage({
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={searchParams.search}
-                onChange={(e) =>
-                  onUpdateSearch({ search: e.target.value })
-                }
+                onChange={(e) => onUpdateSearch({ search: e.target.value })}
                 placeholder="Cari plugin (mis. passkey, scim, stripe)..."
                 className="pl-9"
               />
@@ -303,7 +301,7 @@ export function AuthFeaturesPage({
               <TabsTrigger value="all">Semua ({totalCount})</TabsTrigger>
               {(
                 Object.keys(
-                  FEATURE_CATEGORY_META
+                  FEATURE_CATEGORY_META,
                 ) as BetterAuthFeatureCategory[]
               ).map((cat) => (
                 <TabsTrigger key={cat} value={cat}>
@@ -381,7 +379,11 @@ export function AuthFeaturesPage({
                 ) : null}
 
                 <div className="flex items-center justify-between border-t border-border pt-3">
-                  <Badge color="secondary" variant="outline" className="text-[10px]">
+                  <Badge
+                    color="secondary"
+                    variant="outline"
+                    className="text-[10px]"
+                  >
                     {FEATURE_CATEGORY_META[feature.category].label}
                   </Badge>
                   <Button
@@ -498,7 +500,11 @@ export function AuthFeaturesPage({
                 >
                   Batal
                 </Button>
-                <Button type="button" color="primary" onClick={saveFeatureSettings}>
+                <Button
+                  type="button"
+                  color="primary"
+                  onClick={saveFeatureSettings}
+                >
                   Simpan Parameter
                 </Button>
               </SheetFooter>

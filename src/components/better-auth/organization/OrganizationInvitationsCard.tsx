@@ -68,7 +68,7 @@ export function OrganizationInvitationsCard({
             organizationId: organization.id,
             email: vals.email,
             role: vals.role,
-          })
+          }),
         )}
         className="space-y-3 rounded-lg border border-border bg-muted/40 p-3"
       >

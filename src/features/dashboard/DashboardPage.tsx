@@ -72,7 +72,7 @@ export function DashboardPage() {
 
   const totalFeatures = BETTER_AUTH_FEATURES.length;
   const activeFeaturesCount = BETTER_AUTH_FEATURES.filter(
-    (f) => features[f.id]?.enabled
+    (f) => features[f.id]?.enabled,
   ).length;
 
   const categorySummary = (
@@ -135,7 +135,7 @@ export function DashboardPage() {
               {isLoading ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
-                metrics?.totalUsers ?? 0
+                (metrics?.totalUsers ?? 0)
               )}
             </div>
             <p className="mt-1 text-xs font-medium text-foreground/85">
@@ -162,7 +162,7 @@ export function DashboardPage() {
               {isLoading ? (
                 <Skeleton className="h-8 w-20" />
               ) : (
-                metrics?.activeSessions ?? 0
+                (metrics?.activeSessions ?? 0)
               )}
             </div>
             <p className="mt-1 text-xs font-medium text-foreground/85">
@@ -181,7 +181,10 @@ export function DashboardPage() {
                 <ShieldCheck className="h-4 w-4" />
               </span>
               <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[11px] font-medium text-secondary-foreground">
-                {Math.round((activeFeaturesCount / Math.max(1, totalFeatures)) * 100)}%
+                {Math.round(
+                  (activeFeaturesCount / Math.max(1, totalFeatures)) * 100,
+                )}
+                %
               </span>
             </div>
             <div className="mt-3 text-2xl font-bold tracking-tight tabular-nums text-foreground">
@@ -235,7 +238,8 @@ export function DashboardPage() {
                 Tren Autentikasi & Penerbitan Token
               </CardTitle>
               <CardDescription>
-                Perbandingan sesi sign-in dan penerbitan JWT / OAuth access token (14 hari).
+                Perbandingan sesi sign-in dan penerbitan JWT / OAuth access
+                token (14 hari).
               </CardDescription>
             </div>
             <Badge variant="soft" color="tertiary">
@@ -283,7 +287,12 @@ export function DashboardPage() {
                     name="Sign-Ins"
                     stroke="var(--chart-1)"
                     strokeWidth={2.5}
-                    dot={{ r: 3, fill: "var(--card)", stroke: "var(--chart-1)", strokeWidth: 2 }}
+                    dot={{
+                      r: 3,
+                      fill: "var(--card)",
+                      stroke: "var(--chart-1)",
+                      strokeWidth: 2,
+                    }}
                     activeDot={{ r: 5 }}
                   />
                   <Line
@@ -292,7 +301,12 @@ export function DashboardPage() {
                     name="Token Issued"
                     stroke="var(--chart-2)"
                     strokeWidth={2.5}
-                    dot={{ r: 3, fill: "var(--card)", stroke: "var(--chart-2)", strokeWidth: 2 }}
+                    dot={{
+                      r: 3,
+                      fill: "var(--card)",
+                      stroke: "var(--chart-2)",
+                      strokeWidth: 2,
+                    }}
                     activeDot={{ r: 5 }}
                   />
                 </LineChart>
@@ -349,12 +363,14 @@ export function DashboardPage() {
                     name="Jumlah Login"
                     radius={[6, 6, 0, 0]}
                   >
-                    {(metrics?.authMethodDistribution ?? []).map((entry, idx) => (
-                      <Cell
-                        key={entry.method}
-                        fill={CHART_TOKEN_VARS[idx % CHART_TOKEN_VARS.length]}
-                      />
-                    ))}
+                    {(metrics?.authMethodDistribution ?? []).map(
+                      (entry, idx) => (
+                        <Cell
+                          key={entry.method}
+                          fill={CHART_TOKEN_VARS[idx % CHART_TOKEN_VARS.length]}
+                        />
+                      ),
+                    )}
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -475,8 +491,14 @@ export function DashboardPage() {
                         </Badge>
                       </div>
                       <p className="text-xs text-muted-foreground">
-                        Oleh <span className="font-medium text-foreground/80">{evt.actorEmail}</span>{" "}
-                        pada <span className="font-medium text-foreground/75">{evt.target}</span>
+                        Oleh{" "}
+                        <span className="font-medium text-foreground/80">
+                          {evt.actorEmail}
+                        </span>{" "}
+                        pada{" "}
+                        <span className="font-medium text-foreground/75">
+                          {evt.target}
+                        </span>
                       </p>
                     </div>
                   </div>

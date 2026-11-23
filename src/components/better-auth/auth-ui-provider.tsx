@@ -90,7 +90,7 @@ export function AuthUIProvider({
         void routerNavigate({ to });
       },
     }),
-    [authClient, basePaths, localization, features, routerNavigate]
+    [authClient, basePaths, localization, features, routerNavigate],
   );
 
   return (

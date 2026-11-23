@@ -1,6 +1,7 @@
 Gunakan skill init-admin-dashboard (opsi React 19 + Vite + TanStack Router) dan jadikan DESIGN.MD serta design tokens dari using-dashtail-template sebagai acuan tema Light/Dark dan struktur layout-nya.
 
 Kebutuhan project:
+
 - Nama aplikasi: Auth Core
 - Gunakan Better Auth untuk autentikasi & RBAC
 - Implementasi semua fitur yang ada di Better Auth namun configurable (bisa di aktifkan / non aktif) karna kita akan membangun Auth Service

@@ -118,7 +118,7 @@ const paginationVariants = cva(
       size: "default",
       radius: "default",
     },
-  }
+  },
 );
 const Pagination = ({
   isDisabled,
@@ -148,11 +148,9 @@ PaginationContent.displayName = "PaginationContent";
 const PaginationItem = React.forwardRef<
   HTMLLIElement,
   React.LiHTMLAttributes<HTMLLIElement> & { radius?: string }
->(
-  ({ className, radius, ...props }, ref) => (
-    <li ref={ref} className={cn("", className, radius)} {...props} />
-  )
-);
+>(({ className, radius, ...props }, ref) => (
+  <li ref={ref} className={cn("", className, radius)} {...props} />
+));
 PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = React.ComponentProps<"a"> &
@@ -178,7 +176,7 @@ const PaginationLink = ({
         variant: isActive ? variant : undefined,
         size,
       }),
-      className
+      className,
     )}
     {...props}
   />

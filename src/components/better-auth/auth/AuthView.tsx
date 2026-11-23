@@ -218,7 +218,11 @@ export function AuthView({
               </p>
               {lastLoginEnabled && lastLoginMethod && (
                 <div className="pt-1">
-                  <Badge color="tertiary" variant="soft" className="text-[11px]">
+                  <Badge
+                    color="tertiary"
+                    variant="soft"
+                    className="text-[11px]"
+                  >
                     Terakhir masuk: {lastLoginMethod}
                   </Badge>
                 </div>
@@ -238,17 +242,26 @@ export function AuthView({
             {!otpFocusedMode && (
               <TabsList className="w-full rounded-xl bg-surface-subtle p-1">
                 {emailEnabled && (
-                  <TabsTrigger value="password" className="flex-1 rounded-lg text-xs">
+                  <TabsTrigger
+                    value="password"
+                    className="flex-1 rounded-lg text-xs"
+                  >
                     Password
                   </TabsTrigger>
                 )}
                 {hasOtp && (
-                  <TabsTrigger value="otp" className="flex-1 rounded-lg text-xs">
+                  <TabsTrigger
+                    value="otp"
+                    className="flex-1 rounded-lg text-xs"
+                  >
                     OTP
                   </TabsTrigger>
                 )}
                 {magicLinkEnabled && (
-                  <TabsTrigger value="magic-link" className="flex-1 rounded-lg text-xs">
+                  <TabsTrigger
+                    value="magic-link"
+                    className="flex-1 rounded-lg text-xs"
+                  >
                     Magic Link
                   </TabsTrigger>
                 )}
@@ -262,7 +275,10 @@ export function AuthView({
             )}
 
             {hasOtp && (
-              <TabsContent value="otp" className={otpFocusedMode ? "pt-0" : "pt-4"}>
+              <TabsContent
+                value="otp"
+                className={otpFocusedMode ? "pt-0" : "pt-4"}
+              >
                 <EmailOTPForm
                   redirectTo={redirectTo}
                   onStepChange={(step) => setOtpFocusedMode(step !== "request")}

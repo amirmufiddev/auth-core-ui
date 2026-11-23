@@ -1,10 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
-import {
-  type MagicLinkValues,
-  magicLinkSchema,
-} from "@/features/auth/schema";
+import { type MagicLinkValues, magicLinkSchema } from "@/features/auth/schema";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useAuthUI } from "@/components/better-auth/auth-ui-provider";
 import { Button } from "@/components/ui/button";
@@ -42,11 +39,7 @@ export function MagicLinkForm({
     >
       <div className="space-y-1.5">
         <Label htmlFor="ba-magic-email">Alamat Email</Label>
-        <Input
-          id="ba-magic-email"
-          type="email"
-          {...form.register("email")}
-        />
+        <Input id="ba-magic-email" type="email" {...form.register("email")} />
         {form.formState.errors.email && (
           <p className="text-xs text-destructive">
             {form.formState.errors.email.message}

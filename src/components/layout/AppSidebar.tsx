@@ -1,9 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Lock,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import { menusConfig, type MenuItemProps } from "@/config/menus";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { useAuthConfigStore } from "@/stores/useAuthConfigStore";
@@ -60,7 +56,7 @@ function SidebarMenuContent({
           active
             ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-xs"
             : "text-sidebar-foreground/80 hover:bg-sidebar-accent/55 hover:text-sidebar-accent-foreground",
-          collapsed && "justify-center px-2"
+          collapsed && "justify-center px-2",
         )}
       >
         {active && !collapsed && (
@@ -71,7 +67,7 @@ function SidebarMenuContent({
             "h-4 w-4 shrink-0 transition-colors",
             active
               ? "text-primary"
-              : "text-muted-foreground group-hover:text-primary"
+              : "text-muted-foreground group-hover:text-primary",
           )}
         />
         {!collapsed && (
@@ -156,7 +152,7 @@ function SidebarMenuContent({
 export function AppSidebar() {
   const sidebarCollapsed = useLayoutStore((s) => s.sidebarCollapsed);
   const toggleSidebarCollapsed = useLayoutStore(
-    (s) => s.toggleSidebarCollapsed
+    (s) => s.toggleSidebarCollapsed,
   );
   const mobileSidebarOpen = useLayoutStore((s) => s.mobileSidebarOpen);
   const setMobileSidebarOpen = useLayoutStore((s) => s.setMobileSidebarOpen);
@@ -189,13 +185,13 @@ export function AppSidebar() {
       <aside
         className={cn(
           "sticky top-0 hidden h-screen shrink-0 border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-all duration-200 lg:flex lg:flex-col",
-          isCollapsed ? "w-18.5" : sidebarType === "module" ? "w-72" : "w-64"
+          isCollapsed ? "w-18.5" : sidebarType === "module" ? "w-72" : "w-64",
         )}
       >
         <div
           className={cn(
             "flex h-16 shrink-0 items-center border-b border-sidebar-border px-4",
-            isCollapsed ? "justify-center" : "justify-between"
+            isCollapsed ? "justify-center" : "justify-between",
           )}
         >
           <Link to="/dashboard" className="flex items-center gap-2.5">

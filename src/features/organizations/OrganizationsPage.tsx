@@ -35,12 +35,12 @@ export function OrganizationsPage({
   onUpdateSearch,
 }: OrganizationsPageProps) {
   const isOrgEnabled = useAuthConfigStore((s) =>
-    s.isFeatureEnabled("organization")
+    s.isFeatureEnabled("organization"),
   );
 
   const [createOpen, setCreateOpen] = useState(false);
   const [selectedOrg, setSelectedOrg] = useState<OrganizationRecord | null>(
-    null
+    null,
   );
 
   const orgsQuery = useQuery({
@@ -238,7 +238,10 @@ export function OrganizationsPage({
         </CardContent>
       </Card>
 
-      <CreateOrganizationDialog open={createOpen} onOpenChange={setCreateOpen} />
+      <CreateOrganizationDialog
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+      />
 
       <Sheet
         open={Boolean(selectedOrg)}
@@ -258,8 +261,10 @@ export function OrganizationsPage({
                     <SheetTitle>{selectedOrg.name}</SheetTitle>
                     <SheetDescription>
                       Slug:{" "}
-                      <span className="font-medium text-foreground">{selectedOrg.slug}</span> ·
-                      Plan {selectedOrg.plan}
+                      <span className="font-medium text-foreground">
+                        {selectedOrg.slug}
+                      </span>{" "}
+                      · Plan {selectedOrg.plan}
                     </SheetDescription>
                   </div>
                 </div>

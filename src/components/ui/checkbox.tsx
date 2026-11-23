@@ -95,11 +95,12 @@ const checkboxVariants = cva(
       radius: "base",
       variant: "faded",
     },
-  }
+  },
 );
 
 export interface CheckboxProps
-  extends Omit<
+  extends
+    Omit<
       React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
       "color"
     >,
@@ -124,7 +125,7 @@ const Checkbox = React.forwardRef<
       icon = <Check />,
       ...props
     },
-    ref
+    ref,
   ) => (
     <>
       {children ? (
@@ -133,7 +134,7 @@ const Checkbox = React.forwardRef<
             ref={ref}
             className={cn(
               checkboxVariants({ color, size, radius, variant }),
-              className
+              className,
             )}
             {...props}
           >
@@ -155,7 +156,7 @@ const Checkbox = React.forwardRef<
                 "text-xl": size === "xl",
                 "relative  select-none text-medium inline-flex items-center justify-center before:content-[''] before:absolute before:bg-foreground before:w-0 before:h-0.5 peer-data-[state=checked]:opacity-60 peer-data-[state=checked]:before:w-full ":
                   lineThrough,
-              }
+              },
             )}
           >
             {children}
@@ -166,7 +167,7 @@ const Checkbox = React.forwardRef<
           ref={ref}
           className={cn(
             checkboxVariants({ color, size, radius, variant }),
-            className
+            className,
           )}
           {...props}
         >
@@ -178,7 +179,7 @@ const Checkbox = React.forwardRef<
         </CheckboxPrimitive.Root>
       )}
     </>
-  )
+  ),
 );
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 

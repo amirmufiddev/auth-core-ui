@@ -117,10 +117,7 @@ export function OrganizationSettingsCards({
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label htmlFor="ba-org-edit-slug">Slug</Label>
-                <Input
-                  id="ba-org-edit-slug"
-                  {...form.register("slug")}
-                />
+                <Input id="ba-org-edit-slug" {...form.register("slug")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Plan</Label>

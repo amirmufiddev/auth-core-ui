@@ -138,7 +138,8 @@ export function DataTable<TData, TValue>({
                   const sorted = header.column.getIsSorted();
                   return (
                     <TableHead key={header.id}>
-                      {header.isPlaceholder ? null : canSort && onSortingChange ? (
+                      {header.isPlaceholder ? null : canSort &&
+                        onSortingChange ? (
                         <Button
                           type="button"
                           variant="ghost"
@@ -150,7 +151,7 @@ export function DataTable<TData, TValue>({
                           <span>
                             {flexRender(
                               header.column.columnDef.header,
-                              header.getContext()
+                              header.getContext(),
                             )}
                           </span>
                           {sorted === "asc" ? (
@@ -164,7 +165,7 @@ export function DataTable<TData, TValue>({
                       ) : (
                         flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )
                       )}
                     </TableHead>
@@ -194,7 +195,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

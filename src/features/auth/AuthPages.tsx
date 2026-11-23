@@ -1,6 +1,10 @@
 import { AuthView } from "@/components/better-auth";
 
-export function LoginPage({ redirectTo = "/dashboard" }: { redirectTo?: string }) {
+export function LoginPage({
+  redirectTo = "/dashboard",
+}: {
+  redirectTo?: string;
+}) {
   return <AuthView view="SIGN_IN" redirectTo={redirectTo} />;
 }
 

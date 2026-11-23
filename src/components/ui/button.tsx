@@ -9,8 +9,10 @@ const buttonVariants = cva(
   {
     variants: {
       color: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
-        primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
+        default:
+          "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
+        primary:
+          "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
         tertiary:
           "bg-tertiary text-tertiary-foreground hover:bg-tertiary/90 shadow-xs",
         destructive:
@@ -101,22 +103,26 @@ const buttonVariants = cva(
       {
         variant: "soft",
         color: "info",
-        className: "text-info bg-info/12 dark:bg-info/16 hover:bg-info hover:text-info-foreground",
+        className:
+          "text-info bg-info/12 dark:bg-info/16 hover:bg-info hover:text-info-foreground",
       },
       {
         variant: "soft",
         color: "warning",
-        className: "text-warning bg-warning/12 dark:bg-warning/16 hover:bg-warning hover:text-warning-foreground",
+        className:
+          "text-warning bg-warning/12 dark:bg-warning/16 hover:bg-warning hover:text-warning-foreground",
       },
       {
         variant: "soft",
         color: "destructive",
-        className: "text-destructive bg-destructive/12 dark:bg-destructive/16 hover:bg-destructive hover:text-destructive-foreground",
+        className:
+          "text-destructive bg-destructive/12 dark:bg-destructive/16 hover:bg-destructive hover:text-destructive-foreground",
       },
       {
         variant: "soft",
         color: "success",
-        className: "text-success bg-success/12 dark:bg-success/16 hover:bg-success hover:text-success-foreground",
+        className:
+          "text-success bg-success/12 dark:bg-success/16 hover:bg-success hover:text-success-foreground",
       },
       {
         variant: "soft",
@@ -133,12 +139,14 @@ const buttonVariants = cva(
       {
         variant: "ghost",
         color: "default",
-        className: "text-primary hover:bg-primary-soft hover:text-primary-soft-foreground",
+        className:
+          "text-primary hover:bg-primary-soft hover:text-primary-soft-foreground",
       },
       {
         variant: "ghost",
         color: "tertiary",
-        className: "text-tertiary hover:bg-tertiary-soft hover:text-tertiary-soft-foreground",
+        className:
+          "text-tertiary hover:bg-tertiary-soft hover:text-tertiary-soft-foreground",
       },
       {
         variant: "ghost",
@@ -172,7 +180,7 @@ const buttonVariants = cva(
       color: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export type ButtonColor = VariantProps<typeof buttonVariants>["color"];
@@ -180,7 +188,8 @@ export type ButtonVariant = VariantProps<typeof buttonVariants>["variant"];
 export type ButtonSize = VariantProps<typeof buttonVariants>["size"];
 
 export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
+  extends
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
     Omit<VariantProps<typeof buttonVariants>, "color" | "variant" | "size"> {
   asChild?: boolean;
   sx?: Record<string, string | number>;
@@ -200,13 +209,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             size: size as ButtonSize,
             color: color as ButtonColor,
             className,
-          })
+          }),
         )}
         ref={ref}
         {...props}
       />
     );
-  }
+  },
 );
 Button.displayName = "Button";
 

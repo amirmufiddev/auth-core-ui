@@ -22,10 +22,7 @@ import {
   listSsoProviders,
   toggleApiKey,
 } from "@/api/auth-service";
-import {
-  type ApiKeyRecord,
-  type OAuthClientRecord,
-} from "@/api/mock-db";
+import { type ApiKeyRecord, type OAuthClientRecord } from "@/api/mock-db";
 import { formatDate } from "@/lib/utils";
 import { useAuthConfigStore } from "@/stores/useAuthConfigStore";
 import {
@@ -92,9 +89,11 @@ export function ApiKeysPage({
   onUpdateSearch,
 }: ApiKeysPageProps) {
   const queryClient = useQueryClient();
-  const isApiKeyEnabled = useAuthConfigStore((s) => s.isFeatureEnabled("apiKey"));
+  const isApiKeyEnabled = useAuthConfigStore((s) =>
+    s.isFeatureEnabled("apiKey"),
+  );
   const isOAuthEnabled = useAuthConfigStore((s) =>
-    s.isFeatureEnabled("oauthProvider")
+    s.isFeatureEnabled("oauthProvider"),
   );
   const isSsoEnabled = useAuthConfigStore((s) => s.isFeatureEnabled("sso"));
 
@@ -257,7 +256,12 @@ export function ApiKeysPage({
       cell: ({ row }) => (
         <div className="flex flex-wrap gap-1">
           {row.original.scopes.map((s) => (
-            <Badge key={s} color="secondary" variant="soft" className="tabular-nums text-[10px]">
+            <Badge
+              key={s}
+              color="secondary"
+              variant="soft"
+              className="tabular-nums text-[10px]"
+            >
               {s}
             </Badge>
           ))}
@@ -533,7 +537,9 @@ export function ApiKeysPage({
                         </CardDescription>
                       </div>
                       <Badge
-                        color={provider.protocol === "saml2" ? "default" : "info"}
+                        color={
+                          provider.protocol === "saml2" ? "default" : "info"
+                        }
                         variant="soft"
                         className="uppercase"
                       >
@@ -608,7 +614,7 @@ export function ApiKeysPage({
           </DialogHeader>
           <form
             onSubmit={keyForm.handleSubmit((vals) =>
-              createKeyMutation.mutate(vals)
+              createKeyMutation.mutate(vals),
             )}
             className="space-y-4"
           >
@@ -623,10 +629,7 @@ export function ApiKeysPage({
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label htmlFor="key-prefix">Prefix</Label>
-                <Input
-                  id="key-prefix"
-                  {...keyForm.register("prefix")}
-                />
+                <Input id="key-prefix" {...keyForm.register("prefix")} />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="key-rl">Rate Limit / Menit</Label>
@@ -763,7 +766,7 @@ export function ApiKeysPage({
           </DialogHeader>
           <form
             onSubmit={oauthForm.handleSubmit((vals) =>
-              createClientMutation.mutate(vals)
+              createClientMutation.mutate(vals),
             )}
             className="space-y-4"
           >
@@ -782,9 +785,15 @@ export function ApiKeysPage({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="oidc-public">OIDC Public (SPA/Mobile)</SelectItem>
-                      <SelectItem value="oidc-confidential">OIDC Confidential (Server)</SelectItem>
-                      <SelectItem value="mcp-client">MCP Agent Client</SelectItem>
+                      <SelectItem value="oidc-public">
+                        OIDC Public (SPA/Mobile)
+                      </SelectItem>
+                      <SelectItem value="oidc-confidential">
+                        OIDC Confidential (Server)
+                      </SelectItem>
+                      <SelectItem value="mcp-client">
+                        MCP Agent Client
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 )}
@@ -792,17 +801,11 @@ export function ApiKeysPage({
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="oa-redirect">Redirect URI</Label>
-              <Input
-                id="oa-redirect"
-                {...oauthForm.register("redirectUri")}
-              />
+              <Input id="oa-redirect" {...oauthForm.register("redirectUri")} />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="oa-scopes">Scopes (pisahkan spasi)</Label>
-              <Input
-                id="oa-scopes"
-                {...oauthForm.register("scopesText")}
-              />
+              <Input id="oa-scopes" {...oauthForm.register("scopesText")} />
             </div>
             <div className="flex items-center justify-between rounded-lg border border-border p-3">
               <Label htmlFor="oa-pkce">Wajibkan PKCE (S256)</Label>
@@ -843,7 +846,7 @@ export function ApiKeysPage({
           </DialogHeader>
           <form
             onSubmit={ssoForm.handleSubmit((vals) =>
-              createSsoMutation.mutate(vals)
+              createSsoMutation.mutate(vals),
             )}
             className="space-y-4"
           >
@@ -885,10 +888,7 @@ export function ApiKeysPage({
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="sso-org">Organisasi</Label>
-              <Input
-                id="sso-org"
-                {...ssoForm.register("organizationName")}
-              />
+              <Input id="sso-org" {...ssoForm.register("organizationName")} />
             </div>
             <div className="flex items-center justify-between rounded-lg border border-border p-3">
               <Label htmlFor="sso-scim">Aktifkan SCIM 2.0 Provisioning</Label>

@@ -1,8 +1,8 @@
 ## Learned User Preferences
+
 1. Selalu merespons dalam Bahasa Indonesia.
 2. Jangan pernah menjalankan atau me-restart server (`bun dev`, `bun start`, `bun preview`, dsb.) tanpa konfirmasi eksplisit; user me-restart secara manual.
 3. Untuk list besar di frontend, user secara konsisten meminta **`react-virtuoso` + `useInfiniteQuery`** (TanStack Query); jangan gunakan paginasi manual atau list biasa tanpa virtualisasi.
-
 
 ## 1. ATURAN WAJIB: Gunakan Komponen yang Sudah Ada di `src/components/ui`
 
@@ -14,7 +14,6 @@
 4. **Komposisi diperbolehkan langsung di dalam file route (`src/routes/`) atau container fitur (`src/features/`)** dengan menyusun komponen dari `src/components/ui/`, `lucide-react`, dan utility `cn()` dari `@/lib/utils`.
 5. Untuk komponen table selalu gunakan `<DataTable>` (TanStack Table) dengan server-side pagination, filter, sort, dan search.
 6. Selalu gunakan komponen `<DatePicker>` atau `<TimePicker>` untuk date dan time selection.
-
 
 ### Daftar Komponen Tersedia di `src/components/ui/`
 

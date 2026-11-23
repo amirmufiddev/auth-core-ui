@@ -104,7 +104,9 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
   const [editingUser, setEditingUser] = useState<AuthUserRecord | null>(null);
   const [banTarget, setBanTarget] = useState<AuthUserRecord | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<AuthUserRecord | null>(null);
-  const [inspectTarget, setInspectTarget] = useState<AuthUserRecord | null>(null);
+  const [inspectTarget, setInspectTarget] = useState<AuthUserRecord | null>(
+    null,
+  );
 
   const sorting: SortingState = searchParams.sortBy
     ? [{ id: searchParams.sortBy, desc: searchParams.sortDir === "desc" }]
@@ -162,7 +164,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       void queryClient.invalidateQueries({ queryKey: ["users"] });
       void queryClient.invalidateQueries({ queryKey: ["dashboard-metrics"] });
       toast.success(
-        editingUser ? "Data user diperbarui." : "User baru berhasil dibuat."
+        editingUser ? "Data user diperbarui." : "User baru berhasil dibuat.",
       );
       setUserModalOpen(false);
       setEditingUser(null);
@@ -179,12 +181,14 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       toast.success(
         updated.banned
           ? `User ${updated.email} dibekukan.`
-          : `User ${updated.email} dipulihkan.`
+          : `User ${updated.email} dipulihkan.`,
       );
       setBanTarget(null);
     },
     onError: (err) => {
-      toast.error(err instanceof Error ? err.message : "Gagal memperbarui ban.");
+      toast.error(
+        err instanceof Error ? err.message : "Gagal memperbarui ban.",
+      );
     },
   });
 
@@ -286,9 +290,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
       header: "Role",
       cell: ({ row }) => (
         <Badge
-          color={
-            row.original.role.includes("admin") ? "default" : "secondary"
-          }
+          color={row.original.role.includes("admin") ? "default" : "secondary"}
           variant="soft"
           className="font-semiboldums text-xs"
         >
@@ -505,7 +507,9 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
           <div className="flex flex-wrap items-center gap-2">
             <Select
               value={searchParams.role}
-              onValueChange={(value) => onUpdateSearch({ role: value, page: 0 })}
+              onValueChange={(value) =>
+                onUpdateSearch({ role: value, page: 0 })
+              }
             >
               <SelectTrigger className="h-9 w-40" size="sm">
                 <SelectValue placeholder="Filter Role" />
@@ -576,7 +580,10 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
               pageIndex={searchParams.page}
               pageSize={searchParams.pageSize}
               onPaginationChange={(next) =>
-                onUpdateSearch({ page: next.pageIndex, pageSize: next.pageSize })
+                onUpdateSearch({
+                  page: next.pageIndex,
+                  pageSize: next.pageSize,
+                })
               }
               sorting={sorting}
               onSortingChange={(updater) => {
@@ -589,9 +596,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
                 });
               }}
               searchValue={searchParams.search}
-              onSearchChange={(val) =>
-                onUpdateSearch({ search: val, page: 0 })
-              }
+              onSearchChange={(val) => onUpdateSearch({ search: val, page: 0 })}
               searchPlaceholder="Cari nama, email, username..."
               isLoading={usersQuery.isLoading}
             />
@@ -675,7 +680,7 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
           </DialogHeader>
           <form
             onSubmit={userForm.handleSubmit((vals) =>
-              saveUserMutation.mutate(vals)
+              saveUserMutation.mutate(vals),
             )}
             className="space-y-4"
           >
@@ -968,7 +973,9 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
                     <div className="rounded-lg border border-border p-3 space-y-2">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">User ID</span>
-                        <span className="tabular-nums text-xs">{inspectTarget.id}</span>
+                        <span className="tabular-nums text-xs">
+                          {inspectTarget.id}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Username</span>
@@ -977,7 +984,9 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">Organisasi</span>
+                        <span className="text-muted-foreground">
+                          Organisasi
+                        </span>
                         <span>{inspectTarget.organizationName ?? "-"}</span>
                       </div>
                       <div className="flex justify-between">
@@ -1009,7 +1018,9 @@ export function UsersPage({ searchParams, onUpdateSearch }: UsersPageProps) {
           <AlertDialogFooter>
             <AlertDialogCancel>Batal</AlertDialogCancel>
             <AlertDialogAction
-              onClick={() => deleteTarget && deleteMutation.mutate(deleteTarget.id)}
+              onClick={() =>
+                deleteTarget && deleteMutation.mutate(deleteTarget.id)
+              }
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
               Ya, Hapus

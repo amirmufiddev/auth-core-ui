@@ -15,7 +15,11 @@ export {
   SignedOut,
 } from "./guards";
 
-export { AuthView, type AuthViewProps, type AuthViewType } from "./auth/AuthView";
+export {
+  AuthView,
+  type AuthViewProps,
+  type AuthViewType,
+} from "./auth/AuthView";
 export { EmailOTPForm } from "./auth/EmailOTPForm";
 export { ForgotPasswordForm } from "./auth/ForgotPasswordForm";
 export { MagicLinkForm } from "./auth/MagicLinkForm";
@@ -52,10 +56,7 @@ export {
   ProvidersCard,
   TwoFactorCard,
 } from "./account/SecurityCards";
-export {
-  ApiKeysCard,
-  SessionsCard,
-} from "./account/SessionsAndKeysCards";
+export { ApiKeysCard, SessionsCard } from "./account/SessionsAndKeysCards";
 export { ThemePreferencesCard } from "./account/ThemePreferencesCard";
 
 export {

@@ -16,7 +16,8 @@ const ratingVariants = cva("inline-flex items-center gap-1", {
 });
 
 export interface RatingProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
     VariantProps<typeof ratingVariants> {
   value?: number;
   items?: number;
@@ -35,7 +36,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
       onChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [hoverValue, setHoverValue] = React.useState<number | null>(null);
     const activeCount = hoverValue ?? value;
@@ -62,7 +63,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
               className={cn(
                 "transition-transform focus-visible:outline-none",
                 !readOnly && "cursor-pointer hover:scale-110",
-                readOnly && "cursor-default"
+                readOnly && "cursor-default",
               )}
             >
               <Star
@@ -70,7 +71,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
                   "h-5 w-5",
                   filled
                     ? "fill-warning text-warning"
-                    : "fill-transparent text-default-300"
+                    : "fill-transparent text-default-300",
                 )}
               />
             </button>
@@ -78,7 +79,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
         })}
       </div>
     );
-  }
+  },
 );
 Rating.displayName = "Rating";
 

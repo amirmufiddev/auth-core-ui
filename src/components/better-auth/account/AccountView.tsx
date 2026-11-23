@@ -21,11 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export type AccountViewTab =
-  | "profile"
-  | "security"
-  | "sessions"
-  | "api-keys"
-  | "preferences";
+  "profile" | "security" | "sessions" | "api-keys" | "preferences";
 
 export interface AccountViewProps {
   activeTab: AccountViewTab;
@@ -89,7 +85,7 @@ export function AccountView({ activeTab, onTabChange }: AccountViewProps) {
                   className={cn(
                     "h-auto w-full justify-start gap-3 px-3 py-2.5 text-left",
                     !isActive &&
-                      "text-default-700 hover:bg-accent hover:text-default-900"
+                      "text-default-700 hover:bg-accent hover:text-default-900",
                   )}
                 >
                   <Icon className="h-4 w-4 shrink-0" />
@@ -100,9 +96,7 @@ export function AccountView({ activeTab, onTabChange }: AccountViewProps) {
                     <div
                       className={cn(
                         "truncate text-[11px] font-normal",
-                        isActive
-                          ? "text-primary-100"
-                          : "text-muted-foreground"
+                        isActive ? "text-primary-100" : "text-muted-foreground",
                       )}
                     >
                       {item.description}

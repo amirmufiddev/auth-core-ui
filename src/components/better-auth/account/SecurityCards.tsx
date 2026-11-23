@@ -101,7 +101,7 @@ export function ChangePasswordCard() {
             toast.success("Kata sandi berhasil diperbarui.");
           } catch (err) {
             toast.error(
-              err instanceof Error ? err.message : "Gagal mengubah password."
+              err instanceof Error ? err.message : "Gagal mengubah password.",
             );
           }
         })}
@@ -263,7 +263,7 @@ export function TwoFactorCard() {
                   color="secondary"
                   onClick={async () => {
                     await navigator.clipboard.writeText(
-                      user.backupCodes.join("\n")
+                      user.backupCodes.join("\n"),
                     );
                     toast.success("Backup codes disalin.");
                   }}
@@ -523,7 +523,7 @@ export function ProvidersCard() {
   if (!user) return null;
 
   const activeProviders = SOCIAL_PROVIDER_CATALOG.filter(
-    (p) => features[p.id]?.enabled
+    (p) => features[p.id]?.enabled,
   );
   const linkingEnabled = Boolean(features.accountLinking?.enabled);
   const linked = user.linkedProviders ?? [];
@@ -581,7 +581,9 @@ export function ProvidersCard() {
                         }
                       } catch (err) {
                         toast.error(
-                          err instanceof Error ? err.message : "Gagal update link."
+                          err instanceof Error
+                            ? err.message
+                            : "Gagal update link.",
                         );
                       }
                     }}
@@ -659,7 +661,8 @@ export function DeleteAccountCard() {
           <AlertDialogHeader>
             <AlertDialogTitle>Konfirmasi Hapus Akun</AlertDialogTitle>
             <AlertDialogDescription>
-              Ketik <span className="tabular-nums font-semibold">{user.email}</span>{" "}
+              Ketik{" "}
+              <span className="tabular-nums font-semibold">{user.email}</span>{" "}
               untuk mengonfirmasi penghapusan akun.
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -683,7 +686,7 @@ export function DeleteAccountCard() {
                   toast.error(
                     err instanceof Error
                       ? err.message
-                      : "Konfirmasi penghapusan gagal."
+                      : "Konfirmasi penghapusan gagal.",
                   );
                 }
               }}

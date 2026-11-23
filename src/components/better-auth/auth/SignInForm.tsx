@@ -53,7 +53,9 @@ export function SignInForm({
   const onSubmit = async (vals: LoginEmailValues) => {
     try {
       const mode =
-        !vals.identifier.includes("@") && usernameEnabled ? "username" : "email";
+        !vals.identifier.includes("@") && usernameEnabled
+          ? "username"
+          : "email";
       const res = await signInWithEmail({
         identifier: vals.identifier,
         password: vals.password,
@@ -74,7 +76,10 @@ export function SignInForm({
     <div className="space-y-4">
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-1.5">
-          <Label htmlFor="ba-signin-id" className="text-xs font-medium text-foreground">
+          <Label
+            htmlFor="ba-signin-id"
+            className="text-xs font-medium text-foreground"
+          >
             {usernameEnabled ? "Email atau Username" : "Email"}
           </Label>
           <Input
@@ -95,7 +100,10 @@ export function SignInForm({
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="ba-signin-pass" className="text-xs font-medium text-foreground">
+          <Label
+            htmlFor="ba-signin-pass"
+            className="text-xs font-medium text-foreground"
+          >
             Kata Sandi
           </Label>
           <div className="relative">
@@ -111,7 +119,9 @@ export function SignInForm({
               color="secondary"
               size="icon"
               onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
+              aria-label={
+                showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
+              }
               className="absolute right-1.5 top-1/2 h-8 w-8 -translate-y-1/2 rounded-md text-muted-foreground"
             >
               {showPassword ? (
@@ -154,7 +164,7 @@ export function SignInForm({
             <span>
               Captcha Protection aktif (
               {String(
-                features.captcha?.settings.provider ?? "cloudflare-turnstile"
+                features.captcha?.settings.provider ?? "cloudflare-turnstile",
               )}
               )
             </span>

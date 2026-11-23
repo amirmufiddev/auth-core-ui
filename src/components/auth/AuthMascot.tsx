@@ -135,25 +135,53 @@ export function AuthMascot({
             </radialGradient>
 
             {/* Crisp specular bevel edge */}
-            <linearGradient id={rimGradId} x1="18" y1="8" x2="104" y2="122" gradientUnits="userSpaceOnUse">
+            <linearGradient
+              id={rimGradId}
+              x1="18"
+              y1="8"
+              x2="104"
+              y2="122"
+              gradientUnits="userSpaceOnUse"
+            >
               <stop offset="0%" stopColor="#ffffff" stopOpacity="0.92" />
               <stop offset="45%" stopColor="#ffffff" stopOpacity="0.32" />
-              <stop offset="100%" stopColor="var(--tertiary)" stopOpacity="0.65" />
+              <stop
+                offset="100%"
+                stopColor="var(--tertiary)"
+                stopOpacity="0.65"
+              />
             </linearGradient>
 
             {/* Top-left curved glass highlight */}
-            <linearGradient id={glossGradId} x1="20" y1="16" x2="62" y2="62" gradientUnits="userSpaceOnUse">
+            <linearGradient
+              id={glossGradId}
+              x1="20"
+              y1="16"
+              x2="62"
+              y2="62"
+              gradientUnits="userSpaceOnUse"
+            >
               <stop offset="0%" stopColor="#ffffff" stopOpacity="0.72" />
               <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
             </linearGradient>
 
             {/* Bottom-right ambient bounce */}
             <radialGradient id={bounceGradId} cx="78%" cy="78%" r="42%">
-              <stop offset="0%" stopColor="var(--tertiary)" stopOpacity="0.55" />
+              <stop
+                offset="0%"
+                stopColor="var(--tertiary)"
+                stopOpacity="0.55"
+              />
               <stop offset="100%" stopColor="var(--tertiary)" stopOpacity="0" />
             </radialGradient>
 
-            <filter id={shadowFilterId} x="-15%" y="-15%" width="130%" height="130%">
+            <filter
+              id={shadowFilterId}
+              x="-15%"
+              y="-15%"
+              width="130%"
+              height="130%"
+            >
               <feGaussianBlur stdDeviation="2.5" />
             </filter>
           </defs>
@@ -199,9 +227,22 @@ export function AuthMascot({
                 times: [0, 0.45, 0.48, 0.52, 1],
               }}
             >
-              <rect x="38" y="52" width="12" height="17" rx="6" fill="#0f172a" />
+              <rect
+                x="38"
+                y="52"
+                width="12"
+                height="17"
+                rx="6"
+                fill="#0f172a"
+              />
               <circle cx="46.2" cy="56.8" r="2.6" fill="#ffffff" />
-              <circle cx="42.2" cy="63.5" r="1.1" fill="#ffffff" fillOpacity="0.65" />
+              <circle
+                cx="42.2"
+                cy="63.5"
+                r="1.1"
+                fill="#ffffff"
+                fillOpacity="0.65"
+              />
             </motion.g>
 
             {/* Right Eye */}
@@ -214,9 +255,22 @@ export function AuthMascot({
                 times: [0, 0.45, 0.48, 0.52, 1],
               }}
             >
-              <rect x="70" y="52" width="12" height="17" rx="6" fill="#0f172a" />
+              <rect
+                x="70"
+                y="52"
+                width="12"
+                height="17"
+                rx="6"
+                fill="#0f172a"
+              />
               <circle cx="78.2" cy="56.8" r="2.6" fill="#ffffff" />
-              <circle cx="74.2" cy="63.5" r="1.1" fill="#ffffff" fillOpacity="0.65" />
+              <circle
+                cx="74.2"
+                cy="63.5"
+                r="1.1"
+                fill="#ffffff"
+                fillOpacity="0.65"
+              />
             </motion.g>
 
             {/* Soft Rosy Cheeks */}

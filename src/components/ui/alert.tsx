@@ -22,11 +22,13 @@ const alertVariants = cva(
       },
     },
     compoundVariants: [
-      ...(["destructive", "success", "info", "warning", "dark"] as const).map((color) => ({
-        variant: "outline" as const,
-        color,
-        className: `text-${color} bg-transparent`,
-      })),
+      ...(["destructive", "success", "info", "warning", "dark"] as const).map(
+        (color) => ({
+          variant: "outline" as const,
+          color,
+          className: `text-${color} bg-transparent`,
+        }),
+      ),
       {
         variant: "outline",
         color: "secondary",
@@ -72,11 +74,12 @@ const alertVariants = cva(
     defaultVariants: {
       color: "default",
     },
-  }
+  },
 );
 
 export interface AlertProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
     VariantProps<typeof alertVariants> {
   dismissible?: boolean;
   onDismiss?: () => void;
@@ -85,7 +88,7 @@ export interface AlertProps
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   (
     { className, color, variant, dismissible, onDismiss, children, ...props },
-    ref
+    ref,
   ) => {
     const [dismissed, setDismissed] = React.useState(false);
 
@@ -105,13 +108,17 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       >
         {children}
         {dismissible && (
-          <button type="button" onClick={handleDismiss} className="grow-0 cursor-pointer">
+          <button
+            type="button"
+            onClick={handleDismiss}
+            className="grow-0 cursor-pointer"
+          >
             <X className="h-5 w-5" />
           </button>
         )}
       </div>
     ) : null;
-  }
+  },
 );
 Alert.displayName = "Alert";
 
@@ -123,7 +130,7 @@ const AlertTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "mb-2 font-medium leading-none tracking-tight grow text-lg",
-      className
+      className,
     )}
     {...props}
   />

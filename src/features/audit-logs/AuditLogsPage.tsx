@@ -43,10 +43,10 @@ export function AuditLogsPage({
   onUpdateSearch,
 }: AuditLogsPageProps) {
   const isAuditEnabled = useAuthConfigStore((s) =>
-    s.isFeatureEnabled("auditLogs")
+    s.isFeatureEnabled("auditLogs"),
   );
   const [selectedEvent, setSelectedEvent] = useState<AuditLogRecord | null>(
-    null
+    null,
   );
 
   const logsQuery = useInfiniteQuery({
@@ -68,7 +68,7 @@ export function AuditLogsPage({
 
   const allItems = useMemo(
     () => logsQuery.data?.pages.flatMap((page) => page.items) ?? [],
-    [logsQuery.data]
+    [logsQuery.data],
   );
 
   const totalCount = logsQuery.data?.pages[0]?.totalCount ?? 0;
@@ -202,7 +202,11 @@ export function AuditLogsPage({
               Event Stream ({allItems.length} dimuat dari {totalCount})
             </CardTitle>
           </div>
-          <Badge color="info" variant="soft" className="font-semiboldums text-xs">
+          <Badge
+            color="info"
+            variant="soft"
+            className="font-semiboldums text-xs"
+          >
             Virtualized
           </Badge>
         </CardHeader>
@@ -271,8 +275,13 @@ export function AuditLogsPage({
                           {item.actorEmail}
                         </span>{" "}
                         · Target:{" "}
-                        <span className="font-medium text-foreground">{item.target}</span> · IP:{" "}
-                        <span className="tabular-nums font-medium text-foreground">{item.ipAddress}</span>
+                        <span className="font-medium text-foreground">
+                          {item.target}
+                        </span>{" "}
+                        · IP:{" "}
+                        <span className="tabular-nums font-medium text-foreground">
+                          {item.ipAddress}
+                        </span>
                       </div>
                     </div>
                     <div className="shrink-0 text-right text-xs text-muted-foreground">

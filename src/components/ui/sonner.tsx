@@ -2,9 +2,7 @@ import * as React from "react";
 import { Toaster as Sonner } from "sonner";
 import { useThemeStore } from "@/stores/useThemeStore";
 
-const SonnToaster = ({
-  ...props
-}: React.ComponentProps<typeof Sonner>) => {
+const SonnToaster = ({ ...props }: React.ComponentProps<typeof Sonner>) => {
   const theme = useThemeStore((state) => state.theme);
   const sonnerTheme: React.ComponentProps<typeof Sonner>["theme"] =
     theme === "light" || theme === "dark" || theme === "system"

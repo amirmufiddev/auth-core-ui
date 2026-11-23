@@ -29,7 +29,10 @@
           if (prefsRaw) {
             var prefs = JSON.parse(prefsRaw);
             if (typeof prefs.radius === "number") {
-              document.documentElement.style.setProperty("--radius", prefs.radius + "rem");
+              document.documentElement.style.setProperty(
+                "--radius",
+                prefs.radius + "rem",
+              );
             }
             if (typeof prefs.colorTheme === "string") {
               var legacyMap = {
@@ -40,7 +43,7 @@
                 zinc: "slate",
                 stone: "slate",
                 gray: "slate",
-                neutral: "slate"
+                neutral: "slate",
               };
               colorTheme = legacyMap[prefs.colorTheme] || prefs.colorTheme;
             }

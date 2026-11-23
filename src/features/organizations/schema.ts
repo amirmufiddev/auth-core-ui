@@ -21,6 +21,8 @@ export const inviteOrgMemberSchema = z.object({
   role: z.enum(["admin", "member"]),
 });
 
-export type OrganizationsSearchParams = z.infer<typeof organizationsSearchSchema>;
+export type OrganizationsSearchParams = z.infer<
+  typeof organizationsSearchSchema
+>;
 export type CreateOrgValues = z.infer<typeof createOrgSchema>;
 export type InviteOrgMemberValues = z.infer<typeof inviteOrgMemberSchema>;

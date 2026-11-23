@@ -61,7 +61,10 @@ export async function fetchDashboardMetrics(): Promise<DashboardMetrics> {
 
   const signInTrend = Array.from({ length: 14 }, (_, idx) => {
     const d = new Date(Date.now() - (13 - idx) * 86400000);
-    const label = d.toLocaleDateString("id-ID", { day: "2-digit", month: "short" });
+    const label = d.toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "short",
+    });
     return {
       date: label,
       signIns: 180 + ((idx * 37) % 140),
@@ -79,14 +82,16 @@ export async function fetchDashboardMetrics(): Promise<DashboardMetrics> {
     ([method, count]) => ({
       method: method.toUpperCase(),
       count: count * 24,
-    })
+    }),
   );
 
   return {
     totalUsers,
     activeSessions,
     bannedUsers,
-    twoFactorAdoption: Math.round((twoFactorUsers / Math.max(1, totalUsers)) * 100),
+    twoFactorAdoption: Math.round(
+      (twoFactorUsers / Math.max(1, totalUsers)) * 100,
+    ),
     authEvents24h: 1428,
     signInTrend,
     authMethodDistribution,
@@ -95,7 +100,7 @@ export async function fetchDashboardMetrics(): Promise<DashboardMetrics> {
 }
 
 export async function listUsers(
-  params: ListUsersParams
+  params: ListUsersParams,
 ): Promise<PaginatedResult<AuthUserRecord>> {
   const db = readMockDb();
   let list = [...db.users];
@@ -106,7 +111,7 @@ export async function listUsers(
       (u) =>
         u.name.toLowerCase().includes(q) ||
         u.email.toLowerCase().includes(q) ||
-        (u.username ?? "").toLowerCase().includes(q)
+        (u.username ?? "").toLowerCase().includes(q),
     );
   }
 
@@ -117,7 +122,8 @@ export async function listUsers(
   if (params.status && params.status !== "all") {
     if (params.status === "banned") list = list.filter((u) => u.banned);
     if (params.status === "active") list = list.filter((u) => !u.banned);
-    if (params.status === "unverified") list = list.filter((u) => !u.emailVerified);
+    if (params.status === "unverified")
+      list = list.filter((u) => !u.emailVerified);
   }
 
   if (params.sortBy) {
@@ -148,7 +154,7 @@ export async function createUser(input: {
   assertFeatureEnabled("admin");
   const db = readMockDb();
   const exists = db.users.some(
-    (u) => u.email.toLowerCase() === input.email.toLowerCase()
+    (u) => u.email.toLowerCase() === input.email.toLowerCase(),
   );
   if (exists) {
     throw new Error("Email sudah terdaftar.");
@@ -195,9 +201,15 @@ export async function updateUser(
   patch: Partial<
     Pick<
       AuthUserRecord,
-      "name" | "email" | "username" | "role" | "emailVerified" | "twoFactorEnabled" | "organizationName"
+      | "name"
+      | "email"
+      | "username"
+      | "role"
+      | "emailVerified"
+      | "twoFactorEnabled"
+      | "organizationName"
     >
-  >
+  >,
 ): Promise<AuthUserRecord> {
   assertFeatureEnabled("admin");
   const db = readMockDb();
@@ -409,7 +421,7 @@ export async function listOrganizations(params: {
     const q = params.search.toLowerCase();
     list = list.filter(
       (o) =>
-        o.name.toLowerCase().includes(q) || o.slug.toLowerCase().includes(q)
+        o.name.toLowerCase().includes(q) || o.slug.toLowerCase().includes(q),
     );
   }
   const total = list.length;
@@ -527,7 +539,9 @@ export async function inviteOrganizationMember(input: {
 
 export async function updateOrganization(
   organizationId: string,
-  patch: Partial<Pick<OrganizationRecord, "name" | "slug" | "plan" | "ssoEnabled">>
+  patch: Partial<
+    Pick<OrganizationRecord, "name" | "slug" | "plan" | "ssoEnabled">
+  >,
 ): Promise<OrganizationRecord> {
   assertFeatureEnabled("organization");
   const db = readMockDb();
@@ -556,7 +570,7 @@ export async function updateOrganizationMemberRole(input: {
   const updated: OrganizationRecord = {
     ...org,
     members: org.members.map((m) =>
-      m.id === input.memberId ? { ...m, role: input.role } : m
+      m.id === input.memberId ? { ...m, role: input.role } : m,
     ),
   };
   const next = [...db.organizations];
@@ -605,7 +619,9 @@ export async function cancelOrganizationInvitation(input: {
   return updated;
 }
 
-export async function deleteOrganization(organizationId: string): Promise<void> {
+export async function deleteOrganization(
+  organizationId: string,
+): Promise<void> {
   assertFeatureEnabled("organization");
   const db = readMockDb();
   const target = db.organizations.find((o) => o.id === organizationId);
@@ -645,7 +661,7 @@ export async function listSessions(params: {
         s.userName.toLowerCase().includes(q) ||
         s.userEmail.toLowerCase().includes(q) ||
         s.ipAddress.toLowerCase().includes(q) ||
-        s.userAgent.toLowerCase().includes(q)
+        s.userAgent.toLowerCase().includes(q),
     );
   }
   if (params.status === "active") list = list.filter((s) => s.active);
@@ -674,7 +690,7 @@ export async function revokeSession(sessionId: string): Promise<void> {
   writeMockDb({
     ...db,
     sessions: db.sessions.map((s) =>
-      s.id === sessionId ? { ...s, active: false } : s
+      s.id === sessionId ? { ...s, active: false } : s,
     ),
   });
   appendAuditLog({
@@ -713,7 +729,7 @@ export async function listApiKeys(params: {
       (k) =>
         k.name.toLowerCase().includes(q) ||
         k.ownerEmail.toLowerCase().includes(q) ||
-        k.prefix.toLowerCase().includes(q)
+        k.prefix.toLowerCase().includes(q),
     );
   }
   const total = list.length;
@@ -772,7 +788,10 @@ export async function createApiKey(input: {
   return { record, plainSecret };
 }
 
-export async function toggleApiKey(keyId: string, enabled: boolean): Promise<void> {
+export async function toggleApiKey(
+  keyId: string,
+  enabled: boolean,
+): Promise<void> {
   assertFeatureEnabled("apiKey");
   const db = readMockDb();
   writeMockDb({
@@ -816,7 +835,8 @@ export async function listOAuthClients(params: {
     const q = params.search.toLowerCase();
     list = list.filter(
       (c) =>
-        c.name.toLowerCase().includes(q) || c.clientId.toLowerCase().includes(q)
+        c.name.toLowerCase().includes(q) ||
+        c.clientId.toLowerCase().includes(q),
     );
   }
   const total = list.length;
@@ -914,7 +934,7 @@ export async function fetchAuditLogsPage(params: {
         item.event.toLowerCase().includes(q) ||
         item.actorEmail.toLowerCase().includes(q) ||
         item.target.toLowerCase().includes(q) ||
-        item.ipAddress.toLowerCase().includes(q)
+        item.ipAddress.toLowerCase().includes(q),
     );
   }
 
@@ -929,14 +949,18 @@ export async function fetchAuditLogsPage(params: {
   if (params.fromDate) {
     const minTime = new Date(params.fromDate).getTime();
     if (!Number.isNaN(minTime)) {
-      list = list.filter((item) => new Date(item.createdAt).getTime() >= minTime);
+      list = list.filter(
+        (item) => new Date(item.createdAt).getTime() >= minTime,
+      );
     }
   }
 
   if (params.toDate) {
     const maxTime = new Date(`${params.toDate}T23:59:59.999`).getTime();
     if (!Number.isNaN(maxTime)) {
-      list = list.filter((item) => new Date(item.createdAt).getTime() <= maxTime);
+      list = list.filter(
+        (item) => new Date(item.createdAt).getTime() <= maxTime,
+      );
     }
   }
 

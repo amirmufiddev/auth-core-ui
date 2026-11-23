@@ -104,32 +104,47 @@ export const textareaVariants = cva(
       variant: "bordered",
       radius: "md",
     },
-  }
+  },
 );
 
 export interface TextareaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "color">,
+  extends
+    Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "color">,
     VariantProps<typeof textareaVariants> {
   type?: string;
   size?: string;
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, color, radius, variant, shadow, children, type, size, defaultValue, ...props }, ref) => {
+  (
+    {
+      className,
+      color,
+      radius,
+      variant,
+      shadow,
+      children,
+      type,
+      size,
+      defaultValue,
+      ...props
+    },
+    ref,
+  ) => {
     const resolvedDefaultValue =
       props.value !== undefined
         ? undefined
-        : defaultValue ??
+        : (defaultValue ??
           (typeof children === "string" || typeof children === "number"
             ? children
-            : undefined);
+            : undefined));
 
     return (
       <div className="flex-1 w-full">
         <textarea
           className={cn(
             textareaVariants({ color, radius, variant, shadow }),
-            className
+            className,
           )}
           ref={ref}
           defaultValue={resolvedDefaultValue}
@@ -137,7 +152,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
       </div>
     );
-  }
+  },
 );
 Textarea.displayName = "Textarea";
 

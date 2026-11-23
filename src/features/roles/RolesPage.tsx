@@ -87,9 +87,8 @@ export function RolesPage() {
   const [selectedRoleId, setSelectedRoleId] = useState<string>("");
   const [draftName, setDraftName] = useState("");
   const [draftDescription, setDraftDescription] = useState("");
-  const [draftPermissions, setDraftPermissions] = useState<RolePermissionMatrix>(
-    {}
-  );
+  const [draftPermissions, setDraftPermissions] =
+    useState<RolePermissionMatrix>({});
   const [createOpen, setCreateOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<RoleRecord | null>(null);
 
@@ -152,7 +151,7 @@ export function RolesPage() {
   const togglePermission = (
     resource: RbacResource,
     action: string,
-    checked: boolean
+    checked: boolean,
   ) => {
     setDraftPermissions((prev) => {
       const current = new Set(prev[resource] ?? []);
@@ -207,8 +206,8 @@ export function RolesPage() {
             description: draftDescription,
             permissions: draftPermissions,
           }
-        : r
-    )
+        : r,
+    ),
   );
 
   return (
@@ -263,7 +262,7 @@ export function RolesPage() {
                     "cursor-pointer rounded-lg border p-3.5 transition-colors",
                     isSelected
                       ? "border-primary bg-primary/8"
-                      : "border-border bg-card hover:bg-accent/60"
+                      : "border-border bg-card hover:bg-accent/60",
                   )}
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -333,7 +332,9 @@ export function RolesPage() {
                   </div>
                   <CardDescription>
                     Slug:{" "}
-                    <span className="text-xs font-medium">{selectedRole.slug}</span>
+                    <span className="text-xs font-medium">
+                      {selectedRole.slug}
+                    </span>
                   </CardDescription>
                 </div>
 
@@ -419,7 +420,8 @@ export function RolesPage() {
                       className="space-y-3"
                     >
                       {RBAC_RESOURCE_MODULES.map((mod) => {
-                        const checkedActions = draftPermissions[mod.resource] ?? [];
+                        const checkedActions =
+                          draftPermissions[mod.resource] ?? [];
                         const checkedCount = checkedActions.length;
                         const totalCount = mod.permissions.length;
                         return (
@@ -458,7 +460,7 @@ export function RolesPage() {
                                 {mod.permissions.map((perm) => {
                                   const checkboxId = `perm-${mod.resource}-${perm.action}`;
                                   const isChecked = checkedActions.includes(
-                                    perm.action
+                                    perm.action,
                                   );
                                   return (
                                     <div
@@ -472,7 +474,7 @@ export function RolesPage() {
                                           togglePermission(
                                             mod.resource,
                                             perm.action,
-                                            Boolean(val)
+                                            Boolean(val),
                                           )
                                         }
                                       />
@@ -505,8 +507,10 @@ export function RolesPage() {
                     <div className="flex items-center justify-between">
                       <p className="text-xs text-muted-foreground">
                         Generated{" "}
-                        <span className="font-medium text-foreground">permissions.ts</span> untuk
-                        Admin & Organization plugin.
+                        <span className="font-medium text-foreground">
+                          permissions.ts
+                        </span>{" "}
+                        untuk Admin & Organization plugin.
                       </p>
                       <Button
                         type="button"
@@ -543,13 +547,13 @@ export function RolesPage() {
           <DialogHeader>
             <DialogTitle>Buat Role RBAC Baru</DialogTitle>
             <DialogDescription>
-              Role kustom dapat langsung ditetapkan ke pengguna dan dikonfigurasi
-              izinnya.
+              Role kustom dapat langsung ditetapkan ke pengguna dan
+              dikonfigurasi izinnya.
             </DialogDescription>
           </DialogHeader>
           <form
             onSubmit={createForm.handleSubmit((vals) =>
-              createMutation.mutate(vals)
+              createMutation.mutate(vals),
             )}
             className="space-y-4"
           >
@@ -620,7 +624,9 @@ export function RolesPage() {
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Hapus Role "{deleteTarget?.name}"?</AlertDialogTitle>
+            <AlertDialogTitle>
+              Hapus Role "{deleteTarget?.name}"?
+            </AlertDialogTitle>
             <AlertDialogDescription>
               Role kustom ini akan dihapus dari daftar role Auth Core.
             </AlertDialogDescription>

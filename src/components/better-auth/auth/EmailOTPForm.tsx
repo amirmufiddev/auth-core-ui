@@ -29,7 +29,9 @@ export function EmailOTPForm({
   const signInWithOtp = useAuthStore((s) => s.signInWithOtp);
   const { setStage } = useAuthStage();
 
-  const [step, setStep] = useState<"request" | "verify" | "verified">("request");
+  const [step, setStep] = useState<"request" | "verify" | "verified">(
+    "request",
+  );
   const [target, setTarget] = useState("admin@authcore.io");
   const [otp, setOtp] = useState("");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -104,7 +106,7 @@ export function EmailOTPForm({
         } catch (err) {
           setStep("verify");
           setErrorMsg(
-            err instanceof Error ? err.message : "Verifikasi OTP gagal."
+            err instanceof Error ? err.message : "Verifikasi OTP gagal.",
           );
         }
       }, 1150);

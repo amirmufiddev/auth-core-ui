@@ -21,11 +21,15 @@ export class ApiRequestError extends Error {
 
 export async function apiRequest<T>(
   path: string,
-  init?: RequestInit
+  init?: RequestInit,
 ): Promise<T> {
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) {
-    throw new ApiRequestError("VITE_API_URL is not configured", 0, "LOCAL_MODE");
+    throw new ApiRequestError(
+      "VITE_API_URL is not configured",
+      0,
+      "LOCAL_MODE",
+    );
   }
 
   const response = await fetch(`${baseUrl}${path}`, {

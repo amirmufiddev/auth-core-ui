@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const isLocationMatch = (
   targetLocation: string | null | undefined,
-  locationName: string | null | undefined
+  locationName: string | null | undefined,
 ) => {
   if (!targetLocation || !locationName) return false;
   return (
@@ -28,7 +28,10 @@ export const RGBToHex = (r: number, g: number, b: number) => {
 
 export function hslToHex(hsl: string) {
   if (!hsl) return "#000000";
-  const normalized = hsl.replace(/^hsla?\(/, "").replace(")", "").trim();
+  const normalized = hsl
+    .replace(/^hsla?\(/, "")
+    .replace(")", "")
+    .trim();
 
   const [h, s, l] = normalized.split(/[\s,]+/).map((value) => {
     if (value.endsWith("%")) {
@@ -108,10 +111,7 @@ export function isObjectNotEmpty(obj: Record<string, unknown> | null) {
   return Object.keys(obj).length > 0;
 }
 
-export const formatDate = (
-  date: string | number | Date,
-  pattern?: string
-) => {
+export const formatDate = (date: string | number | Date, pattern?: string) => {
   const parsed = new Date(date);
   if (Number.isNaN(parsed.getTime())) return "-";
   if (pattern) return format(parsed, pattern);

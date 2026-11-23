@@ -164,7 +164,7 @@ function readInitialPrefs(): StoredPreferences {
     const parsed = JSON.parse(raw) as Partial<StoredPreferences>;
     const validColor = normalizeColorTheme(parsed.colorTheme);
     const validRadius = ([0, 0.3, 0.5, 0.75, 1] as RadiusOption[]).includes(
-      parsed.radius as RadiusOption
+      parsed.radius as RadiusOption,
     )
       ? (parsed.radius as RadiusOption)
       : DEFAULT_PREFS.radius;
@@ -201,7 +201,7 @@ function savePrefs(prefs: StoredPreferences) {
 function applyThemeToDom(
   resolved: "light" | "dark",
   colorTheme: ColorThemeId,
-  radius: RadiusOption
+  radius: RadiusOption,
 ) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;

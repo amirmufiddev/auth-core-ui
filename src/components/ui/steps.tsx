@@ -26,7 +26,7 @@ const stepVariants = cva(
       size: "lg",
       content: "bottom",
     },
-  }
+  },
 );
 const stepperVariants = cva("flex ", {
   variants: {
@@ -81,7 +81,7 @@ const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
       status,
       ...props
     },
-    ref
+    ref,
   ) => {
     const childItem = React.Children.toArray(children);
     return (
@@ -93,10 +93,11 @@ const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
           }),
           className,
           {
-          "gap-2": gap,
-          " text-center": alternativeLabel,
-          "gap-3": content === "right",
-        })}
+            "gap-2": gap,
+            " text-center": alternativeLabel,
+            "gap-3": content === "right",
+          },
+        )}
         {...props}
       >
         {childItem.map((child, index) => {
@@ -121,13 +122,13 @@ const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
             size: size,
             className: cn(
               stepVariants({ variant, size, content }),
-              child.props.className
+              child.props.className,
             ),
           } as StepProps);
         })}
       </ol>
     );
-  }
+  },
 );
 Stepper.displayName = "Stepper";
 
@@ -156,9 +157,12 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
       disabled: _disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const getStepBarBg = (current: number | undefined, index: number | undefined) => {
+    const getStepBarBg = (
+      current: number | undefined,
+      index: number | undefined,
+    ) => {
       if (current === undefined || index === undefined) return "";
       if (current > index) return "completed";
       if (current < index) return "disable";
@@ -171,7 +175,7 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
     const getStepBox = (
       current: number | undefined,
       index: number | undefined,
-      status: string | undefined
+      status: string | undefined,
     ) => {
       if (current === undefined || index === undefined) return "";
       if (status === "error" && current === index) {
@@ -230,7 +234,7 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
                 "mx-auto": alternativeLabel,
                 "[&>svg]:w-5 [&>svg]:h-5": size !== "sm",
                 "[&>svg]:w-3 [&>svg]:h-3": size === "sm",
-              }
+              },
             )}
             step-box={stepBox}
           >
@@ -246,7 +250,7 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
                 "h-full w-1 grow  before:absolute before:h-full  before:w-full relative",
                 {
                   "before:top-[10px] before:h-[calc(100%-10px)] ": gap,
-                }
+                },
               )}
               step-bar-bg={stepBarBg}
             />
@@ -255,7 +259,7 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
         {!isContentRight && renderChildren && <div>{children}</div>}
       </li>
     );
-  }
+  },
 );
 Step.displayName = "Step";
 
@@ -267,48 +271,46 @@ const StepLabel = React.forwardRef<
     variant?: string;
   }
 >(({ className, children, error, optional, variant, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "text-sm text-default-600  font-medium mt-2",
-          {
-            "text-destructive": error,
-            "text-xs": variant === "caption",
-          },
-          className
-        )}
-        {...props}
-      >
-        {children}
-        {optional}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "text-sm text-default-600  font-medium mt-2",
+        {
+          "text-destructive": error,
+          "text-xs": variant === "caption",
+        },
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {optional}
+    </div>
+  );
+});
 StepLabel.displayName = "StepLabel";
 
 const StepDescription = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { error?: boolean }
 >(({ className, children, error, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "text-sm  text-muted-foreground",
-          {
-            "text-destructive": error,
-          },
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "text-sm  text-muted-foreground",
+        {
+          "text-destructive": error,
+        },
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
 StepDescription.displayName = "StepDescription";
 
 export { Stepper, Step, StepLabel, StepDescription };

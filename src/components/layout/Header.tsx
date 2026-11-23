@@ -37,11 +37,11 @@ export function Header() {
   });
 
   const quickNavItems = menusConfig.mainNav.flatMap((group) =>
-    (group.child ?? []).filter((item) => Boolean(item.href))
+    (group.child ?? []).filter((item) => Boolean(item.href)),
   );
   const filteredNavItems = searchQuery.trim()
     ? quickNavItems.filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.trim().toLowerCase())
+        item.title.toLowerCase().includes(searchQuery.trim().toLowerCase()),
       )
     : [];
 
@@ -66,7 +66,7 @@ export function Header() {
         navbarType === "sticky" && "sticky top-0",
         navbarType === "static" && "relative",
         navbarType === "floating" &&
-          "sticky top-3 mx-4 mt-3 rounded-xl border shadow-sm sm:mx-6"
+          "sticky top-3 mx-4 mt-3 rounded-xl border shadow-sm sm:mx-6",
       )}
     >
       <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6">
@@ -194,14 +194,14 @@ export function Header() {
                     "inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
                     active
                       ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
-                      : "text-sidebar-foreground hover:bg-accent/70 hover:text-accent-foreground"
+                      : "text-sidebar-foreground hover:bg-accent/70 hover:text-accent-foreground",
                   )}
                 >
                   <Icon className="h-3.5 w-3.5" />
                   <span>{item.title}</span>
                 </Link>
               );
-            })
+            }),
           )}
         </div>
       )}

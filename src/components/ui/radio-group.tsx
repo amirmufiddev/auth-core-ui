@@ -51,7 +51,7 @@ const radioVariants = cva(
       radius: "base",
       variant: "faded",
     },
-  }
+  },
 );
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
@@ -68,7 +68,8 @@ const RadioGroup = React.forwardRef<
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
 export interface RadioGroupItemProps
-  extends Omit<
+  extends
+    Omit<
       React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
       "color"
     >,
@@ -91,7 +92,7 @@ const RadioGroupItem = React.forwardRef<
       icon = <Circle />,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (children) {
       return (
@@ -100,7 +101,7 @@ const RadioGroupItem = React.forwardRef<
             ref={ref}
             className={cn(
               radioVariants({ color, size, radius, variant }),
-              className
+              className,
             )}
             {...props}
           >
@@ -123,7 +124,7 @@ const RadioGroupItem = React.forwardRef<
         ref={ref}
         className={cn(
           radioVariants({ color, size, radius, variant }),
-          className
+          className,
         )}
         {...props}
       >
@@ -132,7 +133,7 @@ const RadioGroupItem = React.forwardRef<
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
     );
-  }
+  },
 );
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 

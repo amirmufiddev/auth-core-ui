@@ -16,7 +16,9 @@ export class FeatureDisabledError extends Error {
 
   constructor(featureId: BetterAuthFeatureId) {
     const def = BETTER_AUTH_FEATURE_MAP[featureId];
-    super(`Fitur "${def?.name ?? featureId}" sedang dinonaktifkan di Auth Core.`);
+    super(
+      `Fitur "${def?.name ?? featureId}" sedang dinonaktifkan di Auth Core.`,
+    );
     this.name = "FeatureDisabledError";
     this.featureId = featureId;
   }
@@ -61,12 +63,15 @@ async function syncRemoteConfig(features: FeatureConfigMap): Promise<boolean> {
   const apiUrl = import.meta.env.VITE_API_URL;
   if (!apiUrl) return false;
   try {
-    const response = await fetch(`${apiUrl.replace(/\/$/, "")}/api/auth-config`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ features }),
-    });
+    const response = await fetch(
+      `${apiUrl.replace(/\/$/, "")}/api/auth-config`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ features }),
+      },
+    );
     return response.ok;
   } catch {
     return false;
@@ -80,11 +85,11 @@ interface AuthConfigStoreState {
   isFeatureEnabled: (id: BetterAuthFeatureId) => boolean;
   toggleFeature: (
     id: BetterAuthFeatureId,
-    enabled: boolean
+    enabled: boolean,
   ) => { ok: boolean; error?: string; autoEnabled?: BetterAuthFeatureId[] };
   updateFeatureSettings: (
     id: BetterAuthFeatureId,
-    settings: Record<string, string | number | boolean>
+    settings: Record<string, string | number | boolean>,
   ) => void;
   applyPreset: (preset: ConfigPresetId) => void;
   resetDefaults: () => void;
@@ -121,7 +126,7 @@ export const useAuthConfigStore = create<AuthConfigStoreState>((set, get) => ({
         (item) =>
           item.dependencies?.includes(id) &&
           next[item.id]?.enabled &&
-          item.id !== id
+          item.id !== id,
       );
       if (dependents.length > 0) {
         return {
@@ -210,11 +215,16 @@ export const useAuthConfigStore = create<AuthConfigStoreState>((set, get) => ({
     const apiUrl = import.meta.env.VITE_API_URL;
     if (!apiUrl) return;
     try {
-      const response = await fetch(`${apiUrl.replace(/\/$/, "")}/api/auth-config`, {
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${apiUrl.replace(/\/$/, "")}/api/auth-config`,
+        {
+          credentials: "include",
+        },
+      );
       if (!response.ok) return;
-      const payload = (await response.json()) as { features?: Partial<FeatureConfigMap> };
+      const payload = (await response.json()) as {
+        features?: Partial<FeatureConfigMap>;
+      };
       if (!payload.features) return;
       const base = get().features;
       const merged = { ...base };

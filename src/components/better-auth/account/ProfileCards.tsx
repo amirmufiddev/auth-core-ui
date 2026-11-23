@@ -24,7 +24,7 @@ const avatarSchema = z.object({
     .string()
     .refine(
       (v) => v === "" || /^https?:\/\/.+/.test(v),
-      "Masukkan URL gambar yang valid (http/https)"
+      "Masukkan URL gambar yang valid (http/https)",
     ),
 });
 
@@ -124,7 +124,7 @@ export function UpdateNameCard() {
             toast.success("Profil berhasil diperbarui.");
           } catch (err) {
             toast.error(
-              err instanceof Error ? err.message : "Gagal memperbarui profil."
+              err instanceof Error ? err.message : "Gagal memperbarui profil.",
             );
           }
         })}
@@ -142,10 +142,7 @@ export function UpdateNameCard() {
           {usernameEnabled && (
             <div className="space-y-1.5">
               <Label htmlFor="ba-profile-username">Username</Label>
-              <Input
-                id="ba-profile-username"
-                {...form.register("username")}
-              />
+              <Input id="ba-profile-username" {...form.register("username")} />
             </div>
           )}
         </CardContent>
@@ -183,7 +180,9 @@ export function ChangeEmailCard() {
     <Card>
       <CardHeader className="mb-0 flex flex-row items-center justify-between gap-2">
         <div>
-          <CardTitle className="text-base font-semibold">Alamat Email</CardTitle>
+          <CardTitle className="text-base font-semibold">
+            Alamat Email
+          </CardTitle>
           <CardDescription>
             Email utama yang digunakan untuk sign-in dan notifikasi keamanan.
           </CardDescription>
@@ -199,7 +198,9 @@ export function ChangeEmailCard() {
       <form
         onSubmit={form.handleSubmit(async (vals) => {
           await changeEmail(vals.email);
-          toast.success("Email diperbarui. Silakan verifikasi email baru Anda.");
+          toast.success(
+            "Email diperbarui. Silakan verifikasi email baru Anda.",
+          );
         })}
       >
         <CardContent className="space-y-2 pt-4">

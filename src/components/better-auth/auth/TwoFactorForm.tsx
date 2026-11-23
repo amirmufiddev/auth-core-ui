@@ -53,7 +53,7 @@ export function TwoFactorForm({
           setVerified(false);
           setIsSubmitting(false);
           setErrorMsg(
-            err instanceof Error ? err.message : "Kode 2FA tidak valid."
+            err instanceof Error ? err.message : "Kode 2FA tidak valid.",
           );
         }
       }, 950);

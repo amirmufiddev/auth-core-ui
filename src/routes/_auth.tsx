@@ -23,7 +23,7 @@ function AuthSplitShell() {
   const toggleTheme = useThemeStore((s) => s.toggleTheme);
 
   const activeFeatures = BETTER_AUTH_FEATURES.filter(
-    (f) => features[f.id]?.enabled
+    (f) => features[f.id]?.enabled,
   );
 
   return (
@@ -38,7 +38,12 @@ function AuthSplitShell() {
           {/* Top Eyebrow Row */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <AppLogo forceDark showText subtitle="Centralized Identity & Access Management" size="md" />
+              <AppLogo
+                forceDark
+                showText
+                subtitle="Centralized Identity & Access Management"
+                size="md"
+              />
             </div>
           </div>
 
@@ -95,7 +100,7 @@ function AuthSplitShell() {
                       "h-4 w-4 cursor-pointer rounded-full transition-transform hover:scale-110",
                       active
                         ? "scale-110 ring-2 ring-foreground ring-offset-1 ring-offset-card"
-                        : "opacity-75 hover:opacity-100"
+                        : "opacity-75 hover:opacity-100",
                     )}
                     style={{ backgroundColor: dotColor }}
                   />

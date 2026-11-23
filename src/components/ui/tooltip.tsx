@@ -21,7 +21,7 @@ const tooltipVariants = cva(
     defaultVariants: {
       color: "primary",
     },
-  }
+  },
 );
 
 const TooltipProvider = ({
@@ -46,18 +46,16 @@ type TooltipContentProps = React.ComponentPropsWithoutRef<
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
   TooltipContentProps
->(
-  ({ className, sideOffset = 4, color, children, ...props }, ref) => (
-    <TooltipPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={cn(tooltipVariants({ color }), className, {})}
-      {...props}
-    >
-      {children}
-    </TooltipPrimitive.Content>
-  )
-);
+>(({ className, sideOffset = 4, color, children, ...props }, ref) => (
+  <TooltipPrimitive.Content
+    ref={ref}
+    sideOffset={sideOffset}
+    className={cn(tooltipVariants({ color }), className, {})}
+    {...props}
+  >
+    {children}
+  </TooltipPrimitive.Content>
+));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
 export {

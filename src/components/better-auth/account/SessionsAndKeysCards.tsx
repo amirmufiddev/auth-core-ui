@@ -120,7 +120,11 @@ export function SessionsCard() {
                         {ses.userAgent}
                       </span>
                       {idx === 0 && (
-                        <Badge color="success" variant="soft" className="text-[10px]">
+                        <Badge
+                          color="success"
+                          variant="soft"
+                          className="text-[10px]"
+                        >
                           Current Session
                         </Badge>
                       )}
@@ -328,10 +332,7 @@ export function ApiKeysCard() {
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label htmlFor="ba-ak-prefix">Prefix</Label>
-                <Input
-                  id="ba-ak-prefix"
-                  {...form.register("prefix")}
-                />
+                <Input id="ba-ak-prefix" {...form.register("prefix")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Kedaluwarsa</Label>

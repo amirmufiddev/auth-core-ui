@@ -51,7 +51,10 @@ export function OrganizationMembersCard({
           className="flex flex-col justify-between gap-3 rounded-lg border border-border p-3 sm:flex-row sm:items-center"
         >
           <div className="flex items-center gap-3">
-            <UserAvatar user={{ name: member.name, email: member.email }} size="sm" />
+            <UserAvatar
+              user={{ name: member.name, email: member.email }}
+              size="sm"
+            />
             <div>
               <div className="text-sm font-semibold text-default-900">
                 {member.name}

@@ -19,7 +19,7 @@ export function ForgotPasswordForm() {
     <form
       onSubmit={form.handleSubmit((vals) => {
         toast.success(
-          `Tautan reset password dikirim ke ${vals.email} (simulasi lokal).`
+          `Tautan reset password dikirim ke ${vals.email} (simulasi lokal).`,
         );
       })}
       className="space-y-4"

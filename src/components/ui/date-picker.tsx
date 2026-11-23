@@ -41,7 +41,7 @@ export function DatePicker({
           data-empty={!value}
           className={cn(
             "h-9 w-full justify-between border-input bg-background px-3 text-left font-normal text-foreground hover:border-input hover:bg-accent hover:text-accent-foreground data-[empty=true]:text-muted-foreground",
-            className
+            className,
           )}
         >
           <span className="flex items-center gap-2 truncate">
@@ -98,7 +98,7 @@ export function DateRangePicker({
           data-empty={!value?.from}
           className={cn(
             "h-9 w-full justify-between border-input bg-background px-3 text-left font-normal text-foreground hover:border-input hover:bg-accent hover:text-accent-foreground data-[empty=true]:text-muted-foreground",
-            className
+            className,
           )}
         >
           <span className="flex items-center gap-2 truncate">

@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import {
-  Check,
-  ChevronsUpDown,
-  Plus,
-  Settings,
-  User,
-} from "lucide-react";
+import { Check, ChevronsUpDown, Plus, Settings, User } from "lucide-react";
 import { listOrganizations } from "@/api/auth-service";
 import { useAuthConfigStore } from "@/stores/useAuthConfigStore";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -39,7 +33,7 @@ export function OrganizationSwitcher({
 }: OrganizationSwitcherProps) {
   const { basePaths } = useAuthUI();
   const isOrgEnabled = useAuthConfigStore((s) =>
-    s.isFeatureEnabled("organization")
+    s.isFeatureEnabled("organization"),
   );
   const user = useAuthStore((s) => s.user);
   const activeOrgId = useAuthStore((s) => s.activeOrgId);

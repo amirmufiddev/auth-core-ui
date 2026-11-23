@@ -45,14 +45,16 @@ const dotVariants = cva(
       },
     },
     compoundVariants: [
-      ...([
-        "destructive",
-        "success",
-        "info",
-        "warning",
-        "secondary",
-        "primary",
-      ] as const).map((color) => ({
+      ...(
+        [
+          "destructive",
+          "success",
+          "info",
+          "warning",
+          "secondary",
+          "primary",
+        ] as const
+      ).map((color) => ({
         variant: "outline" as const,
         color,
         className: `border-${color}`,
@@ -62,7 +64,7 @@ const dotVariants = cva(
     defaultVariants: {
       color: "default",
     },
-  }
+  },
 );
 
 type TimelineSharedProps = {
@@ -96,7 +98,7 @@ const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
       gap,
       ...props
     },
-    ref
+    ref,
   ) => {
     const childItem = React.Children.toArray(children);
     return (
@@ -129,7 +131,7 @@ const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
         })}
       </ol>
     );
-  }
+  },
 );
 Timeline.displayName = "Timeline";
 
@@ -162,7 +164,7 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
       odd,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <li
@@ -187,7 +189,7 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
         {children}
       </li>
     );
-  }
+  },
 );
 TimelineItem.displayName = "TimelineItem";
 
@@ -196,23 +198,21 @@ TimelineItem.displayName = "TimelineItem";
 const TimelineSeparator = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "absolute h-full top-[3px]  flex flex-col items-center tm-separator",
+>(({ className, children, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "absolute h-full top-[3px]  flex flex-col items-center tm-separator",
 
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
 
 TimelineSeparator.displayName = "TimelineSeparator";
 
@@ -220,83 +220,76 @@ const TimelineDot = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof dotVariants>
 >(({ className, children, color, variant, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(dotVariants({ color, variant }), className)}
-        {...props}
-      >
-        <span>{children}</span>
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      ref={ref}
+      className={cn(dotVariants({ color, variant }), className)}
+      {...props}
+    >
+      <span>{children}</span>
+    </div>
+  );
+});
 TimelineDot.displayName = "TimelineDot";
 
 const TimelineConnector = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "grow w-[2px] bg-default-200 tm-connector ",
+>(({ className, children, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "grow w-[2px] bg-default-200 tm-connector ",
 
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
 TimelineConnector.displayName = "TimelineConnector";
 
 const TimelineContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "tm-content-wrapper",
+>(({ className, children, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "tm-content-wrapper",
 
-          className
-        )}
-        {...props}
-      >
-        <div className="tm-content">{children}</div>
-      </div>
-    );
-  }
-);
+        className,
+      )}
+      {...props}
+    >
+      <div className="tm-content">{children}</div>
+    </div>
+  );
+});
 
 TimelineContent.displayName = "TimelineContent";
 const TimelineOppositeContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "tm-opposite-content",
+>(({ className, children, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "tm-opposite-content",
 
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
 TimelineOppositeContent.displayName = "TimelineOppositeContent";
 
 export {

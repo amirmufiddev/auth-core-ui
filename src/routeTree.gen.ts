@@ -8,337 +8,337 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthRouteImport } from './routes/_auth'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
-import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
-import { Route as AuthLoginRouteImport } from './routes/_auth/login'
-import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
-import { Route as AuthVerify2faRouteImport } from './routes/_auth/verify-2fa'
-import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
-import { Route as AuthenticatedApiKeysRouteImport } from './routes/_authenticated/api-keys'
-import { Route as AuthenticatedAuditLogsRouteImport } from './routes/_authenticated/audit-logs'
-import { Route as AuthenticatedAuthFeaturesRouteImport } from './routes/_authenticated/auth-features'
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as AuthenticatedOrganizationsRouteImport } from './routes/_authenticated/organizations'
-import { Route as AuthenticatedRolesRouteImport } from './routes/_authenticated/roles'
-import { Route as AuthenticatedSessionsRouteImport } from './routes/_authenticated/sessions'
-import { Route as AuthenticatedUsersRouteImport } from './routes/_authenticated/users'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as IndexRouteImport } from "./routes/index";
+import { Route as AuthRouteImport } from "./routes/_auth";
+import { Route as AuthenticatedRouteImport } from "./routes/_authenticated";
+import { Route as AuthForgotPasswordRouteImport } from "./routes/_auth/forgot-password";
+import { Route as AuthLoginRouteImport } from "./routes/_auth/login";
+import { Route as AuthRegisterRouteImport } from "./routes/_auth/register";
+import { Route as AuthVerify2faRouteImport } from "./routes/_auth/verify-2fa";
+import { Route as AuthenticatedAccountRouteImport } from "./routes/_authenticated/account";
+import { Route as AuthenticatedApiKeysRouteImport } from "./routes/_authenticated/api-keys";
+import { Route as AuthenticatedAuditLogsRouteImport } from "./routes/_authenticated/audit-logs";
+import { Route as AuthenticatedAuthFeaturesRouteImport } from "./routes/_authenticated/auth-features";
+import { Route as AuthenticatedDashboardRouteImport } from "./routes/_authenticated/dashboard";
+import { Route as AuthenticatedOrganizationsRouteImport } from "./routes/_authenticated/organizations";
+import { Route as AuthenticatedRolesRouteImport } from "./routes/_authenticated/roles";
+import { Route as AuthenticatedSessionsRouteImport } from "./routes/_authenticated/sessions";
+import { Route as AuthenticatedUsersRouteImport } from "./routes/_authenticated/users";
 
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthRoute = AuthRouteImport.update({
-  id: '/_auth',
+  id: "/_auth",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
-  id: '/_authenticated',
+  id: "/_authenticated",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
+  id: "/forgot-password",
+  path: "/forgot-password",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+  id: "/login",
+  path: "/login",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
+  id: "/register",
+  path: "/register",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 const AuthVerify2faRoute = AuthVerify2faRouteImport.update({
-  id: '/verify-2fa',
-  path: '/verify-2fa',
+  id: "/verify-2fa",
+  path: "/verify-2fa",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
-  id: '/account',
-  path: '/account',
+  id: "/account",
+  path: "/account",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedApiKeysRoute = AuthenticatedApiKeysRouteImport.update({
-  id: '/api-keys',
-  path: '/api-keys',
+  id: "/api-keys",
+  path: "/api-keys",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedAuditLogsRoute = AuthenticatedAuditLogsRouteImport.update({
-  id: '/audit-logs',
-  path: '/audit-logs',
+  id: "/audit-logs",
+  path: "/audit-logs",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedAuthFeaturesRoute =
   AuthenticatedAuthFeaturesRouteImport.update({
-    id: '/auth-features',
-    path: '/auth-features',
+    id: "/auth-features",
+    path: "/auth-features",
     getParentRoute: () => AuthenticatedRoute,
-  } as any)
+  } as any);
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+  id: "/dashboard",
+  path: "/dashboard",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedOrganizationsRoute =
   AuthenticatedOrganizationsRouteImport.update({
-    id: '/organizations',
-    path: '/organizations',
+    id: "/organizations",
+    path: "/organizations",
     getParentRoute: () => AuthenticatedRoute,
-  } as any)
+  } as any);
 const AuthenticatedRolesRoute = AuthenticatedRolesRouteImport.update({
-  id: '/roles',
-  path: '/roles',
+  id: "/roles",
+  path: "/roles",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedSessionsRoute = AuthenticatedSessionsRouteImport.update({
-  id: '/sessions',
-  path: '/sessions',
+  id: "/sessions",
+  path: "/sessions",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 const AuthenticatedUsersRoute = AuthenticatedUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
+  id: "/users",
+  path: "/users",
   getParentRoute: () => AuthenticatedRoute,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/forgot-password': typeof AuthForgotPasswordRoute
-  '/login': typeof AuthLoginRoute
-  '/register': typeof AuthRegisterRoute
-  '/verify-2fa': typeof AuthVerify2faRoute
-  '/account': typeof AuthenticatedAccountRoute
-  '/api-keys': typeof AuthenticatedApiKeysRoute
-  '/audit-logs': typeof AuthenticatedAuditLogsRoute
-  '/auth-features': typeof AuthenticatedAuthFeaturesRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
-  '/organizations': typeof AuthenticatedOrganizationsRoute
-  '/roles': typeof AuthenticatedRolesRoute
-  '/sessions': typeof AuthenticatedSessionsRoute
-  '/users': typeof AuthenticatedUsersRoute
+  "/": typeof IndexRoute;
+  "/forgot-password": typeof AuthForgotPasswordRoute;
+  "/login": typeof AuthLoginRoute;
+  "/register": typeof AuthRegisterRoute;
+  "/verify-2fa": typeof AuthVerify2faRoute;
+  "/account": typeof AuthenticatedAccountRoute;
+  "/api-keys": typeof AuthenticatedApiKeysRoute;
+  "/audit-logs": typeof AuthenticatedAuditLogsRoute;
+  "/auth-features": typeof AuthenticatedAuthFeaturesRoute;
+  "/dashboard": typeof AuthenticatedDashboardRoute;
+  "/organizations": typeof AuthenticatedOrganizationsRoute;
+  "/roles": typeof AuthenticatedRolesRoute;
+  "/sessions": typeof AuthenticatedSessionsRoute;
+  "/users": typeof AuthenticatedUsersRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/forgot-password': typeof AuthForgotPasswordRoute
-  '/login': typeof AuthLoginRoute
-  '/register': typeof AuthRegisterRoute
-  '/verify-2fa': typeof AuthVerify2faRoute
-  '/account': typeof AuthenticatedAccountRoute
-  '/api-keys': typeof AuthenticatedApiKeysRoute
-  '/audit-logs': typeof AuthenticatedAuditLogsRoute
-  '/auth-features': typeof AuthenticatedAuthFeaturesRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
-  '/organizations': typeof AuthenticatedOrganizationsRoute
-  '/roles': typeof AuthenticatedRolesRoute
-  '/sessions': typeof AuthenticatedSessionsRoute
-  '/users': typeof AuthenticatedUsersRoute
+  "/": typeof IndexRoute;
+  "/forgot-password": typeof AuthForgotPasswordRoute;
+  "/login": typeof AuthLoginRoute;
+  "/register": typeof AuthRegisterRoute;
+  "/verify-2fa": typeof AuthVerify2faRoute;
+  "/account": typeof AuthenticatedAccountRoute;
+  "/api-keys": typeof AuthenticatedApiKeysRoute;
+  "/audit-logs": typeof AuthenticatedAuditLogsRoute;
+  "/auth-features": typeof AuthenticatedAuthFeaturesRoute;
+  "/dashboard": typeof AuthenticatedDashboardRoute;
+  "/organizations": typeof AuthenticatedOrganizationsRoute;
+  "/roles": typeof AuthenticatedRolesRoute;
+  "/sessions": typeof AuthenticatedSessionsRoute;
+  "/users": typeof AuthenticatedUsersRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/_auth': typeof AuthRouteWithChildren
-  '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/_auth/login': typeof AuthLoginRoute
-  '/_auth/register': typeof AuthRegisterRoute
-  '/_auth/verify-2fa': typeof AuthVerify2faRoute
-  '/_authenticated/account': typeof AuthenticatedAccountRoute
-  '/_authenticated/api-keys': typeof AuthenticatedApiKeysRoute
-  '/_authenticated/audit-logs': typeof AuthenticatedAuditLogsRoute
-  '/_authenticated/auth-features': typeof AuthenticatedAuthFeaturesRoute
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/organizations': typeof AuthenticatedOrganizationsRoute
-  '/_authenticated/roles': typeof AuthenticatedRolesRoute
-  '/_authenticated/sessions': typeof AuthenticatedSessionsRoute
-  '/_authenticated/users': typeof AuthenticatedUsersRoute
+  __root__: typeof rootRouteImport;
+  "/": typeof IndexRoute;
+  "/_auth": typeof AuthRouteWithChildren;
+  "/_authenticated": typeof AuthenticatedRouteWithChildren;
+  "/_auth/forgot-password": typeof AuthForgotPasswordRoute;
+  "/_auth/login": typeof AuthLoginRoute;
+  "/_auth/register": typeof AuthRegisterRoute;
+  "/_auth/verify-2fa": typeof AuthVerify2faRoute;
+  "/_authenticated/account": typeof AuthenticatedAccountRoute;
+  "/_authenticated/api-keys": typeof AuthenticatedApiKeysRoute;
+  "/_authenticated/audit-logs": typeof AuthenticatedAuditLogsRoute;
+  "/_authenticated/auth-features": typeof AuthenticatedAuthFeaturesRoute;
+  "/_authenticated/dashboard": typeof AuthenticatedDashboardRoute;
+  "/_authenticated/organizations": typeof AuthenticatedOrganizationsRoute;
+  "/_authenticated/roles": typeof AuthenticatedRolesRoute;
+  "/_authenticated/sessions": typeof AuthenticatedSessionsRoute;
+  "/_authenticated/users": typeof AuthenticatedUsersRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/forgot-password'
-    | '/login'
-    | '/register'
-    | '/verify-2fa'
-    | '/account'
-    | '/api-keys'
-    | '/audit-logs'
-    | '/auth-features'
-    | '/dashboard'
-    | '/organizations'
-    | '/roles'
-    | '/sessions'
-    | '/users'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/forgot-password"
+    | "/login"
+    | "/register"
+    | "/verify-2fa"
+    | "/account"
+    | "/api-keys"
+    | "/audit-logs"
+    | "/auth-features"
+    | "/dashboard"
+    | "/organizations"
+    | "/roles"
+    | "/sessions"
+    | "/users";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/forgot-password'
-    | '/login'
-    | '/register'
-    | '/verify-2fa'
-    | '/account'
-    | '/api-keys'
-    | '/audit-logs'
-    | '/auth-features'
-    | '/dashboard'
-    | '/organizations'
-    | '/roles'
-    | '/sessions'
-    | '/users'
+    | "/"
+    | "/forgot-password"
+    | "/login"
+    | "/register"
+    | "/verify-2fa"
+    | "/account"
+    | "/api-keys"
+    | "/audit-logs"
+    | "/auth-features"
+    | "/dashboard"
+    | "/organizations"
+    | "/roles"
+    | "/sessions"
+    | "/users";
   id:
-    | '__root__'
-    | '/'
-    | '/_auth'
-    | '/_authenticated'
-    | '/_auth/forgot-password'
-    | '/_auth/login'
-    | '/_auth/register'
-    | '/_auth/verify-2fa'
-    | '/_authenticated/account'
-    | '/_authenticated/api-keys'
-    | '/_authenticated/audit-logs'
-    | '/_authenticated/auth-features'
-    | '/_authenticated/dashboard'
-    | '/_authenticated/organizations'
-    | '/_authenticated/roles'
-    | '/_authenticated/sessions'
-    | '/_authenticated/users'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/_auth"
+    | "/_authenticated"
+    | "/_auth/forgot-password"
+    | "/_auth/login"
+    | "/_auth/register"
+    | "/_auth/verify-2fa"
+    | "/_authenticated/account"
+    | "/_authenticated/api-keys"
+    | "/_authenticated/audit-logs"
+    | "/_authenticated/auth-features"
+    | "/_authenticated/dashboard"
+    | "/_authenticated/organizations"
+    | "/_authenticated/roles"
+    | "/_authenticated/sessions"
+    | "/_authenticated/users";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AuthRoute: typeof AuthRouteWithChildren
-  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  IndexRoute: typeof IndexRoute;
+  AuthRoute: typeof AuthRouteWithChildren;
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/forgot-password': {
-      id: '/_auth/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/login': {
-      id: '/_auth/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/register': {
-      id: '/_auth/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof AuthRegisterRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/verify-2fa': {
-      id: '/_auth/verify-2fa'
-      path: '/verify-2fa'
-      fullPath: '/verify-2fa'
-      preLoaderRoute: typeof AuthVerify2faRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_authenticated/account': {
-      id: '/_authenticated/account'
-      path: '/account'
-      fullPath: '/account'
-      preLoaderRoute: typeof AuthenticatedAccountRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/api-keys': {
-      id: '/_authenticated/api-keys'
-      path: '/api-keys'
-      fullPath: '/api-keys'
-      preLoaderRoute: typeof AuthenticatedApiKeysRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/audit-logs': {
-      id: '/_authenticated/audit-logs'
-      path: '/audit-logs'
-      fullPath: '/audit-logs'
-      preLoaderRoute: typeof AuthenticatedAuditLogsRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/auth-features': {
-      id: '/_authenticated/auth-features'
-      path: '/auth-features'
-      fullPath: '/auth-features'
-      preLoaderRoute: typeof AuthenticatedAuthFeaturesRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/organizations': {
-      id: '/_authenticated/organizations'
-      path: '/organizations'
-      fullPath: '/organizations'
-      preLoaderRoute: typeof AuthenticatedOrganizationsRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/roles': {
-      id: '/_authenticated/roles'
-      path: '/roles'
-      fullPath: '/roles'
-      preLoaderRoute: typeof AuthenticatedRolesRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/sessions': {
-      id: '/_authenticated/sessions'
-      path: '/sessions'
-      fullPath: '/sessions'
-      preLoaderRoute: typeof AuthenticatedSessionsRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/users': {
-      id: '/_authenticated/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof AuthenticatedUsersRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_auth": {
+      id: "/_auth";
+      path: "";
+      fullPath: "/";
+      preLoaderRoute: typeof AuthRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_authenticated": {
+      id: "/_authenticated";
+      path: "";
+      fullPath: "/";
+      preLoaderRoute: typeof AuthenticatedRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_auth/forgot-password": {
+      id: "/_auth/forgot-password";
+      path: "/forgot-password";
+      fullPath: "/forgot-password";
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport;
+      parentRoute: typeof AuthRoute;
+    };
+    "/_auth/login": {
+      id: "/_auth/login";
+      path: "/login";
+      fullPath: "/login";
+      preLoaderRoute: typeof AuthLoginRouteImport;
+      parentRoute: typeof AuthRoute;
+    };
+    "/_auth/register": {
+      id: "/_auth/register";
+      path: "/register";
+      fullPath: "/register";
+      preLoaderRoute: typeof AuthRegisterRouteImport;
+      parentRoute: typeof AuthRoute;
+    };
+    "/_auth/verify-2fa": {
+      id: "/_auth/verify-2fa";
+      path: "/verify-2fa";
+      fullPath: "/verify-2fa";
+      preLoaderRoute: typeof AuthVerify2faRouteImport;
+      parentRoute: typeof AuthRoute;
+    };
+    "/_authenticated/account": {
+      id: "/_authenticated/account";
+      path: "/account";
+      fullPath: "/account";
+      preLoaderRoute: typeof AuthenticatedAccountRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/api-keys": {
+      id: "/_authenticated/api-keys";
+      path: "/api-keys";
+      fullPath: "/api-keys";
+      preLoaderRoute: typeof AuthenticatedApiKeysRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/audit-logs": {
+      id: "/_authenticated/audit-logs";
+      path: "/audit-logs";
+      fullPath: "/audit-logs";
+      preLoaderRoute: typeof AuthenticatedAuditLogsRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/auth-features": {
+      id: "/_authenticated/auth-features";
+      path: "/auth-features";
+      fullPath: "/auth-features";
+      preLoaderRoute: typeof AuthenticatedAuthFeaturesRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/dashboard": {
+      id: "/_authenticated/dashboard";
+      path: "/dashboard";
+      fullPath: "/dashboard";
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/organizations": {
+      id: "/_authenticated/organizations";
+      path: "/organizations";
+      fullPath: "/organizations";
+      preLoaderRoute: typeof AuthenticatedOrganizationsRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/roles": {
+      id: "/_authenticated/roles";
+      path: "/roles";
+      fullPath: "/roles";
+      preLoaderRoute: typeof AuthenticatedRolesRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/sessions": {
+      id: "/_authenticated/sessions";
+      path: "/sessions";
+      fullPath: "/sessions";
+      preLoaderRoute: typeof AuthenticatedSessionsRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
+    "/_authenticated/users": {
+      id: "/_authenticated/users";
+      path: "/users";
+      fullPath: "/users";
+      preLoaderRoute: typeof AuthenticatedUsersRouteImport;
+      parentRoute: typeof AuthenticatedRoute;
+    };
   }
 }
 
 interface AuthRouteChildren {
-  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthRegisterRoute: typeof AuthRegisterRoute
-  AuthVerify2faRoute: typeof AuthVerify2faRoute
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute;
+  AuthLoginRoute: typeof AuthLoginRoute;
+  AuthRegisterRoute: typeof AuthRegisterRoute;
+  AuthVerify2faRoute: typeof AuthVerify2faRoute;
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -346,20 +346,20 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
   AuthVerify2faRoute: AuthVerify2faRoute,
-}
+};
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
-  AuthenticatedApiKeysRoute: typeof AuthenticatedApiKeysRoute
-  AuthenticatedAuditLogsRoute: typeof AuthenticatedAuditLogsRoute
-  AuthenticatedAuthFeaturesRoute: typeof AuthenticatedAuthFeaturesRoute
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedOrganizationsRoute: typeof AuthenticatedOrganizationsRoute
-  AuthenticatedRolesRoute: typeof AuthenticatedRolesRoute
-  AuthenticatedSessionsRoute: typeof AuthenticatedSessionsRoute
-  AuthenticatedUsersRoute: typeof AuthenticatedUsersRoute
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute;
+  AuthenticatedApiKeysRoute: typeof AuthenticatedApiKeysRoute;
+  AuthenticatedAuditLogsRoute: typeof AuthenticatedAuditLogsRoute;
+  AuthenticatedAuthFeaturesRoute: typeof AuthenticatedAuthFeaturesRoute;
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute;
+  AuthenticatedOrganizationsRoute: typeof AuthenticatedOrganizationsRoute;
+  AuthenticatedRolesRoute: typeof AuthenticatedRolesRoute;
+  AuthenticatedSessionsRoute: typeof AuthenticatedSessionsRoute;
+  AuthenticatedUsersRoute: typeof AuthenticatedUsersRoute;
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -372,17 +372,17 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedRolesRoute: AuthenticatedRolesRoute,
   AuthenticatedSessionsRoute: AuthenticatedSessionsRoute,
   AuthenticatedUsersRoute: AuthenticatedUsersRoute,
-}
+};
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
-)
+);
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();

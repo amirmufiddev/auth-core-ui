@@ -49,7 +49,7 @@ export function UserButton({
   const signOut = useAuthStore((s) => s.signOut);
 
   const isMultiSessionEnabled = useAuthConfigStore((s) =>
-    s.isFeatureEnabled("multiSession")
+    s.isFeatureEnabled("multiSession"),
   );
 
   if (!user) return null;
@@ -100,7 +100,11 @@ export function UserButton({
             <span className="truncate font-semibold text-default-900">
               {user.name}
             </span>
-            <Badge color="default" variant="soft" className="font-semiboldums text-[10px]">
+            <Badge
+              color="default"
+              variant="soft"
+              className="font-semiboldums text-[10px]"
+            >
               {user.role}
             </Badge>
           </div>

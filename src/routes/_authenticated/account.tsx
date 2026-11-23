@@ -25,8 +25,8 @@ function AccountRouteComponent() {
           Account & Security Settings
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Kelola profil pribadi, kata sandi, 2FA, passkeys, provider OAuth,
-          sesi aktif, dan API keys Anda.
+          Kelola profil pribadi, kata sandi, 2FA, passkeys, provider OAuth, sesi
+          aktif, dan API keys Anda.
         </p>
       </div>
       <AccountView activeTab={search.tab} onTabChange={handleTabChange} />

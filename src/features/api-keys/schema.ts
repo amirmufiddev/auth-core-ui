@@ -19,7 +19,9 @@ export const createApiKeySchema = z.object({
 export const createOAuthClientSchema = z.object({
   name: z.string().min(2, "Nama klien minimal 2 karakter"),
   type: z.enum(["oidc-public", "oidc-confidential", "mcp-client"]),
-  redirectUri: z.string().url("URL redirect harus valid (https:// atau http://)"),
+  redirectUri: z
+    .string()
+    .url("URL redirect harus valid (https:// atau http://)"),
   scopesText: z.string().min(2, "Masukkan minimal 1 scope"),
   pkceRequired: z.boolean(),
 });

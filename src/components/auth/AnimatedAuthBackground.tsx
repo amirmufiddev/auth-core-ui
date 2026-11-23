@@ -44,9 +44,11 @@ export function AnimatedAuthBackground() {
 
     const readThemePalette = () => {
       const style = getComputedStyle(document.documentElement);
-      const primary = hexToRgb(style.getPropertyValue("--primary") || "#4f46e5");
+      const primary = hexToRgb(
+        style.getPropertyValue("--primary") || "#4f46e5",
+      );
       const tertiary = hexToRgb(
-        style.getPropertyValue("--tertiary") || "#0ea5e9"
+        style.getPropertyValue("--tertiary") || "#0ea5e9",
       );
       const chart1 = hexToRgb(style.getPropertyValue("--chart-1") || "#6366f1");
       const chart2 = hexToRgb(style.getPropertyValue("--chart-2") || "#38bdf8");
@@ -84,14 +86,14 @@ export function AnimatedAuthBackground() {
       bgGrad.addColorStop(
         0,
         `rgb(${Math.round(primary[0] * 0.09 + 7)}, ${Math.round(
-          primary[1] * 0.09 + 8
-        )}, ${Math.round(primary[2] * 0.12 + 14)})`
+          primary[1] * 0.09 + 8,
+        )}, ${Math.round(primary[2] * 0.12 + 14)})`,
       );
       bgGrad.addColorStop(
         0.55,
         `rgb(${Math.round(tertiary[0] * 0.06 + 6)}, ${Math.round(
-          tertiary[1] * 0.06 + 8
-        )}, ${Math.round(tertiary[2] * 0.09 + 13)})`
+          tertiary[1] * 0.06 + 8,
+        )}, ${Math.round(tertiary[2] * 0.09 + 13)})`,
       );
       bgGrad.addColorStop(1, "#070910");
       ctx.fillStyle = bgGrad;
@@ -104,7 +106,7 @@ export function AnimatedAuthBackground() {
         20,
         width * 0.28,
         height * 0.62,
-        Math.max(width, height) * 0.55
+        Math.max(width, height) * 0.55,
       );
       bloom.addColorStop(0, rgba(primary, 0.22));
       bloom.addColorStop(0.5, rgba(tertiary, 0.09));
@@ -121,7 +123,7 @@ export function AnimatedAuthBackground() {
           0,
           height * 0.9,
           width * 0.85,
-          height * 0.05
+          height * 0.05,
         );
         const alpha = 0.08 + centerFactor * 0.48;
         strokeGrad.addColorStop(0, rgba(chart1, alpha * 0.65));
@@ -148,10 +150,8 @@ export function AnimatedAuthBackground() {
 
           // Organic harmonic waves
           const waveY =
-            Math.sin(p * Math.PI * 2.2 - t * 1.3 + u * 1.6) *
-              (height * 0.14) +
-            Math.cos(p * Math.PI * 3.1 + t * 0.85 - u * 1.1) *
-              (height * 0.045);
+            Math.sin(p * Math.PI * 2.2 - t * 1.3 + u * 1.6) * (height * 0.14) +
+            Math.cos(p * Math.PI * 3.1 + t * 0.85 - u * 1.1) * (height * 0.045);
 
           const waveX =
             Math.cos(p * Math.PI * 1.9 + t * 1.05 + u * 1.8) * (width * 0.055);

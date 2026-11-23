@@ -65,7 +65,7 @@ export function CreateOrganizationDialog({
     },
     onError: (err) => {
       toast.error(
-        err instanceof Error ? err.message : "Gagal membuat organisasi."
+        err instanceof Error ? err.message : "Gagal membuat organisasi.",
       );
     },
   });
