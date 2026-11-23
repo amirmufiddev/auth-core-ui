@@ -16,7 +16,7 @@ export function Footer() {
         footerType === "sticky" && "sticky bottom-0 z-20"
       )}
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-2 sm:flex-row">
+      <div className="mx-auto flex max-w-360 flex-col items-center justify-between gap-2 sm:flex-row">
         <span>
           COPYRIGHT &copy; {new Date().getFullYear()} {siteConfig.name}. All
           rights reserved.

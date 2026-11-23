@@ -79,7 +79,7 @@ export function TwoFactorForm({
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col items-center gap-3 py-2"
         >
-          <div className="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-tertiary text-primary-foreground shadow-lg">
+          <div className="flex size-14 items-center justify-center rounded-2xl bg-linear-to-br from-primary to-tertiary text-primary-foreground shadow-lg">
             <Check className="h-7 w-7 stroke-[2.5]" />
           </div>
           <p className="text-sm font-medium text-foreground">
